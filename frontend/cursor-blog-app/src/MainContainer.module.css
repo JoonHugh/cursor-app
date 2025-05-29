@@ -1,0 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+
+* {
+  font-family: 'Neue Haas Grotesk Display Pro', sans-serif;
+}
+
+.main-container {
+    /* border:1px solid red; */
+    width:75%;
+    /* max-width: 700px; */
+    margin:auto;
+    letter-spacing: .05rem;
+    word-spacing: .1rem;
+}

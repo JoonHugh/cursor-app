@@ -1,0 +1,58 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+.header-grid {
+    display:grid;
+    margin:auto;
+    padding:10px 0;
+    grid-template-columns: 1fr 2fr 1fr;
+    width:75%;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+    margin-bottom: 3.5rem;
+}
+.header-grid button {
+    padding:2px;
+    cursor:pointer;
+    width:32px;
+    height:32px;
+    font-size: 24px;
+    align-items: center;
+    border:none;
+    background-color: transparent;
+}
+.menu-button {
+    justify-self: left;
+
+    transition:.3s ease;
+}
+.menu-button:hover {
+    opacity:0.5;
+}
+
+.button-group {
+    justify-self: right;
+    align-content: center;
+    width:fit-content;
+    height:auto;
+    text-align: right;
+    float:right;
+    /* border:1px solid purple; */
+}
+.profile-button {
+    transition:0.3s ease;
+}
+.profile-button:hover {
+    opacity: 0.5;
+}
+.dark-mode-button {
+    position: relative;
+    transition:.3s ease;
+    bottom: 5px;
+}
+.dark-mode-button:hover {
+    opacity:0.5;
+}
