@@ -9,6 +9,6 @@ function MainContainer() {
             <BlogGrid />
         </div>
     );
-} // MainContent
+} // MainContent 
 
 export default MainContainer

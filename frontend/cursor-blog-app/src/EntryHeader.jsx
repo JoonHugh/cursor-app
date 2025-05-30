@@ -292,7 +292,7 @@ export function EntryHeader({ entry }) {
         <div className={styles["entry-preview-col"]}>
             <span className={styles["meta-category"]}>{entry.category}</span>
             <h2 className={styles["entry-title"]}>{entry.title}</h2>
-            <span className={styles["meta-post"]}><a href="#">{entry.name}</a> • <a href="#">May 2024</a> • <a href="#">NO COMMENTS</a></span>
+            <span className={styles["meta-post"]}><a href="#">{entry.name}</a> • <a href="#">MAY 2024</a> • <a href="#">NO COMMENTS</a></span>
         </div>
     );
 }
