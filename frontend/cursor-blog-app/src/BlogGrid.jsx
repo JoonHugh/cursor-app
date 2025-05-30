@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { randomizer } from './EntryHeader.jsx';
 import TrendingSection from './TrendingSection.jsx';
 import AdBlog from './AdBlog.jsx';
+import { ParallaxProvider } from 'react-scroll-parallax';
+
 
 
 function createEntry() {
@@ -59,7 +61,9 @@ function BlogGrid() {
             {entries.slice(3, entries.length).map((entry, index) => (
                 <Blog key={index} entry={entry} />
             ))} */}
-            <AdBlog />
+            <ParallaxProvider>
+                <AdBlog />
+            </ParallaxProvider>
             <div>
                 <button onClick={loadMore}>Load More</button>
             </div>

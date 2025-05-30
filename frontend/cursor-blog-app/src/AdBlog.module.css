@@ -1,0 +1,66 @@
+.main-container {
+    width:100%;
+    box-sizing: border-box;
+}
+.ad-container1 {
+    /* border:4px solid red; */
+    width:100%;
+    height:250px;
+    padding-bottom: 3rem; 
+    margin-bottom: 3rem;
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+} 
+.ad-container2 {
+    width:100%;
+    overflow:hidden;
+    position: relative;
+    /* border:1px solid red; */
+    cursor:pointer;
+    /* padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid hsl(0, 0%, 90%); */
+}
+.ad-image {
+    display:block;
+    width:100%;
+    height: 250px;
+    /* max-height: 256px; */
+    object-fit: cover;
+}
+
+.entry-container {
+    height:1000px;
+}
+.company-name {
+    position: absolute;
+    top:2rem;
+    left:2rem;
+    color:white;
+    font-size: 24px;
+    font-weight: 600;
+}
+.slogan {
+    position: absolute;
+    top:4rem;
+    left:2rem;
+    font-size: 14px;
+    color:white;
+}
+.box {
+    position: absolute;
+    top:7rem;
+    left:2rem;
+    width:20%;
+    padding:6px;
+    background-color: hsla(0, 0%, 0%, 0.45);
+    align-items: center;
+    text-align: center;
+}
+.call-to-action {
+    position: relative;
+    top:0rem;
+    left:0rem;
+    font-size: 16px;
+    font-weight: 500;
+    color:white;
+}
