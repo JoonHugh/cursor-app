@@ -1,0 +1,21 @@
+.trending-posts-container {
+    width:100%;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    /* border:1px solid orange; */
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+
+}
+.label {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+.trending-posts-grid {
+    width:100%;
+    display:grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem 2.5rem;
+    box-sizing: border-box;
+}
