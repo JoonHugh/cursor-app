@@ -1,5 +1,6 @@
 .main-container {
     width:100%;
+    height: fit-content;
     box-sizing: border-box;
 }
 .ad-container1 {
@@ -14,11 +15,13 @@
     width:100%;
     overflow:hidden;
     position: relative;
-    /* border:1px solid red; */
     cursor:pointer;
-    /* padding-bottom: 3rem;
-    margin-bottom: 3rem;
-    border-bottom: 1px solid hsl(0, 0%, 90%); */
+    transition: 0.3s ease;
+    z-index: 500;
+    /* border:1px solid red; */
+}
+.ad-container2:hover {
+    filter:brightness(90%);
 }
 .ad-image {
     display:block;
@@ -27,23 +30,19 @@
     /* max-height: 256px; */
     object-fit: cover;
 }
-
-.entry-container {
-    height:1000px;
-}
 .company-name {
     position: absolute;
     top:2rem;
     left:2rem;
     color:white;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
 }
 .slogan {
     position: absolute;
-    top:4rem;
+    top:4.5rem;
     left:2rem;
-    font-size: 14px;
+    font-size: 16px;
     color:white;
 }
 .box {
@@ -53,8 +52,12 @@
     width:20%;
     padding:6px;
     background-color: hsla(0, 0%, 0%, 0.45);
+    transition:0.3s ease;
     align-items: center;
     text-align: center;
+}
+.box:hover {
+    background-color: hsla(0, 0%, 0%, 0.65);
 }
 .call-to-action {
     position: relative;
@@ -63,4 +66,12 @@
     font-size: 16px;
     font-weight: 500;
     color:white;
+}
+.entry-container1 {
+    width:100%;
+    height:fit-content;
+    padding-bottom: 4rem;
+    border-bottom:1px solid hsl(0, 0%, 90%);
+    /* border:5px solid red; */
+    box-sizing: border-box;
 }

@@ -6,6 +6,8 @@ import { randomizer } from './EntryHeader.jsx';
 import TrendingSection from './TrendingSection.jsx';
 import AdBlog from './AdBlog.jsx';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import Subscribe from './Subscribe.jsx';
+import BlogSection from './BlogSection.jsx';
 
 
 
@@ -48,22 +50,11 @@ function BlogGrid() {
             ))
         )}
 
-            {/* {entries.slice(0, 3).map((entry, index) => (
-                <Blog key={index} entry={entry} />
-            ))}
-            
-            {showTrending ? (
-                <TrendingSection />
-            ) : (
-                <TrendingSection />
-            )}
-
-            {entries.slice(3, entries.length).map((entry, index) => (
-                <Blog key={index} entry={entry} />
-            ))} */}
             <ParallaxProvider>
                 <AdBlog />
             </ParallaxProvider>
+            <Subscribe />
+            <BlogSection />
             <div>
                 <button onClick={loadMore}>Load More</button>
             </div>
