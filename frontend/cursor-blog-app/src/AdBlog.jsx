@@ -25,9 +25,7 @@ function AdBlog() {
                     </div>
                 </a>
             </div>
-            <div className={styles["entry-container1"]}>
-                <BlogSection />
-            </div>
+            <BlogSection />
         </div>
     );
 }

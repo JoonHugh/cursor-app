@@ -67,11 +67,3 @@
     font-weight: 500;
     color:white;
 }
-.entry-container1 {
-    width:100%;
-    height:fit-content;
-    padding-bottom: 4rem;
-    border-bottom:1px solid hsl(0, 0%, 90%);
-    /* border:5px solid red; */
-    box-sizing: border-box;
-}
