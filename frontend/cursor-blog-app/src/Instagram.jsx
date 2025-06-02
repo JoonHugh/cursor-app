@@ -29,14 +29,14 @@ function Instagram() {
                             <div className={styles["post-meta"]}>
                                 <div className={styles["post-overlay"]}></div>
                                 <div className={styles["post-meta-content"]}>
-                                <span><FiHeart /> {Math.floor(Math.random() * 100) + 30} &nbsp; <BiComment /> {Math.floor(Math.random() * 12)}</span>
+                                <span className={styles["post-meta-info"]}><FiHeart /> {Math.floor(Math.random() * 100) + 30} &nbsp; <BiComment /> {Math.floor(Math.random() * 12)}</span>
                                 </div>
                             </div>
                         </div>
                     </>
                 ))}
             </div>
-            <button href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank">
+            <button className={styles["follow-button"]}href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank">
                 <span className={styles["btn-text"]}>FOLLOW</span>
                 <span className={styles["btn-icon"]}><FaInstagram /></span>
             </button>

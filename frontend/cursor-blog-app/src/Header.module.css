@@ -9,10 +9,15 @@
     padding:10px 0;
     grid-template-columns: 1fr 2fr 1fr;
     width:75%;
+    height:32px;
     align-items: center;
     text-align: center;
     border-bottom: 1px solid hsl(0, 0%, 90%);
     margin-bottom: 3.5rem;
+    /* border:1px solid red; */
+}
+.header-grid h1 {
+    color:black;
 }
 .header-grid button {
     padding:2px;
@@ -23,6 +28,7 @@
     align-items: center;
     border:none;
     background-color: transparent;
+    /* border:1px solid pink; */
 }
 .menu-button {
     justify-self: left;

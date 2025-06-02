@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
 import MainContainer from './MainContainer.jsx';
-import Hero from './Hero.jsx';
 import Header from './Header.jsx';
 
 function App() {

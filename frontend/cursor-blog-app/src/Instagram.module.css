@@ -6,14 +6,6 @@
     margin-bottom: 3rem;
 }
 
-span {
-    width:100%;
-    height:100%;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display:inline;
-}
 .username-link {
     color:black;
     margin-bottom: 0.5rem;
@@ -26,8 +18,13 @@ a {
     margin-bottom: 1.5rem;
     width:30%;
 }
-.entity-link {
-
+.meta-info {
+    /* border:1px solid red; */
+    width:100%;
+    height:100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 .profile-image {
     margin:auto;
@@ -72,7 +69,7 @@ a {
     /* border:1px solid blue; */
 }
 
-button {
+.follow-button {
     width:25%;
     height:32px;
     margin:auto;
@@ -149,6 +146,7 @@ button:hover .btn-icon {
     vertical-align: middle;
     bottom:1px;
 }
+
 .post-overlay  {
     position: absolute;
     top:0;
