@@ -5,7 +5,7 @@ body h5 {
 .container {
     width:100%;
     margin:auto;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     /* border:1px solid orange; */
 }
 .flex-box {
@@ -24,9 +24,6 @@ body h5 {
 }
 .grid span {
     font-size: 12px;
-}
-a {
-    /* color:black; */
 }
 .facebook-icon {
     transition: 0.3s ease;
@@ -63,6 +60,7 @@ a {
     /* border:1px, solid, lightcoral; */
     align-items: center;
     justify-content: center;
+    line-height: 2rem;
 }
 .columns a {
     display:flex;

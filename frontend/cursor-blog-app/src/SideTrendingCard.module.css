@@ -1,0 +1,106 @@
+
+
+.grid {
+    width:100%;
+    display:grid;
+    grid-template-columns: 90px 2fr;
+    gap:15px;
+    box-sizing: border-box;
+    /* border:1px solid green; */
+}
+.grid:not(:last-child) {
+    margin-bottom: 15px;
+}
+.image-container {
+    width:100%;
+    position: relative;
+    /* border:1px solid pink; */
+}
+.image-container:hover .image {
+    filter: brightness(85%);
+}
+.image {
+    width:100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display:block;
+    transition: 0.3s ease;
+    /* border:1px solid red; */
+}
+.index {
+    /* border:1px solid red; */
+    display:flex;
+    flex-direction: column;
+    width:28px;
+    height:28px;
+    position: absolute;
+    top:0;
+    left:0;
+    text-align: center;
+    align-content: center;
+    background-color: hsl(0, 0%, 90%);
+    color:black;
+    font-size: 12px;
+    font-weight: 600;
+    overflow: hidden;
+}
+.number {
+    opacity: 1;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.image-container:hover .number {
+    transform: translate(-50%, -150%);
+    opacity: 0;
+}
+.arrow {
+    opacity: 0;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, 50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.image-container:hover .arrow {
+    transform:translate(-50%, -50%);
+    opacity: 1;
+}
+.text-meta {
+    display:flex;
+    height: fit-content;
+    flex-direction: column;
+    align-items: flex-start;
+    /* border:1px solid blue; */
+}
+.text-meta a {
+    color:black;
+    text-decoration: none;
+    transition:0.3s ease;
+}
+.text-meta a:hover {
+    color:hsl(0, 0%, 80%);
+}
+.category-link {
+    font-size: 10px;
+    padding-top: .25rem;
+}
+.text-meta div {
+    align-self: start;
+    text-align: left;
+    margin:0;
+    margin-bottom: .5rem;
+    /* border:1px solid red; */
+}
+.title-link {
+    font-size: 15px;
+    margin-bottom: .5rem;
+    white-space: normal;
+    word-break: break-word;
+}
+.blog-meta {
+    display:inline;
+    font-size: 10px;
+}

@@ -11,7 +11,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 
 
-function createEntry() {
+export function createEntry() {
     const entry = randomizer();
     const image = randomImage(entry.category);
     return { ...entry, image };

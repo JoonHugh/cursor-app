@@ -17,7 +17,9 @@ function Instagram() {
     return(
         <div className={styles["container"]}>
             <h5>INSTAGRAM</h5>
-            <a className={styles["profile-image"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><img className={styles["profile-image"]} src="/assets/hugh-dev.png" alt="insta-profile"></img></a>
+            <div className={styles["image-container"]}>
+                <a className={styles["profile-image"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><img className={styles["profile-image"]} src="/assets/hugh-dev.png" alt="insta-profile"></img></a>
+            </div>
             <a className={styles["username-link"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><span className={styles["username"]}>joonhugh</span></a>
             <a className={styles["entity-link"]} href="https://hugh-dev.com/" target="_blank"><span className={styles["entity-name"]}>Hugh Dev Studios</span></a>
             <span className={styles["meta-info"]}>512 FOLLOWING 473 FOLLOWERS</span>
