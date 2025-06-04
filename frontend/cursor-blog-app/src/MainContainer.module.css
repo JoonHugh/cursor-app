@@ -12,3 +12,12 @@
     letter-spacing: .05rem;
     word-spacing: .1rem;
 }
+.main-container2 {
+    width:100%;
+    padding-top:3rem;
+    /* max-width: 725px; */
+    margin:auto;
+    letter-spacing: .05rem;
+    word-spacing: .1rem;
+    background-color: hsl(220, 20%, 98%);
+}

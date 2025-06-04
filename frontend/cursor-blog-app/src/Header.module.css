@@ -9,7 +9,7 @@
     padding:10px 0;
     grid-template-columns: 1fr 2fr 1fr;
     width:75%;
-    height:32px;
+    height:60px;
     align-items: center;
     text-align: center;
     border-bottom: 1px solid hsl(0, 0%, 90%);
@@ -40,12 +40,15 @@
 }
 
 .button-group {
+    display:flex;
+    flex-direction: row;
     justify-self: right;
-    align-content: center;
+    align-items: center;
+    /*align-content: center;
     width:fit-content;
     height:auto;
     text-align: right;
-    float:right;
+    float:right; */
     /* border:1px solid purple; */
 }
 .profile-button {
@@ -57,7 +60,7 @@
 .dark-mode-button {
     position: relative;
     transition:.3s ease;
-    bottom: 5px;
+    bottom: 3px;
 }
 .dark-mode-button:hover {
     opacity:0.5;

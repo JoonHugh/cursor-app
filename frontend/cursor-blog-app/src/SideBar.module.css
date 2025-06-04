@@ -1,9 +1,8 @@
 .main-container {
     width:350px;
     margin:auto;
-    margin-bottom: 3rem;
-    border:1px solid red;
-    margin-bottom: 300px;
+    margin-bottom: 6rem;
+    /* border:1px solid red; */
 }
 .main-container h5 {
     font-weight: 500;

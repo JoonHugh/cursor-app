@@ -5,7 +5,7 @@ import Instagram from './Instagram.jsx';
 import SideTrending from './SideTrending.jsx';
 import { createEntry } from './BlogGrid.jsx';
 
-function SideBar() {
+function SideBar({ images }) {
 
     const entries = [];
 
@@ -17,7 +17,7 @@ function SideBar() {
     return(
         <div className={styles["main-container"]}>
             <Follow />
-            <Instagram />
+            <Instagram images={images}/>
             <SideTrending entries={entries}/>
         </div>
     );
