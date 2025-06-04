@@ -34,16 +34,17 @@ function readTime() {
 
 function Blog({ entry }) {
     console.log(entry);
+    const blogLink = "/blog/" + entry.title;
     return(
         <div className={styles["blog"]}>
             <div className={styles["blog-grid-row"]}>
-                <div className={styles["image-container"]}>
+                <a href={blogLink} className={styles["image-container"]}>
                     <img className={styles["entry-image"]} src={entry.image} alt="blog preview"></img>
                     <div className={styles["hover-text"]}>
                         <span className={styles["go-to-post"]}>VIEW POST <FontAwesomeIcon icon={faLongArrowAltRight} /></span>
                         <span className={styles["post-meta"]}>{randomViews()} • {readTime()}</span>
                     </div>
-                </div>
+                </a>
                 <div className={styles["preview-column"]}>
                     <div className={styles["entry-header"]}>
                         <EntryHeader entry={entry} />

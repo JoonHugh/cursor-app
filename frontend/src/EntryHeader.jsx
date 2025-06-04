@@ -287,12 +287,16 @@ export function randomizer() {
 }
 
 export function EntryHeader({ entry }) {
+    const categoryLink = "/category/" + entry.category;
+    const blogLink = "/blog/" + entry.title;
+    const authorLink = "/user/" + entry.name;
+    const commentLink = authorLink + "/comments/";
 
     return(
         <div className={styles["entry-preview-col"]}>
-            <span className={styles["meta-category"]}>{entry.category}</span>
-            <h2 className={styles["entry-title"]}>{entry.title}</h2>
-            <span className={styles["meta-post"]}><a href="#">{entry.name}</a> • <a href="#">MAY 2024</a> • <a href="#">NO COMMENTS</a></span>
+            <a href={categoryLink} className={styles["meta-category"]}>{entry.category}</a>
+            <a href={blogLink} className={styles["entry-title"]}><h2 className={styles["entry-title"]}>{entry.title}</h2></a>
+            <span className={styles["meta-post"]}><a href={authorLink}>{entry.name}</a> • <a href="#">MAY 2024</a> • <a href={commentLink}>NO COMMENTS</a></span>
         </div>
     );
 }
