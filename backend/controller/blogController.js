@@ -1,34 +1,71 @@
 import asyncHandler from 'express-async-handler';
 
+import Blog from '../models/blogModel.js';
+
 // @desc GET blogs
 // @route GET /blogs
 // @access Private
 export const getBlogs = asyncHandler(async (req, res) => {
-    res.status(200);
-    throw new Error("Please add some text");
+    const blogs = await Blog.find()
+
+
+    res.status(200).json(blogs);
 });
 
 // @desc POST blog
 // @route POST /blogs
 // @access Private
 export const  postBlog = asyncHandler(async (req, res) => {
-    if (!req.body.text) {
-        res.status(400).json({ message: 'Please add a text field' })
+    if (!req.body.title || !req.body.content || !req.body.author) {
+        res.status(400);
+        throw new Error('Please make sure all required fields are provided');
     }
-    console.log(req.body.text);
-    res.status(201).json({ message: 'Create blog' });
+
+     const blog = await Blog.create({
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        author: req.body.author,
+        category: req.body.category,
+        tags: req.body.tags,
+        image: req.body.image,
+        published: req.body.published,
+        readTime: req.body.readTime,
+        likes: req.body.likes,
+        views: req.body.views,
+        featured: req.body.featured,
+        comments: req.body.comments,
+     })
+    // console.log(req.body.text);
+    res.status(201).json(blog);
 });
 
 // @desc PUT blog
 // @route PUT /blogs/:id
 // @access Private
 export const updateBlog = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Update blog ${req.params.id}` });
+    const blog = await Blog.findById(req.params.id);
+
+    if (!blog) {
+        res.status(400)
+        throw new Error('Blog not found');
+    } // if
+    const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    })
+    res.status(200).json(updatedBlog);
 });
 
 // @desc DELETE blog
 // @route DELETE /blogs/:id
 // @access Private
 export const deleteBlog = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Delete blog ${req.params.id}` });
+    const blog = await Blog.findByIdAndDelete(req.params.id);
+
+    if (!blog) {
+        res.status(400);
+        throw new Error('Blog not found');
+    }
+
+    res.status(200).json({ id: req.params.id });
 });
