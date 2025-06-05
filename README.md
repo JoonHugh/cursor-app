@@ -29,8 +29,10 @@ This folder is using Bearer Token from collection Blogs API
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
+
 
 
 <hr>
@@ -41,6 +43,7 @@ This folder is using Bearer Token from collection Blogs API
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
@@ -75,6 +78,7 @@ This folder is using Bearer Token from collection Blogs API
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
@@ -82,6 +86,7 @@ This folder is using Bearer Token from collection Blogs API
 ### PATH VARIABLES
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **id** |  |
 
@@ -116,12 +121,14 @@ This folder is using Bearer Token from collection Blogs API
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
 ### PATH VARIABLES
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **id** |  |
 
@@ -152,6 +159,7 @@ This request is using Bearer Token from colleection Blogs API
 
 
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
@@ -173,6 +181,7 @@ This request is using Bearer Token from colleection Blogs API
 | **email**    | [john@gmail.com](mailto:john@gmail.com) |
 | **password** | 123456                                  |
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
@@ -189,6 +198,7 @@ This request is using Bearer Token from colleection Blogs API
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>
 <hr>
 
+| Key   | Value     |
 | ----- | --------- |
 | **Token** | `<token>` |
 
