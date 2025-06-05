@@ -31,7 +31,7 @@
 }
 .email-input {
     width:75%;
-    padding: 10px;
+    padding: 9px;
     padding-left: 20px;
     border:none;
     outline:none;
@@ -40,7 +40,7 @@
 }
 .submit {
     width:25%;
-    padding: 10px;
+    padding: 9px;
     border:none;
     border-radius: 0;
     background-color:#000080;
@@ -57,4 +57,13 @@
     line-height: 1rem;
     color:hsl(0, 0%, 80%);
     text-transform: uppercase;
+    /* border:1px solid red; */
+}
+.disclaimer a {
+    color:hsl(0, 0%, 70%);
+    transition: 0.3s ease;
+}
+.disclaimer a:hover {
+    color:hsl(0, 0%, 50%);
+
 }

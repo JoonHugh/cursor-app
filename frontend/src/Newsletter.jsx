@@ -10,7 +10,7 @@ function Newsletter() {
                     <input className={styles["email-input"]} type="email" placeholder="Enter your email"></input>
                     <button className={styles["submit"]} type="submit">SUBSCRIBE</button>
                 </div>
-                <span className={styles["disclaimer"]}>By clicking subscribe, you confirm that you have read and are agreeing to our terms of use regarding the storage of the data submitted through this form.</span>
+                <span className={styles["disclaimer"]}>By clicking subscribe, you confirm that you have read and are agreeing to our <a href="https://hugh-dev.com/privacy-policy">privacy policy</a> regarding the storage of the data submitted through this form.</span>
             </form>
         </div>
     );

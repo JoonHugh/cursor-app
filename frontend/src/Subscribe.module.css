@@ -63,7 +63,8 @@
 }
 .disclaimer a {
     color:hsl(0, 0%, 70%);
+    transition: 0.3s ease;
 }
-.disclaimer a:visited {
-    color:hsl(0, 0%, 70%);
+.disclaimer a:hover {
+    color:hsl(0, 0%, 50%);
 }
