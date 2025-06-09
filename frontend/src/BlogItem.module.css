@@ -67,10 +67,11 @@
 }
 .content {
     line-height: 1.5rem;
-    /* padding-bottom: 2rem; */
-    /* margin-top:1rem; */
-    /* margin-bottom: 1rem; */
-
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 .bottom {
     /* position: absolute; */

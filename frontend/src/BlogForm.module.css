@@ -3,3 +3,16 @@
     margin-bottom: 1rem;
     border:1px solid red;
 }
+:root {
+    --md-editor-font-family: monospace !important;
+  }
+  
+  .content-editor .w-md-editor-text,
+  .content-editor .w-md-editor-text-pre,
+  .content-editor .w-md-editor-text-input {
+    font-family: monospace !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+  }
+  

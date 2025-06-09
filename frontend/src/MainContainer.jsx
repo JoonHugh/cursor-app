@@ -17,7 +17,7 @@ function MainContainer() {
     ];
 
     return(
-        <div>
+        <div className={styles["app-font"]}>
             <div className={styles['main-container']}>
                 <Hero />
                 <BlogGrid />

@@ -108,7 +108,7 @@ function BlogForm() {
                 </div> 
 
                 <div className={styles['form-group']}>
-                    <MDEditor value={content} onChange={setContent} />
+                    <MDEditor className={styles["content-editor"]} value={content} onChange={setContent} />
                 </div>
 
                 <div className={styles['form-group']}>
@@ -122,67 +122,5 @@ function BlogForm() {
     );
 }
 
-// title: {
-//     type: String,
-//     required: [true, 'Please add a title'],
-//     trim: true,
-// },
-// slug: {
-//     type: String,
-//     unique: true,
-//     lowercase: true,
-//     trim: true,
-// },
-// user: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'User',
-//     required: [true, 'Must provide author'],
-// },
-// category: {
-//     type: String,
-//     default: 'General',
-// },
-// tags: [String],
-// published: {
-//     type: Boolean,
-//     default: false,
-// },
-// content: {
-//     type: String,
-//     required: [true, 'Please add a text value'],
-// },
-// image: {
-//     type: String,
-//     default: '',
-// },
-// readTime: {
-//     type: Number,
-//     default: content ? countWords(content) : 0,
-// },
-// likes: {
-//     type: Number,
-//     default: 0,
-// },
-// views: {
-//     type: Number,
-//     default: 0,
-// },
-// featured: {
-//     type: Boolean,
-//     default: false,
-// },
-// comments: {
-//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-//     text: String,
-//     createdAt: {type: Date, default: Date.now },
-// },
-// createdAt: {
-//     type: Date,
-//     default: Date.now,
-// },
-// updatedAt: {
-//     type: Date,
-//     default: Date.now,
-// },
 
 export default BlogForm
