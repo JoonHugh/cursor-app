@@ -1,7 +1,12 @@
 import styles from './Login.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate }  from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { login, reset } from '../src/features/auth/authSlice.js';
+import Spinner from '../src/Spinner.jsx';
 
 function Login() {
   const containerVariants = {
@@ -38,7 +43,46 @@ function Login() {
 
   const { email, password } = formData;
 
-  const onChange = () => {};
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    } // if 
+
+    // if (isSuccess || user) {
+    if (isSuccess) {
+      navigate('/')
+    } // if
+
+    dispatch(reset());
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    const  userData  = {
+      email,
+      password,
+    }
+
+    dispatch(login(userData));
+  }
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   const fields = [
     { id: 'email', label: 'Email address', type: 'email', value: email },
@@ -75,7 +119,7 @@ function Login() {
             Log in to your account
           </motion.p>
 
-          <form>
+          <form onSubmit={onSubmit}>
             {fields.map((field, index) => (
               <motion.div
                 key={field.id}

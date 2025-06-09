@@ -5,6 +5,7 @@ import users from './routes/userRoutes.js';
 import errorHandler from './middleware/errorMiddleware.js';
 import colors from 'colors';
 import connectDB from './config/db.js';
+import cors from 'cors';
 
 const env = dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +13,10 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 const app = express()
+
+app.use(cors({
+    origin: "http://localhost:5001",
+}))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))

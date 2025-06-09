@@ -9,6 +9,8 @@ import Dashboard from '../pages/Dashboard.jsx';
 import Login from '../pages/Login.jsx';
 import Register from '../pages/Register.jsx';
 import Home from '../pages/Home.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +24,7 @@ function App() {
       <Router>
         <Layout />
       </Router>
+      <ToastContainer />
     </>
   );
 }

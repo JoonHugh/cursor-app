@@ -29,9 +29,12 @@
     position:relative;
     z-index: 2;
     background-color:white;
-    width:900px;
-    max-width: 90vw;
-    height:700px;
+    width:75%;
+    height:90%;
+    min-width: 700px;
+    min-height: 544px;
+    max-width: 900px;
+    max-height:700px;
     margin:auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
