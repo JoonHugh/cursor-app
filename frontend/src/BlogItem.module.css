@@ -1,0 +1,104 @@
+.container {
+    border:1px solid red;
+    height:350px;
+    margin:auto;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    overflow: hidden;
+}
+.grid {
+    height:350px;
+    border:1px solid blue;
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:0;
+}
+.image-container img {
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    background-position:center center;
+    background-repeat: no-repeat;
+    object-position: center;
+    scale: 1;
+}
+.preview-box {
+    box-sizing: border-box;
+    border:1px solid green;
+    padding:0px 30px;
+    display:grid;
+    grid-template-rows: max-content max-content 8rem max-content;
+    gap:1rem .5rem ;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* position:relative; */
+    width:100%;
+}
+.top-grid {
+    width:100px;
+    height:auto;
+    display:grid;
+    grid-template-columns: 40px max-content;
+    gap:6px;
+    font-size: 16px;
+    /* border:1px solid green; */
+    box-sizing: border-box;
+    margin-top:1.875rem;
+}
+.top-grid img {
+    width:38px;
+    height:auto;
+    border-radius: 50%;
+    /* border:3px solid orange; */
+}
+.top {
+    display:flex;
+    flex-direction: column;
+    
+}
+.title {
+    height:fit-content;
+    /* border:1px solid green; */
+    font-size: 28px;
+    font-weight: 500;
+    /* margin-top: 1rem; */
+}
+.content {
+    line-height: 1.5rem;
+    /* padding-bottom: 2rem; */
+    /* margin-top:1rem; */
+    /* margin-bottom: 1rem; */
+
+}
+.bottom {
+    /* position: absolute; */
+    bottom: 0;
+}
+.meta {
+    position: relative;
+    /* width:100%; */
+    bottom:24px;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border-top:1px solid hsl(0, 0%, 80%);
+    border:1px solid red;
+    padding:24px 0;
+}
+.comments {
+    position: absolute;
+    left:0px;
+    top:50%;
+    transform: translateY(-50%);
+    border:1px solid orange;
+}
+.likes {
+    position: absolute;
+    right:0px;
+    top:50%;
+    transform: translateY(-50%);
+    border:1px solid rgb(255, 106, 0);
+}
+

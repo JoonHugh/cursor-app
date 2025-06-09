@@ -16,8 +16,14 @@
     margin-bottom: 3.5rem;
     /* border:1px solid red; */
 }
-.header-grid h1 {
+.website-name a {
+    text-decoration: none;
     color:black;
+    transition: 0.3s ease;
+}
+.website-name a:hover {
+    font-size: 33px;
+    transform-origin: center center;
 }
 .header-grid button {
     padding:2px;
@@ -45,7 +51,7 @@
     justify-self: right;
     align-items: center;
     list-style-type: none;
-    font-size: 14px;
+    font-size: 18px;
     /* border:1px solid purple; */
 }
 .button-group a {
@@ -62,7 +68,7 @@
     /* border:1px solid black; */
 
 }
-.button-group button {
+.button-group li {
     display:flex;
     flex-direction: row;
     color:black;
@@ -75,14 +81,22 @@
 }
 .logout-button {
     /* border:2px blue; */
-    font-size: 14px;
+    font-size: 18px;
     gap:6px;
     display:flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
-.button-group a:hover {
+.blogs-link {
+    /* border:1px solid red; */
+    display:flex;
+    flex-direction: row;
+    gap:6px;
+    align-items: center;
+    justify-content: space-between;
+}
+.button-group li:hover {
     transform: translateY(-1px);
 }
 .profile-button {

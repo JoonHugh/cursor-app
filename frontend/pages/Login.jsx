@@ -7,6 +7,8 @@ import { useNavigate }  from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { login, reset } from '../src/features/auth/authSlice.js';
 import Spinner from '../src/Spinner.jsx';
+import { IoIosArrowRoundBack } from "react-icons/io";
+
 
 function Login() {
   const containerVariants = {
@@ -103,6 +105,13 @@ function Login() {
         animate="reveal"
       >
         <div className={styles["container"]}>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.3 }}
+          >
+            <Link className={styles["go-back"]} to={'/'}><IoIosArrowRoundBack /> Go back</Link>
+          </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

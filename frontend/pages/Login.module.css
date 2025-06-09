@@ -45,6 +45,18 @@
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
     /* border:1px solid black; */
 }
+.go-back {
+    display:flex;
+    align-items: center;
+    gap:6px;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color:black;
+    transition: 0.3s ease;
+}
+.go-back:hover {
+    opacity: 0.5;
+}
 .container h2 {
     font-size: 36px;
     margin-bottom: 4%;
@@ -101,4 +113,11 @@
 .sign-up {
     font-size: 14px;
     margin:auto;
+}
+
+.sign-up a {
+    color: rgb(212, 194, 173);
+}
+.sign-up a:active {
+    color: rgb(212, 194, 173);
 }

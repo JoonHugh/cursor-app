@@ -1,0 +1,25 @@
+.container {
+    width:75%;
+    margin:auto;
+}
+.page-name {
+    margin-bottom: 1rem;
+}
+.page-nav {
+    list-style-type: none;
+    display:flex;
+    flex-direction: row;
+    gap:64px;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.page-nav li {
+    width:fit-content;
+}
+.page-nav button {
+    padding: 8px;
+    background-color: #fff; 
+    cursor: pointer;
+    border:none;
+    font-size: 18px;
+}

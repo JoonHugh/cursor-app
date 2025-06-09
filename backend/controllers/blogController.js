@@ -51,17 +51,15 @@ export const updateBlog = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Blog not found');
     } // if
-
-    const user = await User.findById(req.user.id);
     
     // Check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401);
         throw new Error ('User not found');
     } // if
 
     // Make sure the logged in user matches the blog user
-    if (blog.user.toString() !== user.id) {
+    if (blog.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');
     } // if
@@ -82,16 +80,13 @@ export const deleteBlog = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Blog not found');
     } // if
-
     
-    const user = await User.findById(req.user.id);
-    
-    if (!user) {
+    if (!req.user) {
         res.status(401);
         throw new Error("User not found");
     }
     
-    if (blog.user.toString() !== user.id) {
+    if (blog.user.toString() !== req.user.id) {
         res.status(401) 
         throw new Error("User not authorizedd");
     } // if

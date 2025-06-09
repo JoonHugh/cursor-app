@@ -1,5 +1,10 @@
 import mongoose from 'mongoose';
 
+function countWords(str) {
+    const matches = str.match(/\S+/g);
+    return matches ? matches.length : 0;
+  }
+
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
@@ -12,10 +17,6 @@ const blogSchema = mongoose.Schema({
         lowercase: true,
         trim: true,
     },
-    content: {
-        type: String,
-        required: [true, 'Please add a text value'],
-    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -26,16 +27,20 @@ const blogSchema = mongoose.Schema({
         default: 'General',
     },
     tags: [String],
-    image: {
-        type: String,
-        default: '',
-    },
     published: {
         type: Boolean,
         default: false,
     },
+    content: {
+        type: String,
+        required: [true, 'Please add a text value'],
+    },
+    image: {
+        type: String,
+        default: '',
+    },
     readTime: {
-        type: Number,
+        type: String,
         default: 0,
     },
     likes: {
@@ -66,5 +71,13 @@ const blogSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+
+blogSchema.pre('save', function (next) {
+    if (this.content) {
+        const res = Math.ceil(countWords(this.content) / 238) <= 1 ? "<1 min" : Math.ceil(countWords(this.content) / 238) + "mins";
+        this.readTime = res;
+    }
+    next();
+});
 
 export default mongoose.model('Blog', blogSchema)

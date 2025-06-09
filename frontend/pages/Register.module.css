@@ -55,6 +55,18 @@
     flex-direction: column;
     box-sizing: border-box;
 }
+.go-back {
+    display:flex;
+    align-items: center;
+    gap:6px;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color:black;
+    transition: 0.3s ease;
+}
+.go-back:hover {
+    opacity: 0.5;
+}
 .prompt {
     font-size: 14px;
     color:grey;
@@ -96,8 +108,15 @@
     font-size: 16px;
     transition: 0.2s ease;
     margin-bottom: 1rem;
+    cursor:pointer;
 }
 .sign-in {
     font-size: 14px;
     margin:auto;
+}
+.sign-in a {
+    color: rgb(212, 194, 173);
+}
+.sign-in a:active {
+    color: rgb(212, 194, 173);
 }
