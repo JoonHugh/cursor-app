@@ -38,9 +38,10 @@ function BlogForm() {
     `;
 
     const [title, setTitle] = useState("");
+    const [slug, setSlug] = useState("");
     const [category, setCategory] = useState({ label: "General", value: "GENERAL" });
     const [tags, setTags] = useState([]);
-    const [published, setPublished] = useState(false);
+    const [published, setPublished] = useState(true);
     const [featured, setFeatured] = useState(false);
     const [image, setImage] = useState("");
     const [content, setContent] = useState("## Start writing your blog post\n\n" + textSample);
@@ -59,7 +60,7 @@ function BlogForm() {
 
         const blog = {
             title,
-            slug: title.toLowerCase().replace(/\s+/g, "-"),
+            slug: title.toLowerCase().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, '-'),
             user: user.name,
             category: category.value,
             tags: tags.map(tag => tag.value),
@@ -76,7 +77,7 @@ function BlogForm() {
 
     return(
         <section className={styles["form"]}>
-            <h2>New Blog</h2>
+            <h2>Create a New Blog</h2>
             <form onSubmit={onSubmit}>
                 <div className={styles['form-group']}>
                     <label>Title</label>
@@ -87,6 +88,18 @@ function BlogForm() {
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder='Blog Title'
+                        required
+                    />
+                </div> 
+                <div className={styles['form-group']}>
+                    <label>Slug</label>
+                    <input 
+                        type="text" 
+                        name="slug" 
+                        id="slug" 
+                        value={title.toLowerCase().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, '-')}
+                        onChange={(e) => setSlug(e.target.value)}
+                        placeholder='Blog Link'
                         required
                     />
                 </div> 
@@ -133,7 +146,7 @@ function BlogForm() {
                 <div className={styles['form-group']}>
                     <label>Content</label>
                     <MDEditor 
-                        height="400px"
+                        height="500px"
                         className={styles["content-editor"]} 
                         value={content} 
                         onChange={setContent} 
@@ -173,32 +186,32 @@ function BlogForm() {
                 </div>  */}
                 <FormGroup className={styles["check-group"]}>
                     <FormControlLabel control={<Checkbox 
-                                                    defaultChecked 
-                                                    sx={{
+                                                defaultChecked 
+                                                onChange={() => setPublished(!published)}
+                                                sx={{
+                                                    color: 'rgb(255, 195, 117);',
+                                                    '&.Mui-checked': {
                                                         color: 'rgb(255, 195, 117);',
-                                                        '&.Mui-checked': {
-                                                            color: 'rgb(255, 195, 117);',
-                                                        },
-                                                    }}
-                                                />} 
+                                                    },
+                                                }}
+                                            />} 
                                       label={<span className={styles["label"]}>Publish immediately</span>}/>
-                    <FormControlLabel required 
-                                      control={<Checkbox 
-                                        defaultChecked 
-                                        sx={{
-                                            color: 'rgb(255, 195, 117);',
-                                            '&.Mui-checked': {
+                    <FormControlLabel control={<Checkbox 
+                                                onChange={() => setFeatured(!featured)}
+                                                sx={{
                                                 color: 'rgb(255, 195, 117);',
-                                            },
-                                        }}
-                                    />}
-                                      label={<span 
-                                      className={styles["label"]}>Feature this post </span>}/>
+                                                '&.Mui-checked': {
+                                                    color: 'rgb(255, 195, 117);',
+                                                },
+                                                }}
+                                                />}
+                                                label={<span 
+                                                    className={styles["label"]}>Feature this post </span>}/>
                 </FormGroup>
                 <div className={styles['form-group']}>
                     <button 
                         className={styles["btn-block"]} 
-                        type='submit'>Add Blog
+                        type='submit'>Publish
                     </button>
                 </div>
             </form>

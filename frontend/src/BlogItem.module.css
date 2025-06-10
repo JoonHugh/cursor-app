@@ -9,7 +9,7 @@
 
 .container {
     margin:auto;
-    height:350px;
+    height:295px;
     max-width: 900px;
     overflow: hidden;
     border:1px solid hsl(0, 0%, 80%);
@@ -36,7 +36,7 @@
 .preview-box {
     display:grid;
     padding:0px 30px;
-    grid-template-rows: max-content 2rem 9rem max-content;
+    grid-template-rows: max-content 2rem 7rem max-content;
     gap:1rem .5rem ;
     width:100%;
     box-sizing: border-box;
@@ -49,14 +49,14 @@
     width:100%;
     height:auto;
     margin-top:1.875rem;
-    font-size: 16px;
+    font-size: 12px;
     align-items: center;
     box-sizing: border-box;
     /* border:1px solid green; */
 }
 .top-grid img {
     display:flex;
-    width:38px;
+    width:32px;
     height:auto;
     border-radius: 50%;
     align-self: center;
@@ -70,7 +70,7 @@
 .title {
     /* height:fit-content; */
     /* border:1px solid green; */
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 500;
     overflow: hidden;
     /* margin-top: 1rem; */
@@ -81,8 +81,8 @@
     /* font-family: monospace; */
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 1rem;
-    line-height: 1.4rem;
+    font-size: 12px;
+    line-height: 1.1rem;
     /* border:1px solid red; */
     display: -webkit-box;
     -webkit-line-clamp: 5; /* number of lines */
@@ -99,12 +99,13 @@
     /* width:100%; */
     /* bottom:24px; */
     display:grid;
+    font-size: 11px;
     grid-template-columns: repeat(2, 1fr);
     box-sizing: border-box;
     border-top:1px solid hsl(0, 0%, 80%);
     /* border:1px solid red; */
     align-items: center;
-    padding-top: 16px;
+    padding-top: 12px;
 }
 .comments {
     /* position: absolute;

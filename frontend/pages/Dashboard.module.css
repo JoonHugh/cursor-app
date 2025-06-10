@@ -6,6 +6,11 @@
 .page-name {
     font-size: 36px;
     margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+.nav-container {
+    border-bottom: 1px solid hsl(0, 0%, 90%);
+    margin-bottom: 3rem;
 }
 .page-nav {
     margin-bottom: 1.5rem;
