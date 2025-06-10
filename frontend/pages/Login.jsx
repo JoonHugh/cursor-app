@@ -158,7 +158,7 @@ function Login() {
               initial="hidden"
               animate="visible"
             >
-              <button type="submit" className={styles["btn-block"]}>Sign Up</button>
+              <button type="submit" className={styles["btn-block"]}>Sign In</button>
             </motion.div>
           </form>
 

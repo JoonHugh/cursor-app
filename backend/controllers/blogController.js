@@ -8,6 +8,8 @@ import User from '../models/userModel.js';
 // @access Private
 export const getBlogs = asyncHandler(async (req, res) => {
     const blogs = await Blog.find({ user: req.user.id })
+        .populate('user', 'name email')
+        .populate('comments.user', 'name');
 
 
     res.status(200).json(blogs);

@@ -1,18 +1,120 @@
+.form h2 {
+    font-size: 28px;
+    margin-bottom: 1.5rem;
+}
 .form-group {
     width:100%;
     margin-bottom: 1rem;
+    /* border:1px solid red; */
+}
+/* .form-group label {
+    display:block;
+    padding-left: 1px;
+    margin-bottom: .5rem;
+    /* border:1px solid green; *
+} */
+.form-group input[type="text"] {
+    padding:10px;
+    font-size: 14px;
+    width:100%;
+    border:1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    transition:0.3s ease;
+    /* border:1px solid red; */
+}
+.checkbox {
+    display:grid;
+    grid-template-columns: max-content max-content;
+    /* border:1px solid red; */
+    gap:6px;
+    box-sizing: border-box;
+    align-items: center;
+}
+.checkbox input {
+    /* border:2px solid blue; */
+    box-sizing: border-box;
+}
+.checkbox div {
+    /* border:1px solid green; */
+    box-sizing: border-box;
+}
+.form-group input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    font-size: 16px;
+    color: hsl(0, 0%, 40%);
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid hsl(0, 0%, 40%);;
+    border-radius: 0.15em;
+    /* transform: translateY(-0.075em); */
+    display:grid;
+    place-content: center;
+}
+.form-group input[type="checkbox"]::before {
+    content: "";
+    width: .9em;
+    height: .9em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: antiquewhite;
+    
+}
+.check-group {
     border:1px solid red;
+    width:fit-content;
+    height:fit-content;
+    margin-bottom: 1.5rem;
+}
+.label {
+    font-size: 14px;
+}
+.form-group input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+/* .form-group input[type="checkbox"] {
+    line-height: 1.1;
+    display:grid;
+    grid-template-columns: 1em auto;
+    gap: .25em;
+    border:1px solid red;
+} */
+.form-group input:focus {
+    box-shadow: none;
+    border-color: inherit;
+}
+.select-tags {
+    font-size: 14px;
+    /* width:100%; */
+    /* border:1px solid red; */
 }
 :root {
     --md-editor-font-family: monospace !important;
-  }
-  
-  .content-editor .w-md-editor-text,
-  .content-editor .w-md-editor-text-pre,
-  .content-editor .w-md-editor-text-input {
+}
+.content-editor textarea {
+    /* height:470px; */
+    /* border:1px solid red; */
+}
+.content-editor {
+    /* height: 500px !important; */
+    /* height: fit-content !important; */
+    outline-color: rgb(255, 195, 117);
+
+    /* border:1px solid green; */
+}
+.content-editor .w-md-editor-text,
+.content-editor .w-md-editor-text-pre > code,
+.content-editor .w-md-editor-text-input {
     font-family: monospace !important;
-    font-size: 14px !important;
-    line-height: 1.5 !important;
-    letter-spacing: 0 !important;
-  }
-  
+    font-size: 1rem !important;
+    /* line-height: 1.5 !important; */
+    /* letter-spacing: 0 !important; */
+    border:3px solid blue;
+}
+

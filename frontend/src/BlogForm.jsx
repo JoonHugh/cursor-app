@@ -3,19 +3,56 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './BlogForm.module.css';
 import { createBlog } from './features/blogs/blogSlice.js';
 import MDEditor from "@uiw/react-md-editor";
+import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 function BlogForm() {
-
+    
     const { user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch()
+
+    const textSample = `# Welcome to the Markdown Editor!
+
+    This is a sample of the **React Markdown Editor**.
+
+    ## ✨ Features
+    - Real-time preview
+    - Custom styling support
+    - Code highlighting
+    - Auto focus at the end of the text
+
+    ## 📦 Sample Code
+
+    \`\`\`javascript
+    function hello() {
+    console.log("Hello, world!");
+    }
+    \`\`\`
+
+    ## 🔗 Links
+
+    Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
+    `;
+
     const [title, setTitle] = useState("");
-    const [category, setCategory] = useState("General");
-    const [tags, setTags] = useState("");
+    const [category, setCategory] = useState({ label: "General", value: "GENERAL" });
+    const [tags, setTags] = useState([]);
     const [published, setPublished] = useState(false);
     const [featured, setFeatured] = useState(false);
     const [image, setImage] = useState("");
-    const [content, setContent] = useState("## Start writing your blog post");
+    const [content, setContent] = useState("## Start writing your blog post\n\n" + textSample);
     
-    const dispatch = useDispatch()
+    const categories = [
+        { label: "General", value: "GENERAL" },
+        { label: "Interior", value: "INTERIOR" },
+        { label: "Lifestyle", value: "LIFESTYLE" },
+        { label: "Style", value: "STYLE" },
+        { label: "Travel", value: "TRAVEL" },
+        { label: "Other", value: "OTHER" },
+    ];
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -24,8 +61,8 @@ function BlogForm() {
             title,
             slug: title.toLowerCase().replace(/\s+/g, "-"),
             user: user.name,
-            category,
-            tags: tags.split(", ").map((tag) => tag.trim()),
+            category: category.value,
+            tags: tags.map(tag => tag.value),
             published,
             featured,
             image,
@@ -42,6 +79,7 @@ function BlogForm() {
             <h2>New Blog</h2>
             <form onSubmit={onSubmit}>
                 <div className={styles['form-group']}>
+                    <label>Title</label>
                     <input 
                         type="text" 
                         name="title" 
@@ -53,26 +91,35 @@ function BlogForm() {
                     />
                 </div> 
                 <div className={styles['form-group']}>
-                    <input 
+                    <label>Category</label>
+
+                    <Select 
+                        className={styles["select-tags"]}
                         type="text" 
                         name="category" 
                         id="category" 
-                        value={category} 
-                        onChange={(e) => setCategory(e.target.value)}
+                        value={category}
+                        onChange={setCategory}
+                        options={categories}
                         placeholder='Category (optional)'
                     />
                 </div> 
                 <div className={styles['form-group']}>
-                    <input 
-                        type="text" 
-                        name="tags" 
-                        id="tags" 
-                        value={tags} 
-                        onChange={(e) => setTags(e.target.value)}
-                        placeholder='Tags (comma-separated)'
+                    <label>Tags</label>
+                    <CreatableSelect
+                        className={styles["select-tags"]}
+                        type="text"
+                        isMulti
+                        value={tags}
+                        onChange={setTags}
+                        placeholder="Select or create tags..."
+                        formatCreateLabel={(inputValue) => `Add "${inputValue}"`}
+                        noOptionsMessage={() => "Type to create a new tag"}
+                        options={categories}
                     />
+
                 </div> 
-                <div className={styles['form-group']}>
+                {/* <div className={styles['form-group']}>
                     <input 
                         type="text" 
                         name="image" 
@@ -81,9 +128,21 @@ function BlogForm() {
                         onChange={(e) => setImage(e.target.value)}
                         placeholder='Image URL (optional)'
                     />
-                </div> 
+                </div>  */}
+
                 <div className={styles['form-group']}>
-                    <label>
+                    <label>Content</label>
+                    <MDEditor 
+                        height="400px"
+                        className={styles["content-editor"]} 
+                        value={content} 
+                        onChange={setContent} 
+                        visibleDragbar={false}
+                    />
+                </div>
+
+                {/* <div className={styles['form-group']}>
+                    <label className={styles["checkbox"]}>
                         <input 
                             type="checkbox" 
                             name="published" 
@@ -91,11 +150,14 @@ function BlogForm() {
                             checked={published} 
                             onChange={() => setPublished(!published)}
                         />
-                        Publish immediately
+                        <div>
+                            Publish immediately
+                        </div>
+
                     </label>
                 </div> 
                 <div className={styles['form-group']}>
-                    <label>
+                    <label className={styles["checkbox"]}>
                         <input 
                             type="checkbox" 
                             name="featured" 
@@ -103,14 +165,36 @@ function BlogForm() {
                             checked={featured} 
                             onChange={() => setFeatured(!featured)}
                         />
-                        Feature this post
+                        
+                        <div>
+                            Feature this post
+                        </div>
                     </label>
-                </div> 
-
-                <div className={styles['form-group']}>
-                    <MDEditor className={styles["content-editor"]} value={content} onChange={setContent} />
-                </div>
-
+                </div>  */}
+                <FormGroup className={styles["check-group"]}>
+                    <FormControlLabel control={<Checkbox 
+                                                    defaultChecked 
+                                                    sx={{
+                                                        color: 'rgb(255, 195, 117);',
+                                                        '&.Mui-checked': {
+                                                            color: 'rgb(255, 195, 117);',
+                                                        },
+                                                    }}
+                                                />} 
+                                      label={<span className={styles["label"]}>Publish immediately</span>}/>
+                    <FormControlLabel required 
+                                      control={<Checkbox 
+                                        defaultChecked 
+                                        sx={{
+                                            color: 'rgb(255, 195, 117);',
+                                            '&.Mui-checked': {
+                                                color: 'rgb(255, 195, 117);',
+                                            },
+                                        }}
+                                    />}
+                                      label={<span 
+                                      className={styles["label"]}>Feature this post </span>}/>
+                </FormGroup>
                 <div className={styles['form-group']}>
                     <button 
                         className={styles["btn-block"]} 
@@ -118,7 +202,9 @@ function BlogForm() {
                     </button>
                 </div>
             </form>
+            
         </section>
+        
     );
 }
 

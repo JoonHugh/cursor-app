@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   // gapi.load('auth2', function() {
   //   gapi.auth2,init();

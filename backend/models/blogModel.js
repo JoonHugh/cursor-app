@@ -55,11 +55,11 @@ const blogSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    comments: {
-        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    comments: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
         text: String,
         createdAt: {type: Date, default: Date.now },
-    },
+    }],
     createdAt: {
         type: Date,
         default: Date.now,
@@ -79,5 +79,7 @@ blogSchema.pre('save', function (next) {
     }
     next();
 });
+
+
 
 export default mongoose.model('Blog', blogSchema)
