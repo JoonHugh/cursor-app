@@ -52,7 +52,7 @@
     color: hsl(0, 0%, 40%);
     width: 1.25em;
     height: 1.25em;
-    border: 1px solid hsl(0, 0%, 40%);;
+    border: 1px solid hsl(0, 0%, 40%);
     border-radius: 0.15em;
     /* transform: translateY(-0.075em); */
     display:grid;
@@ -127,6 +127,6 @@
     font-size: 1rem !important;
     /* line-height: 1.5 !important; */
     /* letter-spacing: 0 !important; */
-    border:3px solid blue;
+    /* border:3px solid blue; */
 }
 

@@ -11,6 +11,7 @@ import Register from '../pages/Register.jsx';
 import Home from '../pages/Home.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
+import PrivateRoute from './PrivateRoute.jsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -40,7 +41,11 @@ function Layout() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard' element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }/>
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </div>

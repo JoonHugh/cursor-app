@@ -30,7 +30,7 @@
     z-index: 2;
     background-color:white;
     width:60%;
-    height:90%;
+    height:80%;
     min-width: 700px;
     min-height: auto;
     max-width: 900px;
@@ -49,7 +49,7 @@
     display:flex;
     align-items: center;
     gap:6px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     text-decoration: none;
     color:black;
     transition: 0.3s ease;
@@ -62,7 +62,7 @@
     margin-bottom: 4%;
 }
 .container {
-    width:70%;
+    width:75%;
     min-width: none;
     display:flex;
     flex-direction: column;
@@ -81,7 +81,7 @@
 
 }
 .form-group input  {
-    margin-bottom: 9%;
+    margin-bottom: 1.25rem;
     padding:12px;
     padding-left: 14px;
     width:100%;

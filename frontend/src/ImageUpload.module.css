@@ -1,0 +1,57 @@
+.border {
+    background-image: url("data:image/svg+xml,%3csvg width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%' height='100%' fill='none' rx='4' ry='4' stroke='%23000000FF' stroke-width='4' stroke-dasharray='6%2c 14' stroke-dashoffset='10' stroke-linecap='square'/%3e%3c/svg%3e");
+    height:200px;
+    width:100%;
+    /* display:flex; */
+    box-sizing: border-box;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.imageUploadInput {
+    /* border:1px solid green; */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom:0;
+    left:0;
+    display:flex;
+    flex-direction: column;
+    cursor:pointer;
+    opacity: 0;
+}
+.block {
+    /* border:1px solid red; */
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items: center;
+}
+.image {
+    width:100%;
+    height:100%;
+    /* aspect-ratio:initial; */
+    object-fit: cover;
+}
+.icon {
+    font-size: 32px;
+    margin:none;
+    padding:none;
+}
+.prompt {
+    z-index: 10;
+    color:black;
+    /* border: 2px solid rgb(80, 194, 255); */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    width:100%;
+}
+.error-message {
+    position: absolute;
+    top:0;
+    right:0;
+    margin-bottom: 5rem;
+    color:rgb(255, 83, 83);
+}

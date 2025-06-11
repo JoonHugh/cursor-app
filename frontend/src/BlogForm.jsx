@@ -8,6 +8,7 @@ import CreatableSelect from 'react-select/creatable';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import ImageUpload from './ImageUpload.jsx';
 
 function BlogForm() {
     
@@ -43,7 +44,7 @@ function BlogForm() {
     const [tags, setTags] = useState([]);
     const [published, setPublished] = useState(true);
     const [featured, setFeatured] = useState(false);
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(null);
     const [content, setContent] = useState("## Start writing your blog post\n\n" + textSample);
     
     const categories = [
@@ -55,8 +56,31 @@ function BlogForm() {
         { label: "Other", value: "OTHER" },
     ];
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
+
+        let imageUrl = null;
+
+        if (image) {
+            const formData = new FormData();
+            formData.append("image", image);
+
+            try {
+                const res = await fetch("http://localhost:5000/api/upload", {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                    body: formData,
+                });
+
+                const data = await res.json();
+                imageUrl = data.imageUrl;
+            } catch (err) {
+                console.error("Image upload failed:", err);
+                return;
+            }
+        }
 
         const blog = {
             title,
@@ -66,13 +90,14 @@ function BlogForm() {
             tags: tags.map(tag => tag.value),
             published,
             featured,
-            image,
+            image: imageUrl,
             content,
         };
 
         dispatch(createBlog(blog))
-
-        setTitle('')
+        setTitle('');
+        setImage('');
+        setContent(textSample);
     }
 
     return(
@@ -100,7 +125,7 @@ function BlogForm() {
                         value={title.toLowerCase().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, '-')}
                         onChange={(e) => setSlug(e.target.value)}
                         placeholder='Blog Link'
-                        required
+                        disabled
                     />
                 </div> 
                 <div className={styles['form-group']}>
@@ -132,16 +157,16 @@ function BlogForm() {
                     />
 
                 </div> 
-                {/* <div className={styles['form-group']}>
-                    <input 
-                        type="text" 
-                        name="image" 
-                        id="image" 
-                        value={image} 
-                        onChange={(e) => setImage(e.target.value)}
-                        placeholder='Image URL (optional)'
+                <div className={styles['form-group']}>
+                    <label>Featured Image</label>
+                    <ImageUpload 
+                        className={styles["image-upload"]}
+                        value={image}
+                        onChange={setImage}
+                        onImageSelect={(file) => setImage(file)}
                     />
-                </div>  */}
+                    
+                </div>
 
                 <div className={styles['form-group']}>
                     <label>Content</label>
