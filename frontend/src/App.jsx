@@ -12,6 +12,7 @@ import Home from '../pages/Home.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import PrivateRoute from './PrivateRoute.jsx';
+import BlogPage from './BlogPage.jsx';
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -46,6 +47,7 @@ function Layout() {
             <Dashboard />
           </PrivateRoute>
         }/>
+        <Route path='/blog/:slug' element={<BlogPage />} />
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </div>

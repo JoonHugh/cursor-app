@@ -15,27 +15,146 @@ function BlogForm() {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
 
-    const textSample = `# Welcome to the Markdown Editor!
+    const textSample = `
+# Welcome to My Markdown Blog Post
 
-    This is a sample of the **React Markdown Editor**.
+## Introduction
 
-    ## ✨ Features
-    - Real-time preview
-    - Custom styling support
-    - Code highlighting
-    - Auto focus at the end of the text
+Hello, world! This is a **Markdown-rich** blog post written to demonstrate _just about every_ syntax Markdown supports.
 
-    ## 📦 Sample Code
+### Why Markdown?
 
-    \`\`\`javascript
-    function hello() {
-    console.log("Hello, world!");
-    }
-    \`\`\`
+Markdown is:
 
-    ## 🔗 Links
+- Lightweight
+- Easy to read
+- Great for developers
+- **Powerful** with extensions
 
-    Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
+---
+
+## 📌 Headings
+
+You can write multiple levels of headings:
+
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+---
+
+## ✍️ Text Formatting
+
+You can use **bold**, *italic*, ***both***, ~~strikethrough~~, ==highlight== (via plugins).
+
+> Blockquotes are great for pulling attention to a quote or note.
+
+---
+
+## 📟 Lists
+
+### Unordered
+
+- Item one
+  - Sub-item
+    - Sub-sub-item
+- Item two
+
+### Ordered
+
+1. First
+2. Second
+   1. Nested
+   2. Nested
+
+### Task Lists
+
+- [x] Write Markdown
+- [x] Test blog renderer
+- [ ] Deploy to production
+
+---
+
+## 🖼️ Images and Links
+
+![React Logo](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg)
+
+Visit [OpenAI](https://openai.com) to learn more about AI and language models.
+
+---
+
+## \`Inline Code\`
+
+You can include \`inline code\` like \`const x = 5;\`.
+
+---
+
+## 📦 Code Blocks
+
+\`\`\`js
+// JavaScript code block
+function greet(name) {
+  return \`Hello, ${name}!\`;
+}
+console.log(greet("Markdown"));
+\`\`\`
+
+\`\`\`python
+# Python code block
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("Markdown"))
+\`\`\`
+
+---
+
+## 📊 Tables
+
+| Feature       | Supported |
+|---------------|-----------|
+| Headers       | ✅        |
+| Code Blocks   | ✅        |
+| Images        | ✅        |
+| Tables        | ✅        |
+
+---
+
+## 📣 Callouts (via blockquote)
+
+> ⚠️ This is a warning!
+> 💡 This is a tip!
+> ✅ This is a success message!
+
+---
+
+## 💬 HTML in Markdown
+
+You can even embed **raw HTML** if your renderer supports it:
+
+\`\`\`html
+<div style="color: blue; font-weight: bold;">
+  This is raw HTML inside Markdown!
+</div>
+\`\`\`
+
+---
+
+## 📺 Conclusion
+
+Markdown is **simple**, **readable**, and **powerful**. Whether you're writing a README, blog post, or documentation, it's a fantastic tool to have in your toolbox.
+
+Thanks for reading!
+
+---
+
+*Written with ❤️ in Markdown.*
+
+
+Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
     `;
 
     const [title, setTitle] = useState("");

@@ -1,6 +1,4 @@
 import styles from './BlogItem.module.css';
-import { CgProfile } from "react-icons/cg";
-
 
 function BlogItem({ blog }) {
 
@@ -13,7 +11,7 @@ function BlogItem({ blog }) {
         : firstLines;
     // lines = lines.slice(0, 5);
     return(
-        <a className={styles["container-link"]} href={blog.slug}>
+        <a className={styles["container-link"]} href={'blog/' + blog.slug}>
             <div className={styles["container"]}>
                 <div className={styles["grid"]}>
                     <div className={styles["image-container"]}>

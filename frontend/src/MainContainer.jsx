@@ -1,7 +1,7 @@
 import Hero from './Hero.jsx';
 import BlogGrid from './BlogGrid.jsx';
 import styles from './MainContainer.module.css';
-import SideBar from './Sidebar.jsx';
+import SideBar from './SideBar.jsx';
 import GridSection from './GridSection.jsx';
 import Newsletter from './Newsletter.jsx';
 

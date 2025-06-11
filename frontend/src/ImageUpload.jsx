@@ -61,7 +61,7 @@ function ImageUpload({ onImageSelect }) {
                     <img src={preview} alt="preview" className={styles["image"]} />
                 ) : (
                     <div className={styles["prompt"]}>
-                        <i className={styles["icon"]}><AiOutlineCloudUpload /></i>
+                        <i><AiOutlineCloudUpload className={styles["icon"]}/></i>
                         <p>Drag and drop an image, or click to select</p>
                     </div>
                 )}

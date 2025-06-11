@@ -3,6 +3,20 @@ import asyncHandler from 'express-async-handler';
 import Blog from '../models/blogModel.js';
 import User from '../models/userModel.js';
 
+// @desc GET blog post by slug
+// @GET /blogs/:slug
+// @access Public
+export const getBlogBySlug = asyncHandler(async (req, res) => {
+    const blog = await Blog.findOne({ slug: req.params.slug });
+
+    if (!blog) {
+        res.status(404);
+        throw new Error("Blog not found");
+    } // if
+
+    res.json(blog);
+}) // getBlogBySlug
+
 // @desc GET blogs
 // @route GET /blogs
 // @access Private
