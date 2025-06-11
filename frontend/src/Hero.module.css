@@ -5,6 +5,7 @@
     position: relative;
     display: inline-block;
     margin-bottom: 3.5rem;   
+    margin-top: 3.5rem;
     user-select: none;
 }
 .slider-wrapper {

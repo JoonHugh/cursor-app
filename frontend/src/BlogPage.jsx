@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 import SideBar from './SideBar.jsx';
 
 function BlogPage() {
@@ -42,21 +43,27 @@ function BlogPage() {
             <div className={styles["hero-section"]}>
                 <div className={styles["image-container"]}>
                     <img className={styles["image"]} src={url + blog.image} alt="hero-image"></img>
-                    <span className={styles["category"]}>{blog.category}</span>
-                    <h1 className={styles["title"]}>{blog.title}</h1>
-                    <div className={styles["meta"]}>
-                        <span>{blog.createdAt}</span>  • <span>{blog.user}</span>
+                    <div className={styles["hero-container"]}>
+                        <div className={styles["box"]}>
+                            <span className={styles["category"]}>{blog.category}</span>
+                            <h1 className={styles["title"]}>{blog.title}</h1>
+                            <div className={styles["meta"]}>
+                                <span>{blog.createdAt}</span>  • <span>{blog.user}</span>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className={styles["container"]}>
                 <div className={styles["markdown-container"]}>
                     <p className={styles["markdown-content"]}>
-                        <ReactMarkdown>{blog.content}</ReactMarkdown>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{blog.content}</ReactMarkdown>
                     </p>
                 </div>
-                <div className={styles["side-bar"]}><SideBar className={styles["SideBar"]} images={images}/></div>
+                <div className={styles["side-bar"]}>
+                    <SideBar className={styles["SideBar"]} images={images}/>
+                </div>
             </div>
         </>
     ) // return

@@ -30,7 +30,7 @@ Markdown is:
 - Easy to read
 - Great for developers
 - **Powerful** with extensions
-
+<br>
 ---
 
 ## 📌 Headings
@@ -154,8 +154,7 @@ Thanks for reading!
 *Written with ❤️ in Markdown.*
 
 
-Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
-    `;
+Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.`;
 
     const [title, setTitle] = useState("");
     const [slug, setSlug] = useState("");

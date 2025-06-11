@@ -1,46 +1,77 @@
 .container {
-    width:90%;
+    width:95%;
     max-width: 1080px;
     margin:auto;
     display:grid;
-    grid-template-columns: max-content max-content;
+    grid-template-columns: 3fr 1fr;
     gap:2rem;
+    align-content: start;
     border:1px solid red;
-    object-fit: cover;
 }
 .image-container {
     width:100%;
-    height:400px;
-    /* border:1px solid purple; */
-    /* position: relative; */
+    height: fit-content;
+    min-height: 250px;
+    max-height:450px;
+    position: relative;
     display:flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     margin-bottom: 3rem;
 }
-.category, .title, .meta {
-    position: absolute;
-    color:white;
-}
-.category {
-
-}
 .image {
     width:100%;
     filter:brightness(85%);
 }
-.markdown-container {
-    /* margin-left:1rem; */
+.hero-container {
+    position: absolute;
+    width:95%;
+    height:100%;
+    max-width: 1080px;
+    /* border:1px solid rgb(33, 255, 181); */
 
 }
+.box {
+    position: absolute;
+    bottom:2rem;
+    left:0;
+    display: flex;
+    flex-direction: column;
+}
+.category, .title, .meta {
+    color:white;
+    /* border:1px solid rgb(217, 255, 26); */
+}
+.category {
+    /* margin-top: 5rem; */
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
+.title {
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+.meta {
+    font-size: 12px;
+}
+.markdown-container {
+    display:block;
+    width:100%;
+    margin:auto;
+    margin-bottom: 3rem;
+    box-sizing: border-box;
+    border:1px solid #cccccc;
+    border-radius: 4px;
+}
 .markdown-content {
-    max-width: 600px;
+    /* max-width: 600px; */
     border:1px solid blue;
     word-spacing: .25rem;
     letter-spacing: .05em;
     overflow-wrap: break-word;
-    padding:1rem;
+    padding:2rem;
     box-sizing: border-box;
 }
 
@@ -51,19 +82,78 @@
     list-style-position: inside; /* Optional: keeps bullets inside content box */
     word-wrap: break-word;
 }
+.markdown-content img {
+    display: block;
+    width:100%;
+    max-width: 256px;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
 
 .markdown-content li {
     word-wrap: break-word;
     overflow-wrap: break-word;
 }
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+  
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid #ccc;
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+  
+.markdown-content thead {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
 .side-bar {
+    position: relative;
+    display:block;
     border:1px solid coral;
     width: 100%;
-    object-fit: cover;
+    box-sizing: border-box;
 }
 .SideBar {
-
-    width: 50%; /* takes full width of parent */
+    position: absolute;
+    top:0;
+    left:0; 
+    /* MAYBE SOME IDEAS WITH SCALE */
+    /* display: block; */
+    width: 100%; /* takes full width of parent */
     border:1px solid green;
     box-sizing: border-box;
+}
+.markdown-container,
+.side-bar {
+    align-self: start;
+}
+
+
+@media (max-width: 1020px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    .hero-container {
+        width: 71.25%;
+    }
+    .markdown-container {
+        margin-bottom: 1.5rem;
+        width:75%;
+    }
+    .markdown-content {
+        max-width: 100%;
+        width: 100%;
+    }
+    .side-bar {
+        max-width: 100%;
+        justify-content: center;
+    }
 }

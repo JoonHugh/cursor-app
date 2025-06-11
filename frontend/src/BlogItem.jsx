@@ -10,17 +10,19 @@ function BlogItem({ blog }) {
         ? firstLines.slice(0, 200) + "..."
         : firstLines;
     // lines = lines.slice(0, 5);
+
+    const url = "http://localhost:5000" + blog.image;
     return(
         <a className={styles["container-link"]} href={'blog/' + blog.slug}>
             <div className={styles["container"]}>
                 <div className={styles["grid"]}>
                     <div className={styles["image-container"]}>
-                        <img src="/assets/interior2.jpg" alt="blog-image"></img>
+                        <img src={(blog.image) ? url : "/assets/interior2.jpg"} alt="blog-image"></img>
                     </div>
                     <div className={styles["preview-box"]}>
                         <div className={styles["top-grid"]}>
                             <div>
-                                <img src="/assets/defaultprofilepic.jpg"></img>
+                                <img src={"/assets/defaultprofilepic.jpg"}></img>
                             </div>
                             <div className={styles["top"]}>
                                 <span>{blog.user.name}</span>
