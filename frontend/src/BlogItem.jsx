@@ -9,7 +9,6 @@ function BlogItem({ blog }) {
     const previewText = firstLines.length > 200
         ? firstLines.slice(0, 200) + "..."
         : firstLines;
-    // lines = lines.slice(0, 5);
 
     const url = "http://localhost:5000" + blog.image;
     return(
@@ -33,7 +32,7 @@ function BlogItem({ blog }) {
                         <p className={styles["content"]}>{previewText}</p>
                         <div className={styles["bottom"]}>
                             <div className={styles["meta"]}>
-                                <span className={styles["comments"]}>{Object.keys(blog.comments).length - 1} comments</span>
+                                <span className={styles["comments"]}>{Object.keys(blog.comments).length} comments</span>
                                 <span className={styles["likes"]}>{blog.likes} likes</span>
                             </div>
                         </div>

@@ -29,7 +29,6 @@ function BlogPage() {
                 setBlog(res.data);
             } catch (error) {
                 console.error("Blog not found", error);
-                // <div></div>
             }
         }
 
@@ -40,31 +39,39 @@ function BlogPage() {
 
     return(
         <>
-            <div className={styles["hero-section"]}>
-                <div className={styles["image-container"]}>
-                    <img className={styles["image"]} src={url + blog.image} alt="hero-image"></img>
-                    <div className={styles["hero-container"]}>
-                        <div className={styles["box"]}>
-                            <span className={styles["category"]}>{blog.category}</span>
-                            <h1 className={styles["title"]}>{blog.title}</h1>
-                            <div className={styles["meta"]}>
-                                <span>{blog.createdAt}</span>  • <span>{blog.user}</span>
+            {blog.published ? (
+                <div>
+                    <div className={styles["hero-section"]}>
+                        <div className={styles["image-container"]}>
+                            <img className={styles["image"]} src={url + blog.image} alt="hero-image"></img>
+                            <div className={styles["hero-container"]}>
+                                <div className={styles["box"]}>
+                                    <span className={styles["category"]}>{blog.category}</span>
+                                    <h1 className={styles["title"]}>{blog.title}</h1>
+                                    <div className={styles["meta"]}>
+                                        <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>  • <span>{blog.user.name}</span>
 
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className={styles["container"]}>
+                        <div className={styles["markdown-container"]}>
+                            <p className={styles["markdown-content"]}>
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>{blog.content}</ReactMarkdown>
+                            </p>
+                        </div>
+                        <div className={styles["side-bar"]}>
+                            <SideBar className={styles["SideBar"]} images={images}/>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div className={styles["container"]}>
-                <div className={styles["markdown-container"]}>
-                    <p className={styles["markdown-content"]}>
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{blog.content}</ReactMarkdown>
-                    </p>
+            ) : (
+                <div>
+                    <h1>Private Blog Post</h1>
                 </div>
-                <div className={styles["side-bar"]}>
-                    <SideBar className={styles["SideBar"]} images={images}/>
-                </div>
-            </div>
+            )}
         </>
     ) // return
 } // BlogPage

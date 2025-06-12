@@ -62,7 +62,7 @@ function Dashboard() {
                             key={i}
                             onClick={() => setActiveIndex(i)}
                             ref={(el) => (navRefs.current[i] = el)}
-                            style={{ color: i === activeIndex ? 'white' : 'black' }}
+                            style={{ color: i === activeIndex ? 'rgb(255, 182, 87)' : 'black' }}
                         >
                             {label}
                         </li>

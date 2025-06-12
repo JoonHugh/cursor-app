@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  word-spacing: .25rem;
+  letter-spacing: .025em;
 
 }
 .main-container {

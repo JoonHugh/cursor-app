@@ -1,12 +1,13 @@
 .container {
     width:95%;
+    height: fit-content;
     max-width: 1080px;
     margin:auto;
     display:grid;
     grid-template-columns: 3fr 1fr;
     gap:2rem;
     align-content: start;
-    border:1px solid red;
+    /* border:1px solid red; */
 }
 .image-container {
     width:100%;
@@ -57,22 +58,28 @@
     font-size: 12px;
 }
 .markdown-container {
-    display:block;
+    /* display:block; */
     width:100%;
+    height: 100%;
     margin:auto;
     margin-bottom: 3rem;
     box-sizing: border-box;
-    border:1px solid #cccccc;
     border-radius: 4px;
+    /* position: absolute; */
+    /* height:auto; */
 }
 .markdown-content {
     /* max-width: 600px; */
-    border:1px solid blue;
-    word-spacing: .25rem;
-    letter-spacing: .05em;
+    /* border:1px solid blue; */
+    border:1px solid #cccccc;
+    /* word-spacing: .25rem;
+    letter-spacing: .05em; */
     overflow-wrap: break-word;
     padding:2rem;
     box-sizing: border-box;
+    /* position: absolute;
+    top:0;
+    left:0; */
 }
 
 .markdown-content ul,
@@ -117,23 +124,24 @@
 .side-bar {
     position: relative;
     display:block;
-    border:1px solid coral;
+    /* border:1px solid coral; */
     width: 100%;
     box-sizing: border-box;
 }
 .SideBar {
-    position: absolute;
+    /* position: absolute;
     top:0;
-    left:0; 
+    left:0;  */
     /* MAYBE SOME IDEAS WITH SCALE */
     /* display: block; */
+    /* position:; */
     width: 100%; /* takes full width of parent */
-    border:1px solid green;
+    /* border:1px solid green; */
     box-sizing: border-box;
 }
 .markdown-container,
 .side-bar {
-    align-self: start;
+    /* align-self: start; */
 }
 
 

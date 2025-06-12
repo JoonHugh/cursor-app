@@ -1,4 +1,4 @@
-import React, { useState  } from 'react';
+import React, { useState } from 'react';
 import styles from './ImageUpload.module.css';
 import { AiOutlineCloudUpload } from "react-icons/ai";
 
@@ -7,23 +7,15 @@ const  MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 function ImageUpload({ onImageSelect }) {
 
     // const [file, setFile] = useState(null);
-    const [error, setError] = useState(null);
+
     const [preview, setPreview] = useState(null);
 
 
     const handleFile = (file) => {
-        if (!file.type.startsWith ("image/")) {
-            setError("Only image files allowed!");
-            return;
-        } // if
+        const isValidType = file.type.startsWith("image/");
+        const isValidSize = file.size <= MAX_FILE_SIZE;       
 
-        if (file.size > MAX_FILE_SIZE) {
-            setError("Max file size exceeded! (5MB)");
-            return;
-        } // if
-
-        setError("");
-        setPreview(URL.createObjectURL(file));
+        if (isValidSize && isValidType) setPreview(URL.createObjectURL(file));
         onImageSelect(file);
     } // handleFile
 
@@ -46,6 +38,7 @@ function ImageUpload({ onImageSelect }) {
             className={styles["border"]}
             >
             <input
+                id="imageUploadInput"
                 type="file"
                 accept="image/*"
                 onChange={handleChange}
@@ -66,8 +59,6 @@ function ImageUpload({ onImageSelect }) {
                     </div>
                 )}
             </label>
-
-            {error && <p className={styles["error-message"]}>{error}</p>}
         </div>
     );
 }

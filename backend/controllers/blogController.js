@@ -7,14 +7,13 @@ import User from '../models/userModel.js';
 // @GET /blogs/:slug
 // @access Public
 export const getBlogBySlug = asyncHandler(async (req, res) => {
-    const blog = await Blog.findOne({ slug: req.params.slug });
-
-    if (!blog) {
-        res.status(404);
-        throw new Error("Blog not found");
-    } // if
-
-    res.json(blog);
+    try {
+        const blog = await Blog.findOne({ slug: req.params.slug }).populate('user', 'name');
+        if (!blog) return res.status(404).json({ error: 'Blog not found' });
+        res.json(blog);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 }) // getBlogBySlug
 
 // @desc GET blogs
