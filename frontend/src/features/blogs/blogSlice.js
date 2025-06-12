@@ -20,7 +20,7 @@ export const getBlogs = createAsyncThunk('blogs/getAll', async (_, thunkAPI) => 
     }
 })
 
-// Post new blog
+// Post new blog 
 export const createBlog = createAsyncThunk('blogs/create', async (blogData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;

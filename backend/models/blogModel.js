@@ -74,7 +74,7 @@ const blogSchema = mongoose.Schema({
 
 blogSchema.pre('save', function (next) {
     if (this.content) {
-        const res = Math.ceil(countWords(this.content) / 238) <= 1 ? "<1 min" : Math.ceil(countWords(this.content) / 238) + "mins";
+        const res = Math.ceil(countWords(this.content) / 238) <= 1 ? "<1 min" : Math.ceil(countWords(this.content) / 238) + " mins";
         this.readTime = res;
     }
     next();

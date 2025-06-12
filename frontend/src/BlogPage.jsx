@@ -21,16 +21,30 @@ function BlogPage() {
 
     const {slug } = useParams();
     const [blog, setBlog] = useState(null);
+    const [pageViews, setPageViews] = useState(0);
 
     useEffect(() => {
+        const storedPageViews = localStorage.getItem('pageViews');
+
+        if (storedPageViews) {
+            setPageViews(parseInt(storedPageViews, 10));
+        } // if
+        setPageViews(async (prevPageViews) => {
+            const newPageViews = prevPageViews + 1;
+            localStorage.setItem('pageViews', newPageViews.toString());
+            console.log("page view", newPageViews)
+            // const res = await axios.patch(`http://localhost:5000/blogs/${slug}`, blog)
+            return newPageViews;
+        }) // storedPageViews
+
         const fetchBlog = async () => {
             try {
                 const res = await axios.get(`http://localhost:5000/blogs/${slug}`);
                 setBlog(res.data);
             } catch (error) {
                 console.error("Blog not found", error);
-            }
-        }
+            } // try-catch
+        } // fetchBlog
 
         fetchBlog();
     }, [slug]);
@@ -49,7 +63,7 @@ function BlogPage() {
                                     <span className={styles["category"]}>{blog.category}</span>
                                     <h1 className={styles["title"]}>{blog.title}</h1>
                                     <div className={styles["meta"]}>
-                                        <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>  • <span>{blog.user.name}</span>
+                                        <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user.name}</span>  • <span>{pageViews} Views</span>
 
                                     </div>
                                 </div>
@@ -58,9 +72,9 @@ function BlogPage() {
                     </div>
                     <div className={styles["container"]}>
                         <div className={styles["markdown-container"]}>
-                            <p className={styles["markdown-content"]}>
+                            <div className={styles["markdown-content"]}>
                                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{blog.content}</ReactMarkdown>
-                            </p>
+                            </div>
                         </div>
                         <div className={styles["side-bar"]}>
                             <SideBar className={styles["SideBar"]} images={images}/>
