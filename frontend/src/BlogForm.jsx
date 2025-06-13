@@ -419,7 +419,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                 </div>
                 <FormGroup className={styles["check-group"]}>
                     <FormControlLabel control={<Checkbox 
-                                                defaultChecked 
+                                                defaultChecked={published}
                                                 onChange={() => setPublished(!published)}
                                                 sx={{
                                                     color: 'rgb(255, 195, 117);',
@@ -430,6 +430,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                                             />} 
                                       label={<span className={styles["label"]}>Public</span>}/>
                     <FormControlLabel control={<Checkbox 
+                                                defaultChecked={featured}
                                                 onChange={() => setFeatured(!featured)}
                                                 sx={{
                                                 color: 'rgb(255, 195, 117);',

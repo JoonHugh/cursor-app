@@ -18,7 +18,7 @@ function Instagram({ images }) {
             <span className={styles["meta-info"]}>512 FOLLOWING 473 FOLLOWERS</span>
             <div className={styles["grid"]}>
                 {images.map((src, index) => (
-                    <div className={styles["post-container"]}>
+                    <div key={`instagram-post-${index}`} className={styles["post-container"]}>
                         <img className={styles["image"]} src={src} alt="" />
                         <div className={styles["post-meta"]}>
                             <div className={styles["post-overlay"]}></div>
