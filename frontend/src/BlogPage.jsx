@@ -92,9 +92,24 @@ function BlogPage() {
         };
     }, [slug, user, navigate]);
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return
+    (
+    <>
+        <div className={styles["loading-container"]}>
+            <h1>Loading...</h1>
+        </div>
+    </>
+    )
     if (unauthorized) return <PrivatePostMessage />;
-    if (!blog) return <p>Blog not found</p>;
+    if (!blog) return (
+    <div className={styles["not-found"]}>
+        <h1>404</h1>
+        <p>Blog not found</p>
+        <button onClick={() => window.location.href = '/'}>
+            Return Home
+        </button>
+    </div>
+    );
 
     return(
         <div>
@@ -128,11 +143,11 @@ function BlogPage() {
     // Separate component for unauthorized message
     function PrivatePostMessage() {
         return (
-            <div className="private-post-message">
+            <div className={styles["private-post-message"]}>
                 <h1>This post is private</h1>
                 <p>Only the author can view this content.</p>
                 <button onClick={() => window.location.href = '/'}>
-                    Return to Home
+                    Return Home
                 </button>
             </div>
         );
