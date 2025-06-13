@@ -73,6 +73,31 @@
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+.btn-grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    position:static;
+    justify-self: end;
+    gap:10px;
+    width: fit-content;
+
+    /* border:5px solid red; */
+}
+.btn-block {
+    color:white;
+    border:none;
+    padding:10px;
+    width:82px;
+    background-color: rgb(255, 177, 75);
+    border-radius: 4px;
+    cursor:pointer;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: 0.3s ease;
+}
+.btn-block:hover {
+    background-color: hsl(34, 100%, 55%);
+
+}
 
 .confirm-delete-button {
     background-color: #e74c3c;
@@ -94,11 +119,13 @@
 .edit-popup-box {
     /* display:block; */
     /* flex-direction: column; */
+    position: relative;
     background:white;
     padding:2rem;
     width: 90vw;
     /* justify-content: center; */
     margin:auto;
+    /* height: 85vh; */
     height: 85vh;
     /* border:5px solid red; */
     overflow-y:scroll;

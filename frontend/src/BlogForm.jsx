@@ -12,7 +12,7 @@ import ImageUpload from './ImageUpload.jsx';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
-function BlogForm({ blog = null, onSubmitHandler }) {
+function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
     
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
@@ -249,6 +249,14 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
         }
     };
 
+
+    const handleCancel = () => {
+        if(setEditPopup) {
+            setEditPopup(false);
+        } else {
+            navigate('/dashboard')
+        }
+    }
         // dispatch(createBlog(blog))
         //     .unwrap()
         //     .then(() => {
@@ -434,11 +442,31 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                                                     className={styles["label"]}>Feature this post </span>}/>
                 </FormGroup>
                 <div className={styles['form-group']}>
-                    <button 
-                        className={styles["btn-block"]} 
-                        type='submit'>
-                            {blog ? "Save": "Publish"}
-                    </button>
+                    {blog ? (
+                        <>
+                            <div className={styles["btn-grid"]}>
+                                <button 
+                                    className={styles["btn-block"]} 
+                                    onClick={handleCancel}>
+                                    Cancel
+                                </button>
+                                <button 
+                                    className={styles["btn-block"]} 
+                                    type='submit'>
+                                    Save
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <div className={styles["btn-grid"]}>
+                            <button 
+                                className={styles["btn-block"]} 
+                                type='submit'>
+                                Publish
+                            </button>
+                        </div>
+
+                    )}
                 </div>
             </form>
             

@@ -114,7 +114,7 @@ function BlogItem({ blog }) {
                     <div className={styles["edit-popup-box"]}>
                             <BlogForm
                                 blog={currentBlog}
-                                isEdit={true}
+                                setEditPopup={setEditPopup}
                                 onSubmitHandler={(updatedBlog) => {
                                     // YOU'RE N OT . GETTINGT HE ID BECAUSE P OSTMAN WORKS???
                                     dispatch(updateBlog({ 
@@ -123,7 +123,7 @@ function BlogItem({ blog }) {
                                     })).unwrap()
                                 }}
                             />
-                        <div className={styles["popup-buttons"]}>
+                        {/* <div className={styles["popup-buttons"]}>
                             <button 
                                 onClick={() => setEditPopup(false)} 
                                 className={styles["cancel-button"]}>Cancel
@@ -132,7 +132,7 @@ function BlogItem({ blog }) {
                                 onClick={handleEdit} 
                                 className={styles["confirm-edit-button"]}>Save
                             </button>
-                        </div>
+                        </div> */}
                     </div>
 
                 </div>

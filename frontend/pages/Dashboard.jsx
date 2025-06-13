@@ -78,12 +78,13 @@ function Dashboard() {
                     {activeIndex === TABS.ALL && (      
                         blogs.length > 0 ? (
                             <div className={styles["blog"]}>
-                            {blogs.map((blog) => (
-                                <BlogItem key = {blog._id} blog={blog}/>
-                            ))}
+                                {blogs.map((blog) => (
+                                    <BlogItem key={`${blog._id}-${blog.slug}`} blog={blog}/>
+                                ))}
                             </div>
-                        ) : (<h3>No blogs posted</h3>)
-                        
+                        ) : (
+                            <h3>No blogs posted</h3>
+                        )
                     
                     )}
 
