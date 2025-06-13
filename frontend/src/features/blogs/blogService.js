@@ -28,8 +28,16 @@ const postBlog = async (blogData, token) => {
     return response.data;
 }
 
-const updateBlog = (blogData) => {
+const updateBlog = async (blogData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+    // console.log("Actual url", API_URL + blogData._id)
+    const response = await axios.put(API_URL + blogData._id, blogData, config);
 
+    return response.data;
 }
 
 const deleteBlog = () => {

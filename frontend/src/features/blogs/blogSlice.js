@@ -31,6 +31,17 @@ export const createBlog = createAsyncThunk('blogs/create', async (blogData, thun
     }
 })
 
+// Update new blog
+export const updateBlog = createAsyncThunk('blogs/update', async (blogData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        return await blogService.updateBlog(blogData, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
 export const blogSlice = createSlice({
     name: 'blog',
     initialState,
@@ -39,6 +50,19 @@ export const blogSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getBlogs.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getBlogs.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.blogs = action.payload;
+            })
+            .addCase(getBlogs.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
             .addCase(createBlog.pending, (state) => {
                 state.isLoading = true;
             })
@@ -52,15 +76,15 @@ export const blogSlice = createSlice({
                 state.isError = true;
                 state.message = action.payload;
             })
-            .addCase(getBlogs.pending, (state) => {
+            .addCase(updateBlog.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(getBlogs.fulfilled, (state, action) => {
+            .addCase(updateBlog.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.blogs = action.payload;
+                state.blogs.push(action.payload);
             })
-            .addCase(getBlogs.rejected, (state, action)  => {
+            .addCase(updateBlog.rejected, (state, action)  => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

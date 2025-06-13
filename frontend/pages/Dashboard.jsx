@@ -6,6 +6,8 @@ import BlogItem from '../src/BlogItem.jsx';
 import BlogForm from '../src/BlogForm.jsx';
 import Spinner from '../src/Spinner.jsx';
 import { getBlogs, reset } from '../src/features/blogs/blogSlice.js';
+import { createBlog } from '../src/features/blogs/blogSlice.js';
+
 
 
 function Dashboard() {
@@ -94,7 +96,10 @@ function Dashboard() {
                     )}
 
                     {activeIndex === TABS.NEW_POST && (
-                        <BlogForm />
+                        <BlogForm
+                            onSubmitHandler={(blogData) => dispatch(createBlog(blogData))}
+                        />
+
                     )}
                 </section>
             </div>

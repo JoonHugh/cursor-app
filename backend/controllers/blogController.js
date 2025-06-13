@@ -66,6 +66,9 @@ export const updateBlog = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Blog not found');
     } // if
+
+        // Add this console.log to verify what's being received:
+        // console.log("Updating blog with data:", req.body);
     
     // Check for user
     if (!req.user) {
@@ -73,15 +76,21 @@ export const updateBlog = asyncHandler(async (req, res) => {
         throw new Error ('User not found');
     } // if
 
+    // console.log("User", req.user);
+
     // Make sure the logged in user matches the blog user
     if (blog.user.toString() !== req.user.id) {
         res.status(401);
         throw new Error('User not authorized');
     } // if
+    // console.log("user authorized")
     
     const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
+         // Add this to verify the response:
+    // console.log("Updated blog:", updatedBlog);
+
     res.status(200).json(updatedBlog);
 });
 

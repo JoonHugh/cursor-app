@@ -12,7 +12,7 @@ import ImageUpload from './ImageUpload.jsx';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 
-function BlogForm() {
+function BlogForm({ blog = null, onSubmitHandler }) {
     
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
@@ -159,17 +159,20 @@ Thanks for reading!
 
 Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.`;
 
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(blog?.title || "");
     const [titleError, setTitleError] = useState(false);
     const [showCountdown, setShowCountdown] = useState(false);
-    const [slug, setSlug] = useState("");
-    const [category, setCategory] = useState({ label: "General", value: "GENERAL" });
-    const [tags, setTags] = useState([]);
-    const [published, setPublished] = useState(true);
-    const [featured, setFeatured] = useState(false);
-    const [image, setImage] = useState(null);
+    const [slug, setSlug] = useState(blog?.slug || "");
+    const [category, setCategory] = useState(
+        blog ? { label: blog.category, value: blog.category } : { label: "General", value: "GENERAL" }
+      );
+    const [tags, setTags] = useState(blog?.tags?.map(t => ({ label: t, value: t })) || []);
+    const [published, setPublished] = useState(blog?.published ?? true);
+    const [featured, setFeatured] = useState(blog?.featured ?? false);
+    const [image, setImage] = useState(blog?.image || null);
     const [imageError, setImageError] = useState('');
-    const [content, setContent] = useState("## Start writing your blog post\n\n" + textSample);
+    const [content, setContent] = useState(blog?.content || "## Start writing your blog post\n\n" + textSample);
+
     
     const categories = [
         { label: "General", value: "GENERAL" },
@@ -186,7 +189,17 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        let imageUrl = null;
+        if (!image && !blog?.image) {
+            setImageError('No image selected');
+            setShowCountdown(true);
+            setTimeout(() => {
+              setImageError('');
+              setShowCountdown(false);
+            }, 5000);
+            return;
+        }
+
+        let imageUrl = blog?.image || null;
 
         if (image) {
             const formData = new FormData();
@@ -214,10 +227,12 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             return;
         }
 
-        const blog = {
+        const blogData = {
+            // ...blog,
+            _id: blog?._id,
             title,
-            slug: slug,
-            user: user.name,
+            slug,
+            user: user._id,
             category: category.value,
             tags: tags.map(tag => tag.value),
             published,
@@ -226,21 +241,33 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             content,
         };
 
-        dispatch(createBlog(blog))
-            .unwrap()
-            .then(() => {
-                navigate('/dashboard');
-            })
-            .catch((err) => console.error(err))
-        setTitle('');
-        setImage('');
-        setContent(textSample);
+        try {
+            await onSubmitHandler(blogData);
+            navigate('/dashboard');
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+        // dispatch(createBlog(blog))
+        //     .unwrap()
+        //     .then(() => {
+        //         navigate('/dashboard');
+        //     })
+        //     .catch((err) => console.error(err))
+        // setTitle('');
+        // setImage('');
+        // setContent(textSample);
         
-    }
+    
 
     return(
         <section className={styles["form"]}>
-            <h2>Create a New Blog</h2>
+            {blog ? (
+                <h2>Edit Blog</h2>
+            ) : (
+                <h2>Create a New Blog</h2>
+            )}
             <form onSubmit={onSubmit}>
                 <div className={styles['form-group']}>
                     <label>Title
@@ -292,7 +319,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         name="slug" 
                         id="slug" 
                         value={slug}
-                        onChange={(e) => setSlug(e.target.value)}
+                        // onChange={(e) => setSlug(e.target.value)}
                         placeholder='Blog Link'
                         disabled
                     />
@@ -345,8 +372,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         value={image}
                         onImageSelect={(file) => {
                             if (!file) return;
-                            console.log("TESTING")
-
+                            
                             if (!ALLOWED_TYPES.includes(file.type)) {
                                 setImageError("Only JPG, PNG, or WEBP images allowed");
                                 setImage(null);
@@ -362,9 +388,11 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                                 setTimeout(() => (setImageError(''), setShowCountdown(false)), 5000);
                                 return;
                             }
-
+                            
                             setImageError('');
                             setImage(file);
+                            console.log("TESTING")
+                            console.log("image link: ", file)
                         }}
 
                     />
@@ -408,7 +436,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                 <div className={styles['form-group']}>
                     <button 
                         className={styles["btn-block"]} 
-                        type='submit'>Publish
+                        type='submit'>
+                            {blog ? "Save": "Publish"}
                     </button>
                 </div>
             </form>
