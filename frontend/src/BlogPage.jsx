@@ -29,9 +29,10 @@ function BlogPage() {
 
     const { user } = useSelector((state) => state.auth)
 
-    const  navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
+        let isMounted = true; // flag
         
         const fetchBlog = async () => {
             try {
@@ -39,40 +40,56 @@ function BlogPage() {
                 // console.log("RES DATA:", res.data);
                 
                 if (!res.data.published) {
-                    if (!user || user._id !== res.data.user._id)
-                    setUnauthorized(true);
-                    setLoading(false);
-                    return;
+                    if (!user || user._id !== res.data.user._id) {
+                        setUnauthorized(true);
+                        setLoading(false);
+                        return;
+                    }
                 }
                 
-                setBlog(res.data);
-                // console.log("BLOG SAME?:", blog)
-                
-                const storedPageViews = localStorage.getItem('pageViews') || 0;
-                const newPageViews = parseInt(storedPageViews, 10) + 1;
-                localStorage.setItem('pageViews', newPageViews.toString());
-                setPageViews(newPageViews);
+                if (isMounted) {
+                    setBlog(res.data);
 
-                // Send view count to backend
-                await axios.put(`http://localhost:5000/blogs/${res.data._id}`,
-                    { views: newPageViews },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${user?.token}`,
-                        },
+                    // Only update views if this is the first mount
+                    if (!localStorage.getItem(`viewed-${slug}`)) {
+                        const newPageViews = (res.data.views || 0) + 1;
+
+                        // Mark as viewed before making the request
+                        localStorage.setItem(`viewed-${slug}`, 'true');
+
+                        try {
+                            await axios.put(
+                                `http://localhost:5000/blogs/${res.data._id}/views`,
+                                { views: newPageViews },
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${user?.token}`,
+                                    },
+                                }
+                            );
+                            setPageViews(newPageViews);
+                        } catch (error) {
+                            console.error("Failed to update views:", error);
+                            localStorage.removeItem(`viewed-${slug}`);
+                        }
+                    } else {
+                        setPageViews(res.data.views || 0);
                     }
-                );
-
+                }
             } catch (error) {
                 console.error("Blog not found", error);
-                // navigate('/not-found')
-
+                // navigate('not-found');
             } finally {
-                setLoading(false);
+                // setLoading(false);
+                if (isMounted) setLoading(false);
             } // try-catch-finally
         } // fetchBlog
 
         fetchBlog();
+
+        return () => {
+            isMounted = false;
+        };
     }, [slug, user, navigate]);
 
     if (loading) return <p>Loading...</p>

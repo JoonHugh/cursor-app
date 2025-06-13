@@ -3,6 +3,24 @@ import asyncHandler from 'express-async-handler';
 import Blog from '../models/blogModel.js';
 import User from '../models/userModel.js';
 
+// @desc Update view count by 1
+// @PUT /blogs/:id/views
+// @access Public
+export const updateBlogViews = asyncHandler(async (req, res) => {
+    try {
+        const blog = await Blog.findByIdAndUpdate(
+            req.params.id,
+            { $inc: { views: 1 } }, // Use $inc to atomically increment
+            { new: true }
+        );
+        
+        if (!blog) return res.status(404).json({ error: 'Blog not found' });
+        res.json(blog);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // @desc GET blog post by slug
 // @GET /blogs/:slug
 // @access Public

@@ -122,7 +122,8 @@
     position: relative;
     background:white;
     padding:2rem;
-    width: 90vw;
+    width: 80vw;
+    max-width: 900px;
     /* justify-content: center; */
     margin:auto;
     /* height: 85vh; */
