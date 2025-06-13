@@ -5,6 +5,7 @@
 
 # Dependencies
 /node_modules
+/
 /.pnp
 .pnp.js
 yarn.debug.log*
@@ -38,6 +39,8 @@ npm-debug.log*
 *.pem
 .DS_Store
 Thumbs.db
+
+uploads
 
 node_modules
 .env
