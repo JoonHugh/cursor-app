@@ -7,7 +7,7 @@ function BlogSection() {
     return(
         <div className={styles["entry-container1"]}>
             <div className={styles["entry-container2"]}>
-                <video className={styles["blog-video"]} autoPlay muted loop playsInline preload>
+                <video className={styles["blog-video"]} autoPlay muted loop playsInline preload='true'>
                     <source src="/assets/blogvid.mp4" type="video/mp4" ></source>
                 </video>
                 <div className={styles["hover-text"]}>

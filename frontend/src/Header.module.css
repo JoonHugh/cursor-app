@@ -16,6 +16,10 @@
     border-bottom: 1px solid hsl(0, 0%, 90%);
     /* border:1px solid red; */
 }
+.navbar {
+    /* border:1px solid red; */
+
+}
 .website-name a {
     text-decoration: none;
     color:black;

@@ -6,6 +6,10 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import styles from './Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from './features/auth/authSlice.js';
+import NavBar from './Navbar.jsx';
+import { IoMenu } from "react-icons/io5";
+
+
 
 function Header() {
 
@@ -19,9 +23,13 @@ function Header() {
         navigate('/')
     }
 
+
     return(
         <div className={styles["header-grid"]}>
-                <button className={styles["menu-button"]}><i className="material-icons">&#xe5d2;</i></button>
+                {/* <button className={styles["menu-button"]} ><IoMenu /></button> */}
+                <div className={styles["navbar"]}>
+                    <NavBar />
+                </div>
                 <h1 className={styles["website-name"]}><Link to="/">cursor</Link></h1>
                 <ul className={styles["button-group"]}>
                     {user ? (
