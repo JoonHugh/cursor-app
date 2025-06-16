@@ -16,7 +16,7 @@
     max-width: 900px;
     margin:3rem auto;
     padding:2rem;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     line-height: 1.5rem;
     border:1px solid #cccccc;
     /* border-radius: 10px; */

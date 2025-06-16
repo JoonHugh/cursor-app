@@ -93,6 +93,7 @@ function Dashboard() {
                             <h3>Categories</h3>
                             <h2>CHECK AIRBNB'S FILTER OPTIONS FOR INSPIRATION</h2>
                             <img src="https://www.google.com/imgres?q=blog%20entry%20form%20ui%20ux&imgurl=https%3A%2F%2Fassets.ycodeapp.com%2Fassets%2Fapp13650%2Fimages%2Fe1kc60y4R0mPs5YRRD2Nzdg26Li7ah8X9YR3OtgH-published.webp&imgrefurl=https%3A%2F%2Fwww.ycode.com%2Ftemplates%2Fpersonal-blog&docid=zSIJP3in44ZePM&tbnid=MjecTtcsPv9GqM&vet=12ahUKEwiipMPH9eWNAxVbrlYBHeMTLr0QM3oECFMQAA..i&w=2672&h=1200&hcb=2&ved=2ahUKEwiipMPH9eWNAxVbrlYBHeMTLr0QM3oECFMQAA" alt="inspiration-image"/>
+                            
                         </div>
                     )}
 

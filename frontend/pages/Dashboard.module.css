@@ -7,8 +7,8 @@
     margin:auto;
 }
 .page-name {
-    font-size: 36px;
-    margin-bottom: 1.5rem;
+    font-size: 32px;
+    margin-bottom: 1rem;
     font-weight: 500;
 }
 .nav-container {
@@ -22,14 +22,14 @@
     border-radius: 8px;
     display: flex;
     align-items: center;
-    gap:64px;
+    gap:32px;
 }
 .page-nav li {
     color:black;
     list-style-type: none;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 10px 15px;
     position:relative;
     z-index: 1;
     transition: color 0.3s ease;

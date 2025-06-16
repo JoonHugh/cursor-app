@@ -2,10 +2,7 @@ import styles from "./TermsAndConditions.module.css";
 
 function TermsAndConditions() {
   return (
-    <div
-      className={styles["container"]}
-      style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}
-    >
+    <div className={styles["container"]}>
       <h1>Terms and Conditions</h1>
       <p>Welcome to Cursor!</p>
 

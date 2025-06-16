@@ -37,10 +37,10 @@
     top:25%;
     transform: translateY(-50%);
     right:0px;
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    display:flex;
+    flex-direction: row;
     list-style-type: none;
-    gap:1.5rem;
+    gap:20px;
     align-items: center;
     justify-self: end;
     font-size: 14px;
