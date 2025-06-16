@@ -11,6 +11,7 @@ import Checkbox from '@mui/material/Checkbox';
 import ImageUpload from './ImageUpload.jsx';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import rehypeSanitize from "rehype-sanitize";
 
 function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
     
@@ -85,7 +86,7 @@ You can use **bold**, *italic*, ***both***, ~~strikethrough~~, ==highlight== (vi
 
 ![React Logo](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg)
 
-Visit [OpenAI](https://openai.com) to learn more about AI and language models.
+Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.
 
 ---
 
@@ -100,7 +101,7 @@ You can include \`inline code\` like \`const x = 5;\`.
 \`\`\`js
 // JavaScript code block
 function greet(name) {
-  return \`Hello, ${name}!\`;
+  return \`Hello, \${name}!\`;
 }
 console.log(greet("Markdown"));
 \`\`\`
@@ -415,6 +416,9 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         value={content} 
                         onChange={setContent} 
                         visibleDragbar={false}
+                        previewOptions={{
+                            rehypePlugins: [[rehypeSanitize]],
+                        }}
                     />
                 </div>
                 <FormGroup className={styles["check-group"]}>

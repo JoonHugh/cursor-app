@@ -51,7 +51,7 @@
     justify-self: right;
     align-items: center;
     list-style-type: none;
-    font-size: 18px;
+    font-size: 16px;
     /* border:1px solid purple; */
 }
 .button-group a {
@@ -81,7 +81,7 @@
 }
 .logout-button {
     /* border:2px blue; */
-    font-size: 18px;
+    font-size: 16px;
     gap:6px;
     display:flex;
     flex-direction: row;

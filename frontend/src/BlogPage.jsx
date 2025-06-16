@@ -6,6 +6,7 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import SideBar from './SideBar.jsx';
+import MDEditor from "@uiw/react-md-editor";
 
 function BlogPage() {
 
@@ -130,7 +131,7 @@ function BlogPage() {
             <div className={styles["container"]}>
                 <div className={styles["markdown-container"]}>
                     <div className={styles["markdown-content"]}>
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{blog.content}</ReactMarkdown>
+                        <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
                 </div>
                 <div className={styles["side-bar"]}>

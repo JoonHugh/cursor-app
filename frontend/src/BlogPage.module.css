@@ -115,56 +115,53 @@
     /* position: absolute; */
     /* height:auto; */
 }
-.markdown-content {
-    /* max-width: 600px; */
-    /* border:1px solid blue; */
+.markdown-preview {
     border:1px solid #cccccc;
-    /* word-spacing: .25rem;
-    letter-spacing: .05em; */
-    overflow-wrap: break-word;
     padding:2rem;
     box-sizing: border-box;
-    /* position: absolute;
-    top:0;
-    left:0; */
+    line-height: 1.5rem;
 }
 
-.markdown-content ul,
-.markdown-content ol {
+.markdown-preview ul,
+.markdown-preview ol {
     padding-left: 1.5rem;  /* Adds space for bullet/number */
     margin-left: 0;
     list-style-position: inside; /* Optional: keeps bullets inside content box */
     word-wrap: break-word;
+    box-sizing: border-box;
 }
-.markdown-content img {
+.markdown-preview li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    /* border:1px solid red; */
+}
+.markdown-preview img {
     display: block;
     width:100%;
-    max-width: 256px;
+    width:256px; /* default width, can probably edit */
     height: auto;
     margin: 1rem auto;
-    border-radius: 8px;
     object-fit: contain;
 }
 
-.markdown-content li {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-.markdown-content table {
+.markdown-preview table {
     width: 100%;
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.95rem;
+    /* border:1px solid red; */
 }
   
-.markdown-content th,
-.markdown-content td {
-    border: 1px solid #ccc;
+.markdown-preview th,
+.markdown-preview td {
+    border:1px solid blue;
     padding: 0.75rem 1rem;
     text-align: left;
+    /* border: 1px solid #ccc; */
 }
   
-.markdown-content thead {
+.markdown-preview thead {
     background-color: #f9f9f9;
     font-weight: bold;
 }
@@ -228,7 +225,7 @@
         margin-bottom: 1.5rem;
         width:75%;
     }
-    .markdown-content {
+    .markdown-preview {
         max-width: 100%;
         width: 100%;
     }
