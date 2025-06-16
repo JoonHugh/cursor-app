@@ -37,7 +37,7 @@
     height: auto; */
 }
 .drawer {
-    /* border:1px solid red; */
+    padding:5rem;
     /* filter: brightness(100%); */
 }
 .menu-icon {
@@ -65,10 +65,20 @@
 .list-items a {
     color:black;
     font-size: 18px;
+    padding:4px 2rem;
 }
-.menu {
-    font-size: 24px;
+.list-items span {
+    font-size: 18px;
+    /* border:1px solid red; */
 }
+.list-items p {
+    padding-top:1rem;
+    margin:1.25rem 2rem 0.25rem 2rem;
+    font-size: 14px;
+    border-top: 1px solid #cccccc;
+    font-weight: 500;
+}
+
 .menuItem {
     font-family: 'Inter', sans-serif;
     font-size: 1rem;

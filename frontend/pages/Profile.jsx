@@ -12,9 +12,15 @@ function Profile() {
     return(
         <div>
             <h5>Profile</h5>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+
             <p>{user.name}</p>
             <p>{user.email}</p>
-            <p>{new Date(user.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</p>
+            <p>{new Date(user.createdAt).toLocaleString('en-US', {
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric'})}
+            </p>
 
         </div>
     );

@@ -38,6 +38,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
+            createdAt: user.createdAt,
         })
     } else {
         res.status(400);
@@ -61,6 +62,7 @@ export const loginUser  = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
+            createdAt: user.createdAt,
         })
     } else {
         res.status(400);
@@ -74,8 +76,8 @@ export const loginUser  = asyncHandler(async (req, res) => {
 // @access Private
 export const getMe  = asyncHandler(async (req, res) => {
 
-
-    res.status(200).json(req.user);
+    const user = await User.findById(req.user.id).select('-password'); // createdAt is included by default
+    res.status(200).json(user);
 
 })
 

@@ -10,6 +10,10 @@ import Login from '../pages/Login.jsx';
 import Register from '../pages/Register.jsx';
 import Home from '../pages/Home.jsx';
 import Profile from '../pages/Profile.jsx'
+import Privacy from '../pages/Privacy.jsx';
+import About from '../pages/About.jsx';
+import ReadMe from '../pages/ReadMe.jsx';
+import TermsAndConditions from '../pages/TermsAndConditions.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; 
 import PrivateRoute from './PrivateRoute.jsx';
@@ -49,7 +53,12 @@ function Layout() {
           </PrivateRoute>
         }/>
         <Route path='/users/me' element={<Profile />} />
+        <Route path='/privacy' element={<Privacy />} />
+        <Route path='tos' element={<TermsAndConditions />} />
         <Route path='/blog/:slug' element={<BlogPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/readme' element={<ReadMe />} />
+
       </Routes>
       {!hideHeaderFooter && <Footer />}
     </div>

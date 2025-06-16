@@ -22,10 +22,15 @@ import styles from './Navbar.module.css';
         { text: 'Home', icon: <FiHome />, link :'/'},
         { text: 'About Us', icon: <GrGroup />, link: '/about' },
         { text: 'Read Me', icon: <LiaReadme />, link: '/readme' },
-        { text: 'Privacy', icon: <TbShieldLock />, link: '/privacy' },
-        { text: 'Terms', icon: <GrDocumentText />, link: '/tos' },
-        { text: 'Profile', icon: <CgProfile />, link: '/users/me' },
+    ]
 
+    const legalItems = [
+        { text: 'Privacy Policy', icon: <TbShieldLock />, link: '/privacy' },
+        { text: 'Terms and Conditions', icon: <GrDocumentText />, link: '/tos' },
+    ]
+
+    const accountItems = [
+        { text: 'Profile', icon: <CgProfile />, link: '/users/me' },
     ]
 
     return(
@@ -53,10 +58,25 @@ import styles from './Navbar.module.css';
                 </div>
                 {/* </Toolbar> */}
                 <List className={styles["list-items"]}>
+                    <p>Navigation</p>
                     {drawerItems.map(({text, icon, link}) => (
                         <ListItem button key={text} component="a" href={link}>
                             <ListItemIcon>{icon}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text} className={styles["text"]}/>
+                        </ListItem>
+                    ))}
+                    <p>Privacy Policy and Terms</p>
+                    {legalItems.map(({text, icon, link}) => (
+                        <ListItem button key={text} component="a" href={link}>
+                            <ListItemIcon>{icon}</ListItemIcon>
+                            <ListItemText primary={text} className={styles["text"]}/>
+                        </ListItem>
+                    ))}
+                    <p>Account</p>
+                    {accountItems.map(({text, icon, link}) => (
+                        <ListItem button key={text} component="a" href={link}>
+                            <ListItemIcon>{icon}</ListItemIcon>
+                            <ListItemText primary={text} className={styles["text"]}/>
                         </ListItem>
                     ))}
                 </List>

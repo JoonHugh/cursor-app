@@ -1,0 +1,46 @@
+
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+    margin-bottom: 1rem;
+}
+.container p {
+    margin-bottom: 1rem;
+}
+.container span {
+    font-weight: 600;
+}
+.container a {
+    color:hsl(34, 88%, 70%)
+}
+
+.container {
+    width:75%;
+    max-width: 900px;
+    margin:3rem auto;
+    padding:2rem;
+    box-sizing: border-box;
+    line-height: 1.5rem;
+    border:1px solid #cccccc;
+    /* border-radius: 10px; */
+    /* border:1px solid red; */
+}
+
+.container ul,
+.container ol {
+    padding-left: 1.5rem;  /* Adds space for bullet/number */
+    margin-left: 0;
+    margin-bottom: 1rem;
+    list-style-position: inside; /* Optional: keeps bullets inside content box */
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+.container li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    /* border:1px solid red; */
+}
