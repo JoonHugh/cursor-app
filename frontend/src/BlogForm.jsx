@@ -177,12 +177,140 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     
     const categories = [
         { label: "General", value: "GENERAL" },
-        { label: "Interior", value: "INTERIOR" },
-        { label: "Lifestyle", value: "LIFESTYLE" },
-        { label: "Style", value: "STYLE" },
         { label: "Travel", value: "TRAVEL" },
+        { label: "Food", value: "FOOD" },
+        { label: "Lifestyle", value: "LIFESTYLE" },
+        { label: "Fashion", value: "FASHION" },
+        { label: "Technology", value: "TECHNOLOGY" },
+        { label: "Photography", value: "PHOTOGRAPHY" },
+        { label: "Education", value: "EDUCATION" },
+        { label: "Music", value: "MUSIC" },
+        { label: "Interior", value: "INTERIOR" },
         { label: "Other", value: "OTHER" },
     ];
+
+    const TAGS = [
+        // General Purpose
+        {
+            label: "General Purpose",
+            options: [
+                { value: 'TUTORIAL', label: 'Tutorial' },
+                { value: 'HOW_TO', label: 'How-to' },
+                { value: 'GUIDE', label: 'Guide' },
+                { value: 'TIPS', label: 'Tips' },
+                { value: 'TRICKS', label: 'Tricks' },
+                { value: 'RESOURCES', label: 'Resources' },
+                { value: 'PRODUCTIVITY', label: 'Productivity' },
+                { value: 'INSPIRATION', label: 'Inspiration' },
+                { value: 'OPINION', label: 'Opinion' },
+                { value: 'REVIEW', label: 'Review' },
+                { value: 'CASE_STUDY', label: 'Case Study' },
+                { value: 'INTERVIEW', label: 'Interview' },
+                { value: 'NEWS', label: 'News' },
+                { value: 'UPDATE', label: 'Update' },
+                { value: 'ANNOUNCEMENT', label: 'Announcement' },
+                { value: 'REFLECTION', label: 'Reflection' },
+            ]
+        },
+
+        // Technical/Development
+        {
+            label: "Technical/Development",
+            options: [
+                { value: 'JAVASCRIPT', label: 'JavaScript' },
+                { value: 'REACT', label: 'React' },
+                { value: 'NODE_JS', label: 'Node.js' },
+                { value: 'PYTHON', label: 'Python' },
+                { value: 'DJANGO', label: 'Django' },
+                { value: 'HTML', label: 'HTML' },
+                { value: 'CSS', label: 'CSS' },
+                { value: 'FRONTEND', label: 'Frontend' },
+                { value: 'BACKEND', label: 'Backend' },
+                { value: 'API', label: 'API' },
+                { value: 'DATABASE', label: 'Database' },
+                { value: 'DEVOPS', label: 'DevOps' },
+                { value: 'SECURITY', label: 'Security' },
+                { value: 'TESTING', label: 'Testing' },
+                { value: 'PERFORMANCE', label: 'Performance' },
+                { value: 'MOBILE', label: 'Mobile' },
+                { value: 'WEB', label: 'Web' },
+                { value: 'UI_UX', label: 'UI/UX' },
+                { value: 'DESIGN', label: 'Design' },
+                { value: 'ALGORITHMS', label: 'Algorithms' },
+                { value: 'DATA_STRUCTURES', label: 'Data Structures' },
+                { value: 'GIT', label: 'Git' },
+                { value: 'GITHUB', label: 'GitHub' },
+            ]
+        },
+      
+      
+        // Lifestyle & Personal Growth
+        {
+            label: "Lifestyle & Personal Growth",
+            options: [
+                { value: 'SELF_IMPROVEMENT', label: 'Self-improvement' },
+                { value: 'MOTIVATION', label: 'Motivation' },
+                { value: 'MINDFULNESS', label: 'Mindfulness' },
+                { value: 'HABITS', label: 'Habits' },
+                { value: 'CAREER', label: 'Career' },
+                { value: 'REMOTE_WORK', label: 'Remote Work' },
+                { value: 'FREELANCING', label: 'Freelancing' },
+                { value: 'ENTREPRENEURSHIP', label: 'Entrepreneurship' },
+                { value: 'TRAVEL', label: 'Travel' },
+                { value: 'FOOD', label: 'Food' },
+                { value: 'HEALTH', label: 'Health' },
+                { value: 'FITNESS', label: 'Fitness' },
+                { value: 'MENTAL_HEALTH', label: 'Mental Health' },
+                { value: 'BOOKS', label: 'Books' },
+                { value: 'READING', label: 'Reading' },
+                { value: 'WRITING', label: 'Writing' },
+                { value: 'CREATIVITY', label: 'Creativity' },
+                { value: 'PHOTOGRAPHY', label: 'Photography' },
+                { value: 'MUSIC', label: 'Music' },
+                { value: 'ART', label: 'Art' },
+            ]
+        },
+      
+        // Business & Marketing
+        {
+            label: "Business & Marketing",
+            options: [
+                { value: 'STARTUP', label: 'Startup' },
+                { value: 'MARKETING', label: 'Marketing' },
+                { value: 'SEO', label: 'SEO' },
+                { value: 'CONTENT', label: 'Content' },
+                { value: 'SOCIAL_MEDIA', label: 'Social Media' },
+                { value: 'BRANDING', label: 'Branding' },
+                { value: 'E_COMMERCE', label: 'E-commerce' },
+                { value: 'ANALYTICS', label: 'Analytics' },
+                { value: 'GROWTH', label: 'Growth' },
+                { value: 'SALES', label: 'Sales' },
+                { value: 'LEADERSHIP', label: 'Leadership' },
+                { value: 'MANAGEMENT', label: 'Management' },
+                { value: 'FINANCE', label: 'Finance' },
+                { value: 'INVESTING', label: 'Investing' },
+                { value: 'SIDE_HUSTLE', label: 'Side Hustle' },
+            ]
+        },
+      
+        // Technology Trends
+        {
+            label: "Technology Trends",
+            options: [
+                { value: 'AI', label: 'AI' },
+                { value: 'MACHINE_LEARNING', label: 'Machine Learning' },
+                { value: 'BLOCKCHAIN', label: 'Blockchain' },
+                { value: 'WEB3', label: 'Web3' },
+                { value: 'CRYPTOCURRENCY', label: 'Cryptocurrency' },
+                { value: 'AR_VR', label: 'AR/VR' },
+                { value: 'IOT', label: 'IoT' },
+                { value: 'CYBERSECURITY', label: 'Cybersecurity' },
+                { value: 'CLOUD_COMPUTING', label: 'Cloud Computing' },
+                { value: '5G', label: '5G' },
+                { value: 'AUTOMATION', label: 'Automation' }
+            ]
+        },
+      ];
 
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
     const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -358,8 +486,36 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         onChange={setTags}
                         placeholder="Select or create tags..."
                         formatCreateLabel={(inputValue) => `Add "${inputValue}"`}
+                        formatGroupLabel={(group) => (
+                            <div className={styles["group-styles"]}>
+                              <span>{group.label}</span>
+                              <span className={styles["group-badge-styles"]}>
+                                {group.options.length}
+                              </span>
+                            </div>
+                        )}
                         noOptionsMessage={() => "Type to create a new tag"}
-                        options={categories}
+                        options={TAGS}
+                        styles={{
+                            group: (base) => ({
+                              ...base,
+                              padding: 0
+                            }),
+                            groupHeading: (base) => ({
+                              ...base,
+                              fontSize: '14px',
+                              marginBottom: '4px',
+                              backgroundColor: '#f8f9fa'
+                            }),
+                            option: (base, { isFocused }) => ({
+                                ...base,
+                                backgroundColor: isFocused ? 'antiquewhite' : base.backgroundColor,
+                                color: isFocused ? '#000' : base.color, 
+                                '&:active': {
+                                    backgroundColor: 'hsl(34, 100%, 81%);'
+                                },
+                            })
+                        }}
                     />
 
                 </div> 
