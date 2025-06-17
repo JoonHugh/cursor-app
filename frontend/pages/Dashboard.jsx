@@ -42,8 +42,7 @@ function Dashboard() {
 
   const TABS = {
     ALL: 0,
-    CATEGORIES: 1,
-    NEW_POST: 2,
+    NEW_POST: 1,
   };
 
   useEffect(() => {
