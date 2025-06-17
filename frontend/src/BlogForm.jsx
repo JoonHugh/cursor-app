@@ -180,6 +180,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
         { label: "Travel", value: "TRAVEL" },
         { label: "Food", value: "FOOD" },
         { label: "Lifestyle", value: "LIFESTYLE" },
+        { label: "Fitness", value: "FITNESS" },
         { label: "Fashion", value: "FASHION" },
         { label: "Technology", value: "TECHNOLOGY" },
         { label: "Photography", value: "PHOTOGRAPHY" },
