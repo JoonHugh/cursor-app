@@ -509,10 +509,10 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                             }),
                             option: (base, { isFocused }) => ({
                                 ...base,
-                                backgroundColor: isFocused ? 'antiquewhite' : base.backgroundColor,
+                                backgroundColor: isFocused ? 'hsl(35, 100.00%, 95%);' : base.backgroundColor,
                                 color: isFocused ? '#000' : base.color, 
                                 '&:active': {
-                                    backgroundColor: 'hsl(34, 100%, 81%);'
+                                    backgroundColor: 'hsl(34, 100%, 91%);'
                                 },
                             })
                         }}
