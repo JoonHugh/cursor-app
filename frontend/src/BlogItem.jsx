@@ -116,7 +116,6 @@ function BlogItem({ blog }) {
                                 blog={currentBlog}
                                 setEditPopup={setEditPopup}
                                 onSubmitHandler={(updatedBlog) => {
-                                    // YOU'RE N OT . GETTINGT HE ID BECAUSE P OSTMAN WORKS???
                                     dispatch(updateBlog({ 
                                         _id: blog._id,  // Use _id instead of id
                                         ...updatedBlog   // This already includes title, slug, etc.
@@ -170,7 +169,7 @@ function BlogItem({ blog }) {
                             </div>
                         </div>
                         <a className={styles["container-link"]} href={'blog/' + blog.slug}>
-                            <h3 className={styles["title"]}>{blog.title.length < 45 ? blog.title : blog.title.substring(0, 46) + "..."}</h3>
+                            <h3 className={styles["title"]}>{blog.title.substring(0, 470)}</h3>
                         </a>
                         <a className={styles["container-link"]} href={'blog/' + blog.slug}>
                             <p className={styles["content"]}>{previewText}</p>

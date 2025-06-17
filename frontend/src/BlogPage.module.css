@@ -112,6 +112,8 @@
     margin-bottom: 3rem;
     box-sizing: border-box;
     border-radius: 4px;
+    word-break: break-word;
+    overflow-wrap: break-word;
     /* position: absolute; */
     /* height:auto; */
 }
