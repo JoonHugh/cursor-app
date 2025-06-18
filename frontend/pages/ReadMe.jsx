@@ -7,9 +7,9 @@ function Readme() {
         <h1 className="text-3xl font-bold mb-4">README: Cursor Blog Application</h1>
   
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold">📦 Stack</h2>
+          <h2 className="text-2xl font-semibold">Stack</h2>
           <ul className="list-disc pl-6 mt-2">
-            <li><strong>Frontend:</strong> React, Tailwind CSS, React Markdown, Markdown Editor</li>
+            <li><strong>Frontend:</strong> React, React Markdown, Markdown Editor</li>
             <li><strong>Backend:</strong> Node.js, Express.js</li>
             <li><strong>Database:</strong> MongoDB (Mongoose)</li>
             <li><strong>Auth:</strong> JWT + bcrypt (password encryption)</li>
@@ -17,7 +17,7 @@ function Readme() {
         </section>
   
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold">🧠 Features</h2>
+          <h2 className="text-2xl font-semibold">Features</h2>
           <ul className="list-disc pl-6 mt-2">
             <li>User Registration & Login</li>
             <li>JWT-based Bearer Authentication</li>
@@ -30,9 +30,9 @@ function Readme() {
         </section>
   
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold">🔐 API Authorization</h2>
+          <h2 className="text-2xl font-semibold">API Authorization</h2>
           <p className="mt-2">
-            All blog-related endpoints are protected using Bearer Tokens. Users can only access or modify their own blogs.
+            All blog-related endpoints are protected using Bearer Tokens. Users can only access or modify their own blogs and information.
           </p>
           <p className="mt-2">
             Example Header:
@@ -41,10 +41,11 @@ function Readme() {
         </section>
   
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold">📬 API Endpoints</h2>
+          <h2 className="text-2xl font-semibold">API Endpoints</h2>
           <div className="mt-2 space-y-2">
             <p><strong>POST</strong> /users → Register</p>
             <p><strong>POST</strong> /users/login → Login</p>
+            <p><strong>POST</strong> /users/me → Update user info</p>
             <p><strong>GET</strong> /users/me → Get current user</p>
             <p><strong>GET</strong> /blogs → Get blogs (auth required)</p>
             <p><strong>POST</strong> /blogs → Create blog</p>
@@ -54,7 +55,7 @@ function Readme() {
         </section>
   
         <section className="mb-6">
-          <h2 className="text-2xl font-semibold">💾 Security Measures</h2>
+          <h2 className="text-2xl font-semibold">Security Measures</h2>
           <ul className="list-disc pl-6 mt-2">
             <li>Passwords are hashed using bcrypt</li>
             <li>JWT tokens ensure secure session management</li>
@@ -63,7 +64,7 @@ function Readme() {
         </section>
   
         <section>
-          <h2 className="text-2xl font-semibold">👨‍💻 Developer Notes</h2>
+          <h2 className="text-2xl font-semibold">Developer Notes</h2>
           <p className="mt-2">
             This project is an evolving full-stack application designed as a personal learning project. Contributions, suggestions, and feedback are welcome.
           </p>

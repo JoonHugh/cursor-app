@@ -187,6 +187,21 @@ This request is using Bearer Token from colleection Blogs API
 
 <hr>
 
+### <h2 style="color: green;">PUT</h2> Update Profile Info
+```http://localhost:5000/users/me```
+
+### Authorization <h2 style="color: grey;">Bearer Token</h2>
+<hr>
+
+This request is using Bearer Token from colleection Blogs API
+<hr> 
+
+| Key   | Value     |
+| ----- | --------- |
+| **Token** | `<token>` |
+
+<hr>
+
 ### <h2 style="color: green;">GET</h2> Get Current User
 ```http://localhost:5000/users/me```
 

@@ -39,6 +39,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
             createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
         })
     } else {
         res.status(400);
@@ -63,6 +64,7 @@ export const loginUser  = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
             createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
         })
     } else {
         res.status(400);
@@ -79,6 +81,35 @@ export const getMe  = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user.id).select('-password'); // createdAt is included by default
     res.status(200).json(user);
 
+})
+
+export const updateMe = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    } // if
+
+    const { name, email, password } = req.body;
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+    if (password) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+    } // if
+
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+        _id: updatedUser.id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        token: generateToken(updatedUser._id),
+        createdAt: updatedUser.createdAt,
+        updatedAt: updatedUser.updatedAt,
+    })
 })
 
 // Generate JWT
