@@ -16,18 +16,32 @@
     border-bottom: 1px solid hsl(0, 0%, 90%);
     /* border:1px solid red; */
 }
-.navbar {
+.logout {
+    /* position: absolute;
+    top:0;
+    right: 0; */
+    display:flex;
+    width: fit-content;
+    flex-direction: row;
+    gap:4px;
+    cursor: pointer;
+}
+.logout-button {
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-between;
+    /* border:2px solid blue; */
+}
+.logout i {
+    font-size: 18px;
+    display: flex;
+    align-self: center;
     /* border:1px solid red; */
-
 }
 .website-name a {
     text-decoration: none;
     color:black;
     transition: 0.3s ease;
-}
-.website-name a:hover {
-    font-size: 33px;
-    transform-origin: center center;
 }
 .header-grid button {
     padding:2px;
@@ -52,18 +66,18 @@
 .button-group {
     display:flex;
     flex-direction: row;
+    position: relative;
     justify-self: right;
     align-items: center;
     list-style-type: none;
     font-size: 16px;
+    gap:16px;
     /* border:1px solid purple; */
 }
 .button-group a {
     display:flex;
     align-items: center;
     justify-content: space-between;
-    gap:6px;
-    padding:8px;
     color:black;
     text-decoration: none;
     /* background-color: hsl(0, 0%, 90%); */
@@ -76,6 +90,7 @@
     display:flex;
     flex-direction: row;
     color:black;
+    font-weight: 500;
     text-decoration: none;
     /* background-color: hsl(0, 0%, 90%); */
     border-radius: 2px;
@@ -83,25 +98,23 @@
     /* border:1px solid red; */
     width: fit-content;
 }
-.logout-button {
-    /* border:2px blue; */
-    font-size: 16px;
-    gap:6px;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 .blogs-link {
     /* border:1px solid red; */
     display:flex;
     flex-direction: row;
     gap:6px;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+}
+.my-blogs {
+    display:flex;
+    flex-direction: row;
+    text-wrap: nowrap;
+    gap:4px;
+    /* border:1px solid greenyellow; */
 }
 .button-group li:hover {
-    transform: translateY(-1px);
+    transform: scale(1.01);
 }
 .profile-button {
     transition:0.3s ease;

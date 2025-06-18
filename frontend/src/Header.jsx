@@ -7,7 +7,8 @@ import styles from './Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from './features/auth/authSlice.js';
 import NavBar from './Navbar.jsx';
-import { IoMenu } from "react-icons/io5";
+import { LuDoorClosed } from "react-icons/lu";
+
 
 
 
@@ -35,14 +36,19 @@ function Header() {
                     {user ? (
                     <>
                         <li>
-                            <Link to='/dashboard'>
-                                <span className={styles["blogs-link"]}><MdOutlineSpaceDashboard /> My Blogs</span>
-                            </Link>
+                            <div>
+                                <Link to='/dashboard' className={styles["my-blogs"]}>
+                                    <MdOutlineSpaceDashboard />
+                                    <span className={styles["blogs-link"]}>My Blogs</span>
+                                </Link>
+
+                            </div>
                         </li>
                         <li> 
-                            <button onClick={onLogout}>
-                                <span className={styles["logout-button"]}><CiLogout /> Logout</span>
-                            </button>
+                            <div className={styles["logout"]} onClick={onLogout}>
+                                <i><LuDoorClosed /></i>
+                                <span className={styles["logout-button"]}> Logout</span>
+                            </div>
                         </li>
                     </>
                     ) : (
