@@ -36,7 +36,7 @@ function BlogItem({ blog }) {
         ? firstLines.slice(0, 200) + "..."
         : firstLines;
 
-    const url = API_URL.slice(0, -7) + blog.image;
+    const url = blog.image?.startsWith('http') ? blog.image : '/assets/interior.jpg';
     console.log(`URL IN BLOGITEMS: ${url}`)
     const blogURL = `https://cursor-app.onrender.com/blog/` + blog.slug;
     console.log(`BLOGURL IN BLOGITEMS: ${blogURL}`)

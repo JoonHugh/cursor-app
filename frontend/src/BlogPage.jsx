@@ -119,7 +119,11 @@ function BlogPage() {
         <div>
             <div className={styles["hero-section"]}>
                 <div className={styles["image-container"]}>
-                    <img className={styles["image"]} src={url + blog.image} alt="hero-image"></img>
+                    <img 
+                        className={styles["image"]} 
+                        src={blog.image?.startsWith('http') ? blog.image : "/assets/interior2.jpg"}
+                        alt="hero-image"
+                    />
                         <div className={styles["hero-container"]}>
                             <div className={styles["box"]}>
                                 <span className={styles["category"]}>{blog.category}</span>
