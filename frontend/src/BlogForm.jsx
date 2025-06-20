@@ -15,7 +15,7 @@ import rehypeSanitize from "rehype-sanitize";
 
 function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
 
-    const DEBUG = false;
+    const DEBUG = import.meta.env.DEBUG;
     
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()

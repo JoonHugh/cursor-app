@@ -33,7 +33,11 @@ function readTime() {
 }
 
 function Blog({ entry }) {
-    console.log(entry);
+    
+    const DEBUG = import.meta.env.DEBUG;
+
+    if (DEBUG) console.log(entry);
+
     const blogLink = "/blog/" + entry.title;
     return(
         <div className={styles["blog"]}>

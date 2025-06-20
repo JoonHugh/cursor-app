@@ -9,9 +9,11 @@ function SideBar({ images, className }) {
 
     const entries = [];
 
+    const DEBUG = false
+
     for (let i = 0; i < 5; i++) {
         entries.push(createEntry());
-        console.log("image:", entries[i].image);
+        if (DEBUG) console.log("image:", entries[i].image);
     }
 
     return(

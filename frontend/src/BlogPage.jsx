@@ -13,8 +13,6 @@ function BlogPage() {
     const API_URL = import.meta.env.VITE_BLOG_API_URL; // for Vite
 
 
-    const url = `${API_URL.slice(0, -1)}`;
-
     const images = [
         '/assets/insta1.png',
         '/assets/insta2.png',
