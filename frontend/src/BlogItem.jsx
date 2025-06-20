@@ -24,6 +24,9 @@ function BlogItem({ blog }) {
     const [editPopup, setEditPopup] = useState(false);
     const [currentBlog, setCurrentBlog] = useState(null);
 
+    
+    const API_URL = import.meta.env.VITE_API_URL; // for Vite
+
 
     const contentLines = blog.content.split('\n');
     const firstLines = contentLines.slice(0, 5).join('\n');
@@ -33,8 +36,8 @@ function BlogItem({ blog }) {
         ? firstLines.slice(0, 200) + "..."
         : firstLines;
 
-    const url = import.meta.env.REACT_APP_API_URL.slice(0, -1) + blog.image;
-    const blogURL = `${import.meta.env.REACT_APP_API_URL}blog/` + blog.slug;
+    const url = API_URL.slice(0, -1) + blog.image;
+    const blogURL = `${API_URL}blog/` + blog.slug;
 
     const dropdown = (e) => {
         e.stopPropagation();
@@ -58,7 +61,7 @@ function BlogItem({ blog }) {
     const handleDelete = async () => {
         try {
             console.log("blog id::", blog._id);
-            await axios.delete(`${import.meta.env.REACT_APP_API_URL}blogs/${blog._id}`, {
+            await axios.delete(`${API_URL}blogs/${blog._id}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 }

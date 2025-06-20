@@ -336,7 +336,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             formData.append("image", image);
 
             try {
-                const res = await fetch(`${import.meta.env.REACT_APP_API_URL}api/upload`, {
+
+                const res = await fetch(`${import.meta.env.VITE_API_URL}api/upload`, {
                 // const res = await fetch("http://localhost:5000/api/upload", {
                     method: "POST",
                     headers: {
@@ -398,8 +399,6 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
         // setImage('');
         // setContent(textSample);
         
-    
-
     return(
         <section className={styles["form"]}>
             {blog ? (

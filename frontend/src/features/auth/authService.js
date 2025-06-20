@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = "";
+const API_URL = import.meta.env.VITE_API_URL;
 
 // Register user
 const register = async (userData) => {
@@ -15,6 +15,8 @@ const register = async (userData) => {
 
 // Login user
 const login = async (userData) => {
+    console.log(`${API_URL}login`)
+
     const response = await axios.post(API_URL + 'login', userData);
 
     if (response.data) {
