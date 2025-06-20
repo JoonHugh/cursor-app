@@ -14,6 +14,8 @@ import { nanoid } from 'nanoid';
 import rehypeSanitize from "rehype-sanitize";
 
 function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
+
+    const DEBUG = false;
     
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
@@ -336,7 +338,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             formData.append("image", image);
 
             try {
-                console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}`);
+                if (DEBUG) console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}`);
                 const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}`, {
                 // const res = await fetch("http://localhost:5000/api/upload", {
                     method: "POST",
@@ -557,8 +559,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                             
                             setImageError('');
                             setImage(file);
-                            console.log("TESTING")
-                            console.log("image link: ", file)
+                            if (DEBUG) console.log("TESTING")
+                            if (DEBUG) console.log("image link: ", file)
                         }}
 
                     />

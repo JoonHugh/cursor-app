@@ -12,6 +12,8 @@ import { updateBlog } from '../src/features/blogs/blogSlice.js';
 
 
 function BlogItem({ blog }) {
+    
+    const DEBUG = false;
 
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -37,9 +39,9 @@ function BlogItem({ blog }) {
         : firstLines;
 
     const url = blog.image?.startsWith('http') ? blog.image : '/assets/interior.jpg';
-    console.log(`URL IN BLOGITEMS: ${url}`)
+    if (DEBUG) console.log(`URL IN BLOGITEMS: ${url}`)
     const blogURL = `https://cursor-app.onrender.com/blog/` + blog.slug;
-    console.log(`BLOGURL IN BLOGITEMS: ${blogURL}`)
+    if (DEBUG) console.log(`BLOGURL IN BLOGITEMS: ${blogURL}`)
 
 
     const dropdown = (e) => {
@@ -76,11 +78,6 @@ function BlogItem({ blog }) {
             console.error("Failed to delete blog:", err);
         }
     }
-
-    const handleEdit = async () => {
-        console.log("EDIT");
-    }
-
 
 
     return(
