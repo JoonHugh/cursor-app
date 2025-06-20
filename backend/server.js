@@ -42,4 +42,4 @@ app.use('/uploads', express.static('uploads'));
 
 app.use(errorHandler);
  
-app.listen(PORT, console.log("Server running on port 5000"));
+app.listen(PORT, console.log(`Server running on port ${PORT}`));
