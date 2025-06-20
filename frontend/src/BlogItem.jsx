@@ -33,8 +33,8 @@ function BlogItem({ blog }) {
         ? firstLines.slice(0, 200) + "..."
         : firstLines;
 
-    const url = process.env.REACT_APP_API_URL.slice(0, -1) + blog.image;
-    const blogURL = `${process.env.REACT_APP_API_URL}blog/` + blog.slug;
+    const url = import.meta.env.REACT_APP_API_URL.slice(0, -1) + blog.image;
+    const blogURL = `${import.meta.env.REACT_APP_API_URL}blog/` + blog.slug;
 
     const dropdown = (e) => {
         e.stopPropagation();
@@ -58,7 +58,7 @@ function BlogItem({ blog }) {
     const handleDelete = async () => {
         try {
             console.log("blog id::", blog._id);
-            await axios.delete(`${process.env.REACT_APP_API_URL}blogs/${blog._id}`, {
+            await axios.delete(`${import.meta.env.REACT_APP_API_URL}blogs/${blog._id}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 }
