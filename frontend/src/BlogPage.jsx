@@ -121,7 +121,7 @@ function BlogPage() {
                 <div className={styles["image-container"]}>
                     <img 
                         className={styles["image"]} 
-                        src={blog.image?.startsWith('http') ? blog.image : 'frontend/public/assets/interior.jpg'}
+                        src={blog.image?.startsWith('http') ? blog.image : '/assets/interior.jpg'}
                         alt="hero-image"
                     />
                         <div className={styles["hero-container"]}>
