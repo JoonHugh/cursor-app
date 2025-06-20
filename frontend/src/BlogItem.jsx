@@ -13,7 +13,7 @@ import { updateBlog } from '../src/features/blogs/blogSlice.js';
 
 function BlogItem({ blog }) {
     
-    const DEBUG = import.meta.env;
+    const DEBUG = import.meta.env.DEBUG;
 
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
