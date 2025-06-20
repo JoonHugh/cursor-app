@@ -8,6 +8,11 @@ import connectDB from './config/db.js';
 import cors from 'cors';
 import uploadRoutes from './routes/imageRoutes.js';
 
+const allowedOrigins = [
+    'http://localhost:5173',  // Vite dev server default
+    'http://localhost:5001',  // your custom port
+    'https://cursor-app-beryl.vercel.app', // production frontend
+]
 
 const env = dotenv.config();
 const PORT = process.env.PORT || 5000;
@@ -17,7 +22,13 @@ connectDB();
 const app = express()
 
 app.use(cors({
-    origin: "https://cursor-app-beryl.vercel.app",
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('CORS not allowed for this origin: ' + origin));
+        }
+    },
     credentials: true
 }))
 
