@@ -21,6 +21,11 @@ const router = express.Router();
 
 const upload = multer({ storage });
 
-router.post('/', upload.single('image'), protect, uploadImage);
+router.post('/', upload.single('image'), protect, (req, res, next) => {
+  console.log("Image upload request received");
+  console.log("req.file:", req.file);
+  console.log("req.body:", req.body);
+  next();
+}, uploadImage);
 
 export default router;
