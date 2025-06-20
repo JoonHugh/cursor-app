@@ -10,7 +10,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 function BlogPage() {
 
-    const url = `http://localhost:5000`;
+    const url = `${process.env.REACT_APP_API_URL.slice(0, -1)}`;
 
     const images = [
         '/assets/insta1.png',
@@ -37,7 +37,7 @@ function BlogPage() {
         
         const fetchBlog = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/blogs/${slug}`);
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}blogs/${slug}`);
                 // console.log("RES DATA:", res.data);
                 
                 if (!res.data.published) {
@@ -60,7 +60,7 @@ function BlogPage() {
 
                         try {
                             await axios.put(
-                                `http://localhost:5000/blogs/${res.data._id}/views`,
+                                `${process.env.REACT_APP_API_URL}blogs/${res.data._id}/views`,
                                 { views: newPageViews },
                                 {
                                     headers: {
