@@ -336,8 +336,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             formData.append("image", image);
 
             try {
-
-                const res = await fetch(`${import.meta.env.VITE_API_URL}api/upload`, {
+                console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}`);
+                const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}`, {
                 // const res = await fetch("http://localhost:5000/api/upload", {
                     method: "POST",
                     headers: {

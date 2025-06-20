@@ -25,7 +25,7 @@ function BlogItem({ blog }) {
     const [currentBlog, setCurrentBlog] = useState(null);
 
     
-    const API_URL = import.meta.env.VITE_API_URL; // for Vite
+    const API_URL = import.meta.env.VITE_BLOG_API_URL; // for Vite
 
 
     const contentLines = blog.content.split('\n');
@@ -37,7 +37,10 @@ function BlogItem({ blog }) {
         : firstLines;
 
     const url = API_URL.slice(0, -1) + blog.image;
-    const blogURL = `${API_URL}blog/` + blog.slug;
+    console.log(`URL IN BLOGITEMS: ${url}`)
+    const blogURL = `https://cursor-app.onrender.com/blog/` + blog.slug;
+    console.log(`BLOGURL IN BLOGITEMS: ${blogURL}`)
+
 
     const dropdown = (e) => {
         e.stopPropagation();
@@ -61,7 +64,7 @@ function BlogItem({ blog }) {
     const handleDelete = async () => {
         try {
             console.log("blog id::", blog._id);
-            await axios.delete(`${API_URL}blogs/${blog._id}`, {
+            await axios.delete(`${API_URL}${blog._id}`, {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 }

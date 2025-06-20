@@ -10,7 +10,7 @@ import MDEditor from "@uiw/react-md-editor";
 
 function BlogPage() {
 
-    const API_URL = import.meta.env.VITE_API_URL; // for Vite
+    const API_URL = import.meta.env.VITE_BLOG_API_URL; // for Vite
 
 
     const url = `${API_URL.slice(0, -1)}`;
@@ -40,7 +40,7 @@ function BlogPage() {
         
         const fetchBlog = async () => {
             try {
-                const res = await axios.get(`${API_URL}blogs/${slug}`);
+                const res = await axios.get(`${API_URL}${slug}`);
                 // console.log("RES DATA:", res.data);
                 
                 if (!res.data.published) {
@@ -63,7 +63,7 @@ function BlogPage() {
 
                         try {
                             await axios.put(
-                                `${API_URL}blogs/${res.data._id}/views`,
+                                `${API_URL}${res.data._id}/views`,
                                 { views: newPageViews },
                                 {
                                     headers: {
