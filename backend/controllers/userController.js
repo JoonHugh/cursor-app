@@ -101,7 +101,7 @@ export const updateMe = asyncHandler(async (req, res) => {
         throw new Error("User not found");
     } // if
 
-    const { name, email, password } = req.body;
+    const { name, email, password, about, gender, country } = req.body;
 
     if (name) user.name = name;
     if (email) user.email = email;
@@ -109,14 +109,14 @@ export const updateMe = asyncHandler(async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
     } // if
-    // if (about) user.about = about;
-    // if (gender) user.gender = gender;
-    // if (country) user.country = country;
+    if (about) user.about = about;
+    if (gender) user.gender = gender;
+    if (country) user.country = country;
 
     // Explicitly mark fields as modified if needed
-    // user.markModified('about');
-    // user.markModified('gender');
-    // user.markModified('country');
+    user.markModified('about');
+    user.markModified('gender');
+    user.markModified('country');
 
     console.log('Before save:', user);
     const updatedUser = await user.save();
@@ -128,9 +128,9 @@ export const updateMe = asyncHandler(async (req, res) => {
         name: updatedUser.name,
         email: updatedUser.email,
         token: generateToken(updatedUser._id),
-        // about: updatedUser.about,
-        // gender: updatedUser.gender,
-        // country: updatedUser.country,
+        about: updatedUser.about,
+        gender: updatedUser.gender,
+        country: updatedUser.country,
         createdAt: updatedUser.createdAt,
         updatedAt: updatedUser.updatedAt,
     })

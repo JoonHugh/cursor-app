@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { update, reset } from '../src/features/auth/authSlice.js'
 import styles from './Profile.module.css';
-import blogModel from '../../backend/models/blogModel.js';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
 
