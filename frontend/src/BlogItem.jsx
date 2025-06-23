@@ -40,7 +40,7 @@ function BlogItem({ blog }) {
 
     const url = blog.image?.startsWith('http') ? blog.image : '/assets/interior.jpg';
     if (DEBUG) console.log(`URL IN BLOGITEMS: ${url}`)
-    const blogURL = `http://cursor-backend-env.eba-rpy4fcmy.us-east-1.elasticbeanstalk.com/blog/` + blog.slug;
+    const blogURL = `https://cursor-app.onrender.com/blog/` + blog.slug;
     if (DEBUG) console.log(`BLOGURL IN BLOGITEMS: ${blogURL}`)
 
 
