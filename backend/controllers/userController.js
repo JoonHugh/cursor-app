@@ -114,9 +114,9 @@ export const updateMe = asyncHandler(async (req, res) => {
     if (country) user.country = country;
 
     // Explicitly mark fields as modified if needed
-    user.markModified('about');
-    user.markModified('gender');
-    user.markModified('country');
+    // user.markModified('about');
+    // user.markModified('gender');
+    // user.markModified('country');
 
     console.log('Before save:', user);
     const updatedUser = await user.save();
