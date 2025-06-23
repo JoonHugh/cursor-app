@@ -4,6 +4,10 @@ import { update, reset } from '../src/features/auth/authSlice.js'
 import styles from './Profile.module.css';
 import Select from 'react-select';
 import countryList from 'react-select-country-list';
+import MDEditor from "@uiw/react-md-editor";
+import rehypeSanitize from "rehype-sanitize";
+
+
 
 
 
@@ -53,7 +57,7 @@ function Profile() {
         <div className={styles["form-container"]}> 
             <h3>Profile</h3>
             <div className={styles["image-container"]}>
-                <img src={user?.image || '../public/assets/defaultprofilepic.jpg'} alt="profile image"></img>
+                <img src={user?.image || '../assets/defaultprofilepic.jpg'} alt="profile image"></img>
             </div>
 
             <form onSubmit={onSubmit} className={styles["form"]}>
@@ -68,10 +72,6 @@ function Profile() {
                 <label className={styles["profile-info"]}>
                     New Password:
                     <input type="password" name="password" value={formData.password} onChange={onChange}/>
-                </label>
-                <label className={styles["profile-info"]}>
-                    About:
-                    <input name="about" value={formData.about} onChange={onChange}/>
                 </label>
                 <label className={styles["profile-info"]}>
                     Gender:
@@ -121,10 +121,10 @@ function Profile() {
                             padding: 0
                             }),
                             groupHeading: (base) => ({
-                            ...base,
-                            fontSize: '14px',
-                            marginBottom: '4px',
-                            backgroundColor: '#f8f9fa'
+                                ...base,
+                                fontSize: '14px',
+                                marginBottom: '4px',
+                                backgroundColor: '#f8f9fa'
                             }),
                             option: (base, { isFocused, isSelected }) => ({
                                 ...base,
@@ -134,6 +134,18 @@ function Profile() {
                                     backgroundColor: 'hsl(208, 100.00%, 91.60%);'
                                 },
                             })
+                        }}
+                    />
+                </label>
+                <label className={styles["profile-info"]}>
+                    About:
+                    <MDEditor 
+                        height={300}
+                        className={styles["content-editor"]} 
+                        value={formData.about}
+                        onChange={(value) => setFormData({...formData, about: value})} 
+                        previewOptions={{
+                            rehypePlugins: [[rehypeSanitize]],
                         }}
                     />
                 </label>

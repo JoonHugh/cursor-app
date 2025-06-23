@@ -16,7 +16,11 @@ For the database, I use **MongoDB** so that I can easily non-tabular, but docume
 
 ## Deployment
 
-For my frontend, I was experimenting with AWS Amplify, but I honestly had such a terrible time trying to get it deployed, wasting an entire day. After I finally got it working, the backend was definitely broken, so I looked for backend hosting providers. I know AWS has backend hosting as well, but I could not figure it out, which is why I completely started over and deployed my frontend with vercel, and my backend with render. However, render's free tier does not do persistent disk storage, so my images would never save, which means that I would have to find ANOTHER provider, cloudinary, to upload my images. I had a seriously hard time trying to get everything working, but now things work as expected. However, because of render's inactivite slow downs and cold starts, I'm looking into ANOTHER back end hosting provider.
+For my frontend, I was experimenting with AWS Amplify, but I honestly had such a terrible time trying to get it deployed, wasting an entire day. After I finally got it working, the backend was definitely broken, so I looked for backend hosting providers. I know AWS has backend hosting as well, but I could not figure it out, which is why I completely started over and deployed my frontend with vercel, and my backend with render. However, render's free tier does not do persistent disk storage, so my images would never save, which means that I would have to find ANOTHER provider, cloudinary, to upload my images. I had a seriously hard time trying to get everything working, but now things work as expected. However, because of render's inactivite slow downs and cold starts, I'm looking into ANOTHER back end hosting provider. 
+
+Oh my goodness... Afte rspending multiple days and hours learning aws and trying to configure my backend for deployment, I came to the conclusion that I can't use aws because they don't give me an https endpoint but instead an http, which vercel does not work with. In order to get an https endpoint, I need to buy another domain, but I'm trying to keep the budget as low as possible, so this does not work for me. Therefore, after so much time searching and experimenting with so many different deployment / hosting providers, I'm going back to render.
+
+Now that I got render working again, my database FINALLY works with the updated profile fields...
 
 ## Security 
 
