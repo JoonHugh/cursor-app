@@ -453,7 +453,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                     />
                 </div> 
                 <div className={styles['form-group']}>
-                    <label>Slug</label>
+                    <label>Link</label>
                     <input 
                         type="text" 
                         name="slug" 
@@ -465,7 +465,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                     />
                 </div> 
                 <div className={styles['form-group']}>
-                    <label>Category</label>
+                    <label>Category (optional)</label>
 
                     <Select 
                         className={styles["select-tags"]}
@@ -476,6 +476,26 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         onChange={setCategory}
                         options={categories}
                         placeholder='Category (optional)'
+                        styles={{
+                            group: (base) => ({
+                              ...base,
+                              padding: 0
+                            }),
+                            groupHeading: (base) => ({
+                              ...base,
+                              fontSize: '14px',
+                              marginBottom: '4px',
+                              backgroundColor: '#f8f9fa'
+                            }),
+                            option: (base, { isFocused, isSelected }) => ({
+                                ...base,
+                                backgroundColor: isSelected ? 'aliceblue' : isFocused ? 'aliceblue' : base.backgroundColor,
+                                color: '#000', 
+                                '&:active': {
+                                    backgroundColor: 'hsl(208, 100.00%, 91.60%);'
+                                },
+                            })
+                        }}
                     />
                 </div> 
                 <div className={styles['form-group']}>
@@ -512,10 +532,10 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                             }),
                             option: (base, { isFocused }) => ({
                                 ...base,
-                                backgroundColor: isFocused ? 'hsl(35, 100.00%, 95%);' : base.backgroundColor,
+                                backgroundColor: isFocused ? 'aliceblue' : base.backgroundColor,
                                 color: isFocused ? '#000' : base.color, 
                                 '&:active': {
-                                    backgroundColor: 'hsl(34, 100%, 91%);'
+                                    backgroundColor: 'hsl(208, 100.00%, 91.60%);'
                                 },
                             })
                         }}

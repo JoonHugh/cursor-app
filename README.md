@@ -14,6 +14,10 @@ For the backend, I used **Node.js** and **expressjs** to handle HTTP requests an
 
 For the database, I use **MongoDB** so that I can easily non-tabular, but documented data  (in the form of JSON) so that I'm able to store information about each user and blog entry in the application. This is important because it prevents everything form reseting when I exit/close the server and then reboot for whatever reason. This saves all data to the database so that even if I lose connection or whatever errors may happen, the data is safe accessible.
 
+## Deployment
+
+For my frontend, I was experimenting with AWS Amplify, but I honestly had such a terrible time trying to get it deployed, wasting an entire day. After I finally got it working, the backend was definitely broken, so I looked for backend hosting providers. I know AWS has backend hosting as well, but I could not figure it out, which is why I completely started over and deployed my frontend with vercel, and my backend with render. However, render's free tier does not do persistent disk storage, so my images would never save, which means that I would have to find ANOTHER provider, cloudinary, to upload my images. I had a seriously hard time trying to get everything working, but now things work as expected. However, because of render's inactivite slow downs and cold starts, I'm looking into ANOTHER back end hosting provider.
+
 ## Security 
 
 For each user's password, I used **bcrypt** to encrypt their passwords and then store it in the databse since we never want to store user passwords in plaintext. This is very important if I ever want a functional application and it satisfies the **confidentiality** requirement. I'm also making sure that users are only allowed to see and interact with their own blogs and making sure that they cannot be deleted by another user. This is important because it preserves the **integrity** of the website and satisfies the **availability** principle. 

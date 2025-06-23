@@ -2,6 +2,7 @@ import TrendingCard from './TrendingCard.jsx';
 import { randomizer } from './EntryHeader.jsx';
 import { randomImage } from './Blog.jsx';
 import styles from './TrendingSection.module.css';
+import  { useDispatch } from 'react-redux'
 
 function createEntry() {
     const entry = randomizer();

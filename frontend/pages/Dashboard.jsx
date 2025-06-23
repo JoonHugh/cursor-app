@@ -21,7 +21,7 @@ import { LuGraduationCap } from "react-icons/lu";
 import { LuMusic } from "react-icons/lu";
 import { MdOutlineChair } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
-
+import { TbMoodSadSquint } from "react-icons/tb";
 import FilterDropdown from '../src/FilterDropdown.jsx';
 
 
@@ -124,7 +124,7 @@ function Dashboard() {
       <h2 className={styles["page-name"]}>My Blog Posts</h2>
       <div className={styles["nav-container"]}>
         <nav className={styles["page-nav"]}>
-          {["All posts", "New post"].map((label, i) => (
+          {["My posts", "New post"].map((label, i) => (
             <li
               key={i}
               onClick={() => setActiveIndex(i)}
@@ -187,7 +187,10 @@ function Dashboard() {
                   </div>
                 </>
               ) : (
-                <h3>No blogs posted</h3>
+                <div className={styles["no-blogs-container"]}>
+                  <h3>No Blogs Posted</h3>
+                  <i><TbMoodSadSquint /></i>
+                </div>
               ))}
           {activeIndex === TABS.NEW_POST && (
             <BlogForm

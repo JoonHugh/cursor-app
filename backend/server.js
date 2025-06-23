@@ -39,6 +39,9 @@ app.use('/blogs', blogs)
 app.use('/users', users)
 app.use('/api/upload', uploadRoutes);
 app.use('/uploads', express.static('uploads'));
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+  });
 
 app.use(errorHandler);
  
