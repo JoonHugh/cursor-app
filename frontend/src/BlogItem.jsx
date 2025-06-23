@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 import styles from './BlogItem.module.css';
 import { IoMdMore } from "react-icons/io";
 import axios from 'axios';
@@ -7,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { FaRegTrashCan } from "react-icons/fa6";
 import BlogForm from './BlogForm.jsx';
 import { updateBlog } from '../src/features/blogs/blogSlice.js';
+
 
 
 

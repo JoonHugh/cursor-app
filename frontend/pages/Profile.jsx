@@ -6,6 +6,8 @@ import Select from 'react-select';
 import countryList from 'react-select-country-list';
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
+import { FiEdit } from "react-icons/fi";
+
 
 
 
@@ -57,7 +59,8 @@ function Profile() {
         <div className={styles["form-container"]}> 
             <h3>Profile</h3>
             <div className={styles["image-container"]}>
-                <img src={user?.image || '../assets/defaultprofilepic.jpg'} alt="profile image"></img>
+                <img src={user?.image || '../assets/defaultprofilepic.jpg'} alt="profile image" />
+                <i><FiEdit /></i>
             </div>
 
             <form onSubmit={onSubmit} className={styles["form"]}>
@@ -149,9 +152,12 @@ function Profile() {
                         }}
                     />
                 </label>
-                <button type="submit" disabled={isLoading}>
-                    {isLoading ? 'Updating...' : 'Update Profile'}
-                </button>
+                <div className={styles["button-container"]}>
+                    <a href='/'className={styles["home-button"]} type="">Back To Home</a>
+                    <button className={styles["save-button"]} type="submit" disabled={isLoading}>
+                        {isLoading ? 'Updating...' : 'Update Profile'}
+                    </button>
+                </div>
             </form>
             <p>Date joined: {new Date(user.createdAt).toLocaleString('en-US', {
                 month: 'short', 

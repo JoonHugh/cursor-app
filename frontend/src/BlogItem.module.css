@@ -66,12 +66,18 @@
 }
 
 .cancel-button {
-    background-color: #ddd;
+    background-color: #ffffff;
     border: none;
+    color: hsl(6, 87%, 64%);
     padding: 1rem 2rem;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: 0.2s ease;
+}
+.cancel-button:hover {
+    color: hsl(6, 87%, 58%);
+    transform: scale(1.05);
 }
 .btn-grid {
     display:grid;
@@ -100,13 +106,18 @@
 }
 
 .confirm-delete-button {
-    background-color: #e74c3c;
+    background-color: #f36555;
     color: white;
     border: none;
     padding: 1rem 2rem;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition:0.2s ease;
+}
+.confirm-delete-button:hover {
+    background-color: hsl(6, 87%, 58%);
+    transform: scale(1.05);
 }
 .confirm-edit-button {
     background-color: rgb(255, 177, 75);;
