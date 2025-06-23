@@ -44,8 +44,27 @@ const update = async (userData) => {
 
     const response = await axios.put(API_URL + 'me', userData, config);
 
+    // if (response.data) {
+    //     localStorage.setItem('user', JSON.stringify(response.data));
+    // }
+
     if (response.data) {
-        localStorage.setItem('user', JSON.stringify(response.data));
+        // Merge existing user data with updates
+        const updatedUser = {
+            ...user,
+            ...response.data,
+            token: user.token, // Preserve the token
+            
+        };
+        
+        // Only update fields that were actually in the form submission
+        if (userData.about !== undefined) updatedUser.about = userData.about;
+        if (userData.gender !== undefined) updatedUser.gender = userData.gender;
+        if (userData.country !== undefined) updatedUser.country = userData.country;
+        
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        
+        return updatedUser;        
     }
 
     return response.data;

@@ -15,6 +15,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
 
     // Check if user exists
     const userExists = await User.findOne({ email })
+    console.log('Backend response:', response.data); // In your update function
 
     if (userExists) {
         res.status(400);
@@ -38,6 +39,9 @@ export const registerUser  = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
+            about: user.about,
+            gender: user.gender,
+            country: user.country,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         })
@@ -63,6 +67,9 @@ export const loginUser  = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             token: generateToken(user._id),
+            about: user.about,
+            gender: user.gender,
+            country: user.country,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         })
@@ -83,6 +90,9 @@ export const getMe  = asyncHandler(async (req, res) => {
 
 })
 
+// @descc Update user data
+// @route PUT /users/me
+// @access Private
 export const updateMe = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user.id);
 
@@ -91,7 +101,7 @@ export const updateMe = asyncHandler(async (req, res) => {
         throw new Error("User not found");
     } // if
 
-    const { name, email, password } = req.body;
+    const { name, email, password, about, gender, country } = req.body;
 
     if (name) user.name = name;
     if (email) user.email = email;
@@ -99,14 +109,28 @@ export const updateMe = asyncHandler(async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
     } // if
+    if (about) user.about = about;
+    if (gender) user.gender = gender;
+    if (country) user.country = country;
 
+    // Explicitly mark fields as modified if needed
+    user.markModified('about');
+    user.markModified('gender');
+    user.markModified('country');
+
+    console.log('Before save:', user);
     const updatedUser = await user.save();
+    console.log('After save:', updatedUser);
+
 
     res.status(200).json({
         _id: updatedUser.id,
         name: updatedUser.name,
         email: updatedUser.email,
         token: generateToken(updatedUser._id),
+        about: updatedUser.about,
+        gender: updatedUser.gender,
+        country: updatedUser.country,
         createdAt: updatedUser.createdAt,
         updatedAt: updatedUser.updatedAt,
     })
