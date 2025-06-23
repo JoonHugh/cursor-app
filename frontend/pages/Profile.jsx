@@ -53,7 +53,7 @@ function Profile() {
         <div className={styles["form-container"]}> 
             <h3>Profile</h3>
             <div className={styles["image-container"]}>
-                <img src={user.image || '../public/assets/defaultprofilepic.jpg'} alt="profile image"></img>
+                <img src={user?.image || '../public/assets/defaultprofilepic.jpg'} alt="profile image"></img>
             </div>
 
             <form onSubmit={onSubmit} className={styles["form"]}>
