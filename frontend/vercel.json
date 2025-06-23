@@ -1,6 +1,9 @@
 {
     "rewrites": [
-      { "source": "/(.*)", "destination": "/" }
+      {
+        "source": "/api/:path*",
+        "destination": "https://cursor-backend-env.eba-rpy4fcmy.us-east-1.elasticbeanstalk.com/:path*"
+      }
     ]
   }
   

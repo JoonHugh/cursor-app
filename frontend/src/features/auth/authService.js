@@ -43,8 +43,8 @@ const update = async (userData) => {
     }
 
     console.log("💡 Sending update to:", API_URL + 'me');
-    console.log("🧾 Data:", userData);
-    console.log("🔐 Auth:", user?.token);
+console.log("🧾 Data:", userData);
+console.log("🔐 Auth:", user?.token);
     const response = await axios.put(API_URL + 'me', userData, config);
 
     // if (response.data) {
