@@ -26,7 +26,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    // Create  user
+    // Create user
     const user = await User.create({
         name,
         email,
@@ -37,6 +37,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user.id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: generateToken(user._id),
             about: user.about,
@@ -66,6 +67,7 @@ export const loginUser  = asyncHandler(async (req, res) => {
         res.json({
             _id: user.id,
             name: user.name,
+            username: user.username,
             email: user.email,
             token: generateToken(user._id),
             about: user.about,
@@ -104,10 +106,11 @@ export const updateMe = asyncHandler(async (req, res) => {
         throw new Error("User not found");
     } // if
     
-    const { name, email, password, about, gender, country, image } = req.body;
+    const { name, username, email, password, about, gender, country, image } = req.body;
     console.log("📨 Request Body:", req.body);
 
     if (name != undefined) user.name = name;
+    if (username != undefined) user.username = username;
     if (email != undefined) user.email = email;
     if (password != undefined) {
         const salt = await bcrypt.genSalt(10);

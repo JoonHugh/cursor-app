@@ -5,6 +5,10 @@ const userSchema = mongoose.Schema( {
         type: String,
         required: [true, 'Please add a name']
     },
+    username: {
+        type: String,
+        default: '',
+    },
     email: {
         type: String,
         required: [true, 'Please add a email'],
@@ -37,6 +41,12 @@ const userSchema = mongoose.Schema( {
 }, {
     timestamps: true
 } )
+
+blogSchema.pre('save', function (next) {
+    if (this.name) {
+        this.username = this.name;
+    } // if
+}) // presave
 
 
 export default mongoose.model('User', userSchema);

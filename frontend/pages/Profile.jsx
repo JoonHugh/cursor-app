@@ -21,6 +21,7 @@ function Profile() {
 
     const [formData, setFormData] = useState({
         name: user?.name || "",
+        username: user?.username || "",
         email: user?.email || "",
         password: "",
         about: user?.about || "",
@@ -128,8 +129,12 @@ function Profile() {
 
             <form onSubmit={onSubmit} className={styles["form"]}>
                 <label className={styles["profile-info"]}>
-                    <p>Username:</p>
+                    <p>Name:</p>
                     <input name="name" value={formData.name} onChange={onChange} />
+                </label>
+                <label className={styles["profile-info"]}>
+                    <p>Username:</p>
+                    <input name="username" value={formData.username} onChange={onChange} />
                 </label>
                 <label className={styles["profile-info"]}>
                     <p>Email:</p>
