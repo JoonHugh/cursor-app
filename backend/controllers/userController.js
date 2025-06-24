@@ -22,10 +22,13 @@ export const registerUser  = asyncHandler(async (req, res) => {
         throw new Error("User already exists!");
     } // if
 
+    console.log('Here'); 
+
     // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)
 
+    console.log('Here2'); 
     // Create user
     const user = await User.create({
         name,
@@ -33,6 +36,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
         password: hashedPassword
     })
 
+    console.log('Here3'); 
     if (user) {
         res.status(201).json({
             _id: user.id,
@@ -47,11 +51,12 @@ export const registerUser  = asyncHandler(async (req, res) => {
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         })
+        console.log('Here4'); 
     } else {
         res.status(400);
         throw new Error("Invalid user data");
     }
-    
+    console.log('Here5'); 
 })
 
 // @desc Authenticate a user
