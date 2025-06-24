@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema( {
     },
     image: {
         type: String,
-        default: '',
+        default: '/assets/defaultprofilepic.jpg',
     },
     country: {
         type: String,

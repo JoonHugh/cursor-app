@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import SideBar from './SideBar.jsx';
 import MDEditor from "@uiw/react-md-editor";
+import AboutSection from './AboutSection.jsx';
 
 function BlogPage() {
 
@@ -127,7 +128,7 @@ function BlogPage() {
                                 <span className={styles["category"]}>{blog.category}</span>
                                 <h1 className={styles["title"]}>{blog.title}</h1>
                                 <div className={styles["meta"]}>
-                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user.name}</span>  • {blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}
+                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user.username}</span>  • {blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}
                             </div>
                         </div>
                     </div>
@@ -143,6 +144,7 @@ function BlogPage() {
                     <SideBar className={styles["SideBar"]} images={images}/>
                 </div>
             </div>
+            <AboutSection user={user}/>
         </div>
     ) // return
 
