@@ -132,14 +132,15 @@ export const updateMe = asyncHandler(async (req, res) => {
     if (image != undefined) user.image = image;
 
 
-    console.log('Before save:', user);
+    console.log('Before save user:', user);
     const updatedUser = await user.save();
-    console.log('After save:', updatedUser);
+    console.log('After save updatedUser:', updatedUser);
 
 
     res.status(200).json({
         _id: updatedUser.id,
         name: updatedUser.name,
+        username: updatedUser.username,
         email: updatedUser.email,
         token: generateToken(updatedUser._id),
         about: updatedUser.about,

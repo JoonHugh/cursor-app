@@ -42,12 +42,5 @@ const userSchema = mongoose.Schema( {
     timestamps: true
 } )
 
-userSchema.pre('save', function (next) {
-    if (this.name) {
-        this.username = this.name;
-    } // if
-    next();
-}) // presave
-
 
 export default mongoose.model('User', userSchema);
