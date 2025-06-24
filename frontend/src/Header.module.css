@@ -130,3 +130,7 @@
 .dark-mode-button:hover {
     opacity:0.5;
 }
+.icon {
+    display:flex;
+    margin-right: 6px;
+}

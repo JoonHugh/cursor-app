@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema( {
     },
     about: {
         type: String,
-        default: '',
+        default: 'Some things about me...',
     },
     socials: {
         type: [String],

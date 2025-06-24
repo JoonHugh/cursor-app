@@ -8,6 +8,8 @@ import remarkGfm from 'remark-gfm'
 import SideBar from './SideBar.jsx';
 import MDEditor from "@uiw/react-md-editor";
 import AboutSection from './AboutSection.jsx';
+import Tags from './Tags.jsx';
+import Subscribe from './Subscribe.jsx'
 
 function BlogPage() {
 
@@ -139,12 +141,14 @@ function BlogPage() {
                     <div className={styles["markdown-content"]}>
                         <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
+                    <Tags blog={blog}/>
+                    <AboutSection user={user}/>
+                    <Subscribe />
                 </div>
                 <div className={styles["side-bar"]}>
                     <SideBar className={styles["SideBar"]} images={images}/>
                 </div>
             </div>
-            <AboutSection user={user}/>
         </div>
     ) // return
 

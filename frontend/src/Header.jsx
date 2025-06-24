@@ -55,12 +55,12 @@ function Header() {
                     <>
                         <li>
                             <Link to='/login'>
-                                <CiLogin /> Login
+                                <i className={styles["icon"]}><CiLogin /></i>Login
                             </Link>
                         </li>
                         <li>
                             <Link to='/register'>
-                                <FaUser /> Register
+                                <i className={styles["icon"]}><FaUser /></i>Register
                             </Link>
                         </li>
                     </>

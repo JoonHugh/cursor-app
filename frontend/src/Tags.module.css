@@ -1,0 +1,13 @@
+.tag-list {
+    display:flex;
+    flex-direction: row;
+    gap:2rem;
+    list-style-type: none;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    /* border:1px solid blue; */
+}
+.tags {
+    font-size: 11px;
+    /* border:1px solid red; */
+}
