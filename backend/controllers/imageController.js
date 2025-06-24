@@ -10,23 +10,13 @@ export const uploadImage = asyncHandler(async (req, res) => {
         }
 
         if (user.image) {
-            const match = user.image.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-z]+$/i);
-        
-            if (match && match[1]) {
-                const publicId = match[1];
-                console.log("PUBLIC ID", publicId);
-                // https://res.cloudinary.com/dallthlw3/image/upload/v1750727718/cursor-app/owxxji22ius2ysu0ukia.png
-                try {
-                    await cloudinary.uploader.destroy(publicId);
-                    console.log("✅ Previous image deleted:", publicId);
-                } catch (err) {
-                    console.warn("⚠️ Cloudinary deletion failed:", err.message);
-                }
-            } else {
-                console.warn("⚠️ Could not extract publicId from:", user.image);
+            const publicId = user.image.split('/').pop().split('.')[0];
+            try {
+                await cloudinary.uploader.destroy(`cursor-app/${publicId}`)
+            } catch (err) {
+                console.warn("Cloudinary deletion failed:", err.message);
             }
         }
-        console.log("PUBLIC ID", publicId);
         user.image = req.file.path;
         await user.save();
         console.log("File uploaded to Cloudinary:", req.file);
