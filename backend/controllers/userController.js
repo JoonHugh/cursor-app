@@ -15,7 +15,6 @@ export const registerUser  = asyncHandler(async (req, res) => {
 
     // Check if user exists
     const userExists = await User.findOne({ email })
-    console.log('Backend response:', response.data); // In your update function
 
     if (userExists) {
         res.status(400);

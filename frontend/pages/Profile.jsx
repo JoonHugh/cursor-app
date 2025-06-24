@@ -21,7 +21,7 @@ function Profile() {
 
     const [formData, setFormData] = useState({
         name: user?.name || "",
-        username: user?.username || "",
+        username: user?.username || user?.name,
         email: user?.email || "",
         password: "",
         about: user?.about || "",
