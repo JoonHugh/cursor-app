@@ -150,7 +150,7 @@ function BlogItem({ blog }) {
                     <div className={styles["preview-box"]}>
                         <div className={styles["top-grid"]}>
                             <div>
-                                <img src={"/assets/defaultprofilepic.jpg"}></img>
+                                <img src={user?.image || "/assets/defaultprofilepic.jpg"}></img>
                             </div>
                             <div className={styles["top"]}>
                                 <span>{blog.user.name}</span>

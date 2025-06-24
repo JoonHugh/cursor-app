@@ -260,7 +260,8 @@
 .top-grid img {
     display:flex;
     width:32px;
-    height:auto;
+    height:32px;
+    object-fit: cover;
     border-radius: 50%;
     align-self: center;
     /* border:3px solid orange; */

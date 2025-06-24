@@ -1,8 +1,6 @@
 import express from 'express';
 import multer from 'multer';
 import storage from '../middleware/cloudinaryStorage.js';
-import path from 'path';
-import fs from 'fs';
 import { protect } from '../middleware/authMiddleware.js';
 import { uploadImage } from '../controllers/imageController.js'
 
@@ -24,7 +22,15 @@ const upload = multer({ storage });
 router.post('/', upload.single('image'), protect, (req, res, next) => {
   console.log("Image upload request received");
   console.log("req.body:", req.body);
+  console.log("req.body.filename:", req.body.filename)
   next();
 }, uploadImage);
+
+router.post('/profile', upload.single('image'), protect, (req, res, next) => {
+  console.log("Profile Image upload request received");
+  console.log("req.body:", req.body);
+  next();
+}, uploadImage);
+
 
 export default router;

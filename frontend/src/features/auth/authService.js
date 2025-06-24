@@ -43,8 +43,8 @@ const update = async (userData) => {
     }
 
     console.log("💡 Sending update to:", API_URL + 'me');
-console.log("🧾 Data:", userData);
-console.log("🔐 Auth:", user?.token);
+    console.log("🧾 Data:", userData);
+    console.log("🔐 Auth:", user?.token);
     const response = await axios.put(API_URL + 'me', userData, config);
 
     // if (response.data) {
@@ -64,6 +64,7 @@ console.log("🔐 Auth:", user?.token);
         if (userData.about !== undefined) updatedUser.about = userData.about;
         if (userData.gender !== undefined) updatedUser.gender = userData.gender;
         if (userData.country !== undefined) updatedUser.country = userData.country;
+        if (userData.image !== undefined) updatedUser.image = userData.image;
         
         localStorage.setItem('user', JSON.stringify(updatedUser));
         

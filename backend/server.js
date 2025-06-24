@@ -12,6 +12,7 @@ const allowedOrigins = [
     'http://localhost:5173',  // Vite dev server default
     'http://localhost:5001',  // your custom port
     'https://cursor-app-beryl.vercel.app', // production frontend
+    
 ]
 
 const env = dotenv.config();

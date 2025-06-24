@@ -42,6 +42,7 @@ export const registerUser  = asyncHandler(async (req, res) => {
             about: user.about,
             gender: user.gender,
             country: user.country,
+            image: user.image,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         })
@@ -70,6 +71,7 @@ export const loginUser  = asyncHandler(async (req, res) => {
             about: user.about,
             gender: user.gender,
             country: user.country,
+            image: user.image,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
         })
@@ -83,7 +85,7 @@ export const loginUser  = asyncHandler(async (req, res) => {
 // @desc Get user data
 // @route GET /users/me
 // @access Private
-export const getMe  = asyncHandler(async (req, res) => {
+export const getMe = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user.id).select('-password'); // createdAt is included by default
     res.status(200).json(user);
@@ -102,7 +104,7 @@ export const updateMe = asyncHandler(async (req, res) => {
         throw new Error("User not found");
     } // if
     
-    const { name, email, password, about, gender, country } = req.body;
+    const { name, email, password, about, gender, country, image } = req.body;
     console.log("📨 Request Body:", req.body);
 
     if (name != undefined) user.name = name;
@@ -114,6 +116,7 @@ export const updateMe = asyncHandler(async (req, res) => {
     if (about != undefined) user.about = about;
     if (gender != undefined) user.gender = gender;
     if (country != undefined) user.country = country;
+    if (image != undefined) user.image = image;
 
 
     console.log('Before save:', user);
@@ -129,6 +132,7 @@ export const updateMe = asyncHandler(async (req, res) => {
         about: updatedUser.about,
         gender: updatedUser.gender,
         country: updatedUser.country,
+        image: updatedUser.image,
         createdAt: updatedUser.createdAt,
         updatedAt: updatedUser.updatedAt,
     })

@@ -14,11 +14,12 @@
 }
 .form-container h3 {
     margin: 1.5rem 0;
+    font-size: 20px;
 }
 .image-container {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;    
-    width:200px;
-    height: 200px;
+    width:175px;
+    height: 175px;
     border-radius: 50%;
     margin: auto;
     margin-bottom: 1.5rem;
@@ -26,8 +27,8 @@
     cursor: pointer;
 }
 .image-container img {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 3rem;
@@ -35,18 +36,27 @@
 .image-container i {
     display:flex;
     position: absolute;
-    right:17px;
-    bottom: 17px;
+    right:13px;
+    bottom: 13px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;    
     background-color: hsl(34, 100%, 80%);
     border-radius: 50%;
     padding: 6px;
+}
+.image-input {
+    display:none;
 }
 .button-container {
     display:flex;
     flex-direction: row;
     justify-self: end;
     gap:24px;
+}
+.profile-info p {
+    margin-bottom: 0.5rem;
+}
+.form label {
+    margin-bottom: 1.5rem;
 }
 .form input {
     outline:none;
