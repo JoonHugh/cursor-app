@@ -39,7 +39,7 @@ export const getBlogBySlug = asyncHandler(async (req, res) => {
 // @access Private
 export const getBlogs = asyncHandler(async (req, res) => {
     const blogs = await Blog.find({ user: req.user.id })
-        .populate('user', 'name email')
+        .populate('user', 'name username country gender about')
         .populate('comments.user', 'name');
 
 

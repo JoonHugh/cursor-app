@@ -153,7 +153,7 @@ function BlogItem({ blog }) {
                                 <img src={user?.image || "/assets/defaultprofilepic.jpg"}></img>
                             </div>
                             <div className={styles["top"]}>
-                                <span>{user.username}</span>
+                                <span>{blog.user.username}</span>
                                 <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})} &nbsp; • &nbsp; {blog.readTime}</span>
                                 <div className={styles["dropdown"]}>
                                     <button className={styles["more"]} onClick={dropdown}><IoMdMore /></button>
