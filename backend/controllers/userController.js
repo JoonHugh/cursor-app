@@ -117,10 +117,10 @@ export const updateMe = asyncHandler(async (req, res) => {
     if (name != undefined) user.name = name;
     if (username != undefined) user.username = username;
     if (email != undefined) user.email = email;
-    if (password != undefined) {
+    if (password && password.trim() !== "") {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(password, salt);
-    } // if
+    }
     if (about != undefined) user.about = about;
     if (gender != undefined) user.gender = gender;
     if (country != undefined) user.country = country;
