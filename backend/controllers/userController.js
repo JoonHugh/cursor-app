@@ -57,11 +57,12 @@ export const registerUser  = asyncHandler(async (req, res) => {
 // @desc Authenticate a user
 // @route POST /users/login
 // @access Public
-export const loginUser  = asyncHandler(async (req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
 
     // Check for user email
-    const  user = await User.findOne({email});
+    const user = await User.findOne({email});
+    console.log("USER", user);
 
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({

@@ -78,6 +78,8 @@ function Login() {
       email,
       password,
     }
+    
+    console.log("Submitting login", userData);
 
     dispatch(login(userData));
   }

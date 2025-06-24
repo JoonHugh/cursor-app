@@ -12,11 +12,7 @@ export const uploadImage = asyncHandler(async (req, res) => {
 
         if (user.image) {
             const publicId = user.image.split('/').pop().split('.')[0];
-            console.log("user.image:", user.image);
-            console.log("split:", user.image.split('/'));
-            console.log("popped:", user.image.split('/').pop());
-            console.log("split again:", user.image.split('/').pop().split('.'));
-            console.log("PUBLICID: ", publicId);
+
             try {
                 await cloudinary.uploader.destroy(`cursor-app/${publicId}`)
             } catch (err) {
