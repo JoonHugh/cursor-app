@@ -42,7 +42,7 @@ const userSchema = mongoose.Schema( {
     timestamps: true
 } )
 
-blogSchema.pre('save', function (next) {
+userSchema.pre('save', function (next) {
     if (this.name) {
         this.username = this.name;
     } // if
