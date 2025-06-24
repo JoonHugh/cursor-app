@@ -66,7 +66,7 @@ function Profile() {
         formData.append("image", file);
     
         try {
-            const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}`, {
+            const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}profile`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
