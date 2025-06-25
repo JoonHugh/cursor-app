@@ -63,29 +63,29 @@ function Profile() {
         const file = e.target.files[0];
         if (!file) return;
     
-        const formData = new FormData();
-        formData.append("image", file);
+        const formDataToSend = new FormData();
+        formDataToSend.append("image", file);
     
         try {
+            setIsUploading(true);
             const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}profile`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${user.token}`,
                 },
-                body: formData
+                body: formDataToSend
             });
 
-            console.log("res object:", res);
-            const text = await res.text();
-            console.log("text object:", text);
-            const data = await JSON.parse(text);
+            const data = await res.json();
             console.log("data object:", data);
 
             setPreviewImage(data.imageUrl);
-            setFormData({ ...formData, image: data.imageUrl });
+            setFormData(prev => ({ ...prev, image: data.imageUrl }));
             console.log("image url:", data.imageUrl);
         } catch (err) {
             console.error("❌ Image upload failed", err);
+        } finally {
+            setIsUploading(false);
         }
     };
     
@@ -247,7 +247,7 @@ function Profile() {
                     <button
                         className={styles["save-button"]}
                         type="submit"
-                        disabled={isLoading}
+                        disabled={isLoading || isUploading}
                     >
                         {isLoading ? "Updating..." : "Update Profile"}
                     </button>
