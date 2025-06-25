@@ -341,6 +341,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
 
             try {
                 if (DEBUG) console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}blog`);
+                console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}blog`);
                 const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}blog`, {
                 // const res = await fetch("http://localhost:5000/api/upload", {
                     method: "POST",

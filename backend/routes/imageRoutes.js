@@ -17,8 +17,8 @@ const router = express.Router();
 //   },
 // });
 
-const uploadProfile = multer({ profileStorage });
-const uploadBlog = multer({ blogStorage });
+const uploadProfile = multer({ storage: profileStorage });
+const uploadBlog = multer({ storage: blogStorage });
 
 router.post('/', uploadBlog.single('image'), protect, (req, res, next) => {
   console.log("Image upload request received");
