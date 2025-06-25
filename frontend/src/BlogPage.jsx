@@ -142,7 +142,7 @@ function BlogPage() {
                         <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
                     <Tags blog={blog}/>
-                    <AboutSection user={user}/>
+                    <AboutSection blog={blog}/>
                     <Subscribe />
                 </div>
                 <div className={styles["side-bar"]}>
