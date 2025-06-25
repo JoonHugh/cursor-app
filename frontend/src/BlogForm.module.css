@@ -170,7 +170,14 @@
     border-radius: 4px;
     cursor:pointer;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: 0.2s ease;
+}
+.btn-block:hover {
+    background-color: hsl(34, 100%, 55%);
 
+}
+.btn-block:disabled {
+    filter: brightness(0.75);
 }
 .form {
     margin-bottom: 3rem;

@@ -19,7 +19,6 @@ function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
     
     const { user } = useSelector((state) => state.auth);
     const { isLoading } = useSelector((state) => state.blogs);
-    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -177,6 +176,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     const [image, setImage] = useState(blog?.image || null);
     const [imageError, setImageError] = useState('');
     const [content, setContent] = useState(blog?.content || "## Start writing your blog post\n\n" + textSample);
+    const [loading, setLoading] = useState(false);
 
     
     const categories = [
@@ -319,9 +319,10 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
 
     const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
     const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-
+    
     const onSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         if (!image && !blog?.image) {
             setImageError('No image selected');
@@ -356,6 +357,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             } catch (err) {
                 console.error("Image upload failed:", err);
                 return;
+            } finally {
+                setLoading(false);
             }
         } else {
             setImageError('No image selected')
@@ -652,8 +655,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                             <button 
                                 className={styles["btn-block"]} 
                                 type='submit'
-                                disabled={isLoading}
-                                onClick={() => setLoading(true)}
+                                disabled={loading}
+                                onClick={() => console.log("CLICKED")}
                             >
                                 {loading ? ("Uploading...") : ("Publish")}
                             </button>

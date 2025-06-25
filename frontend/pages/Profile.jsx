@@ -247,7 +247,7 @@ function Profile() {
                     <button
                         className={styles["save-button"]}
                         type="submit"
-                        disabled={isLoading || isUploading}
+                        disabled={isLoading || isUploading} // if either photo is uploading or pressed update button, then disable
                     >
                         {isLoading ? "Updating..." : "Update Profile"}
                     </button>
