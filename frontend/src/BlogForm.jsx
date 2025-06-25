@@ -47,9 +47,6 @@ You can write multiple levels of headings:
 # H1
 ## H2
 ### H3
-#### H4
-##### H5
-###### H6
 
 ---
 
@@ -70,17 +67,9 @@ You can use **bold**, *italic*, ***both***, ~~strikethrough~~, ==highlight== (vi
     - Sub-sub-item
 - Item two
 
-### Ordered
-
-1. First
-2. Second
-   1. Nested
-   2. Nested
-
 ### Task Lists
 
 - [x] Write Markdown
-- [x] Test blog renderer
 - [ ] Deploy to production
 
 ---
@@ -109,14 +98,6 @@ function greet(name) {
 console.log(greet("Markdown"));
 \`\`\`
 
-\`\`\`python
-# Python code block
-def greet(name):
-    return f"Hello, {name}!"
-
-print(greet("Markdown"))
-\`\`\`
-
 ---
 
 ## 📊 Tables
@@ -125,8 +106,6 @@ print(greet("Markdown"))
 |---------------|-----------|
 | Headers       | ✅        |
 | Code Blocks   | ✅        |
-| Images        | ✅        |
-| Tables        | ✅        |
 
 ---
 
@@ -140,7 +119,7 @@ print(greet("Markdown"))
 
 ## 💬 HTML in Markdown
 
-You can even embed **raw HTML** if your renderer supports it:
+You can even embed **raw HTML**:
 
 \`\`\`html
 <div style="color: blue; font-weight: bold;">
@@ -150,13 +129,9 @@ You can even embed **raw HTML** if your renderer supports it:
 
 ---
 
-## 📺 Conclusion
+## Try it out!
 
-Markdown is **simple**, **readable**, and **powerful**. Whether you're writing a README, blog post, or documentation, it's a fantastic tool to have in your toolbox.
-
-Thanks for reading!
-
----
+Markdown is **simple**, **readable**, and **powerful**. Whether you're writing a README or blog post, it's a fantastic tool to have in your toolbox.
 
 *Written with ❤️ in Markdown.*
 
