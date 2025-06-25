@@ -45,7 +45,7 @@ function BlogPage() {
                 // console.log("RES DATA:", res.data);
                 
                 if (!res.data.published) {
-                    if (!user || user._id !== res.data.user._id) {
+                    if (!user || user?._id !== res.data.user?._id) {
                         setUnauthorized(true);
                         setLoading(false);
                         return;
@@ -130,7 +130,7 @@ function BlogPage() {
                                 <span className={styles["category"]}>{blog.category}</span>
                                 <h1 className={styles["title"]}>{blog.title}</h1>
                                 <div className={styles["meta"]}>
-                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user.username}</span>  • {blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}
+                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user?.username}</span>  • {blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}
                             </div>
                         </div>
                     </div>

@@ -50,7 +50,7 @@ function BlogItem({ blog }) {
         console.log("CLICKED");
     }
 
-    const handleCopy  = async () => {
+    const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(blogURL);
             setCopySuccess('Copied!')
@@ -62,23 +62,6 @@ function BlogItem({ blog }) {
             setConfirm(false);
         }
     }
-
-    const handleDelete = async () => {
-        try {
-            console.log("blog id::", blog._id);
-            await axios.delete(`${API_URL}${blog._id}`, {
-                headers: {
-                    Authorization: `Bearer ${user.token}`,
-                }
-            });
-            setDeletePopup(false);
-            // Optionally, trigger a refresh or remove this blog from state
-            // e.g., call a prop: onDelete(blog._id);
-        } catch (err) {
-            console.error("Failed to delete blog:", err);
-        }
-    }
-
 
     return(
         <>

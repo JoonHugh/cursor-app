@@ -60,21 +60,21 @@ import styles from './Navbar.module.css';
                 <List className={styles["list-items"]}>
                     <p>Navigation</p>
                     {drawerItems.map(({text, icon, link}) => (
-                        <ListItem button key={text} component="a" href={link} className={styles["list"]}>
+                        <ListItem key={text} component="a" href={link} className={styles["list"]}>
                             <ListItemIcon className={styles["list-icons"]}>{icon}</ListItemIcon>
                             <ListItemText primary={text} className={styles["text"]}/>
                         </ListItem>
                     ))}
                     <p>Privacy Policy and Terms</p>
                     {legalItems.map(({text, icon, link}) => (
-                        <ListItem button key={text} component="a" href={link} className={styles["list"]}>
+                        <ListItem key={text} component="a" href={link} className={styles["list"]}>
                             <ListItemIcon className={styles["list-icons"]}>{icon}</ListItemIcon>
                             <ListItemText primary={text} className={styles["text"]}/>
                         </ListItem>
                     ))}
                     <p>Account</p>
                     {accountItems.map(({text, icon, link}) => (
-                        <ListItem button key={text} component="a" href={link} className={styles["list"]}>
+                        <ListItem key={text} component="a" href={link} className={styles["list"]}>
                             <ListItemIcon className={styles["list-icons"]}>{icon}</ListItemIcon>
                             <ListItemText primary={text} className={styles["text"]}/>
                         </ListItem>
