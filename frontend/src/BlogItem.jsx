@@ -104,10 +104,10 @@ function BlogItem({ blog }) {
                         <div className={styles["popup-buttons"]}>
                             <button 
                                 onClick={() => setDeletePopup(false)} 
-                                className={styles["cancel-button"]}>Cancel</button>
+                                className={styles["cancel-button"]}>No, Cancel</button>
                             <button 
-                                onClick={handleDelete} 
-                                className={styles["confirm-delete-button"]}>Delete</button>
+                                onClick={dispatch(deleteBlog(blog._id))} 
+                                className={styles["confirm-delete-button"]}>Yes, Delete</button>
                         </div>
                     </div>
                 </div>

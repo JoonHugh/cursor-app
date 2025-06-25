@@ -28,6 +28,7 @@ const postBlog = async (blogData, token) => {
     return response.data;
 }
 
+// Update blog
 const updateBlog = async (blogData, token) => {
     const config = {
         headers: {
@@ -40,8 +41,17 @@ const updateBlog = async (blogData, token) => {
     return response.data;
 }
 
-const deleteBlog = () => {
+// Delete blog
+const deleteBlog = async (blogData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
 
+    const response = await axios.delete(API_URL + blogData._id, blogData, config);
+
+    return response;
 }
 
 const blogService = {

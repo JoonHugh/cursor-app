@@ -177,7 +177,7 @@
 
 }
 .btn-block:disabled {
-    filter: brightness(0.75);
+    filter: brightness(0.85);
 }
 .form {
     margin-bottom: 3rem;
