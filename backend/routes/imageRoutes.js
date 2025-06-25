@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import storage from '../middleware/cloudinaryStorage.js';
 import { protect } from '../middleware/authMiddleware.js';
-import { uploadImage } from '../controllers/imageController.js'
+import { uploadProfileImage, uploadBlogImage  } from '../controllers/imageController.js'
 
 const router = express.Router();
 
@@ -24,13 +24,16 @@ router.post('/', upload.single('image'), protect, (req, res, next) => {
   console.log("req.body:", req.body);
   console.log("req.body.filename:", req.body.filename)
   next();
-}, uploadImage);
+}, uploadBlogImage);
 
 router.post('/profile', upload.single('image'), protect, (req, res, next) => {
   console.log("Profile Image upload request received");
   console.log("req.body:", req.body);
   next();
-}, uploadImage);
+}, uploadProfileImage);
+
+// Blog image route (doesn't delete anything)
+router.post('/blog', protect, upload.single('image'), uploadBlogImage);
 
 
 export default router;
