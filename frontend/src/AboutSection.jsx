@@ -3,7 +3,7 @@ import styles from './AboutSection.module.css'
 function AboutSection({ blog }) {
 
     const printout = () => {
-        console.log("USER FOR BLOG:", blog?.user);
+        console.log("USER FOR BLOG:", blog);
     }
 
     return(
@@ -11,7 +11,7 @@ function AboutSection({ blog }) {
             <div className={styles["image-container"]} onClick={printout}>
                 <img src={blog.user?.image} alt="profile-image"/>
             </div>
-            <p className={styles["about-name"]}>{user?.name}</p>
+            <p className={styles["about-name"]}>{blog.user?.name}</p>
             <p className={styles["about-text"]}>{blog.user?.about}</p>
         </div>
     );

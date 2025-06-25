@@ -27,6 +27,7 @@ function Profile() {
         about: user?.about || "",
         gender: user?.gender || "",
         country: user?.country || "",
+        image: user?.image,
     });
 
 
@@ -81,6 +82,7 @@ function Profile() {
 
             setPreviewImage(data.imageUrl);
             setFormData(prev => ({ ...prev, image: data.imageUrl }));
+            dispatch(update({ image: data.imageUrl }))
             console.log("image url:", data.imageUrl);
         } catch (err) {
             console.error("❌ Image upload failed", err);
