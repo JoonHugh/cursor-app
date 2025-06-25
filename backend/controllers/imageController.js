@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
 import cloudinary from '../config/cloudinary.js';
-
 import User from '../models/userModel.js';
 
 // @desc    Upload profile picture (deletes old one)

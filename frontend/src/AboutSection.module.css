@@ -12,12 +12,14 @@
 }
 .image-container  {
     display:flex;
+    justify-content: center;
+    align-content: center;
     width: 125px;
     height: 125px;
     margin-bottom: 1rem;
     overflow: hidden;
     border-radius: 50%;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;    
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;   
     /* border:1px solid red; */
 }
 .about-name {
