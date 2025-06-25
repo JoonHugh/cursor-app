@@ -49,7 +49,7 @@ const deleteBlog = async (blogData, token) => {
         }
     }
 
-    const response = await axios.delete(API_URL + blogData._id, blogData, config);
+    const response = await axios.delete(API_URL + blogData._id, config);
 
     return response.data;
 }
