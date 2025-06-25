@@ -5,9 +5,11 @@ function Tags({ blog }) {
         <div className={styles["container"]}>
             TAGS
             <ul className={styles["tag-list"]}>
-                {blog.tags.map((tag, index) => (
+                {blog.tags.length > 0 ? (blog.tags.map((tag, index) => (
                     <li key={`tags-${index}`} className={styles["tags"]}>#{tag.toUpperCase()}</li>
-                ))}
+                ))) : (
+                    <li className={styles["no-tags"]}>No tags</li>
+                )}
             </ul>
         </div>
     );

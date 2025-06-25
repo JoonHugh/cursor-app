@@ -229,11 +229,14 @@ function Profile() {
                     <p>About:</p>
                     <MDEditor
                         height={300}
-                        className={styles["content-editor"]}
+                        className={styles["about-editor"]}
                         value={formData.about}
                         onChange={(value) => setFormData({ ...formData, about: value })}
                         previewOptions={{
                             rehypePlugins: [[rehypeSanitize]],
+                        }}
+                        textareaProps={{
+                            maxLength: 300
                         }}
                     />
                 </label>

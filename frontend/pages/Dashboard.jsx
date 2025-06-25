@@ -30,9 +30,7 @@ function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { blogs, isLoading, isError, message } = useSelector(
-    (state) => state.blogs
-  );
+  const { blogs, isLoading, isError, message } = useSelector((state) => state.blogs);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');

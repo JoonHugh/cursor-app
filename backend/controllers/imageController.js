@@ -15,6 +15,7 @@ export const uploadImage = asyncHandler(async (req, res) => {
 
             try {
                 await cloudinary.uploader.destroy(`cursor-app/${publicId}`)
+                console.log("Cloudinary deleted:", `cursor-app/${publicId}`);
             } catch (err) {
                 console.warn("Cloudinary deletion failed:", err.message);
             }

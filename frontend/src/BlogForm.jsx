@@ -18,6 +18,8 @@ function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
     const DEBUG = import.meta.env.DEBUG;
     
     const { user } = useSelector((state) => state.auth);
+    const { isLoading } = useSelector((state) => state.blogs);
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -377,6 +379,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
 
         try {
             await onSubmitHandler(blogData);
+            setLoading(false);
             navigate('/dashboard');
         } catch (err) {
             console.error(err);
@@ -631,12 +634,14 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                             <div className={styles["btn-grid"]}>
                                 <button 
                                     className={styles["btn-block"]} 
-                                    onClick={handleCancel}>
+                                    onClick={handleCancel}
+                                >
                                     Cancel
                                 </button>
                                 <button 
                                     className={styles["btn-block"]} 
-                                    type='submit'>
+                                    type='submit'
+                                >
                                     Save
                                 </button>
                             </div>
@@ -645,8 +650,11 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         <div className={styles["btn-grid"]}>
                             <button 
                                 className={styles["btn-block"]} 
-                                type='submit'>
-                                Publish
+                                type='submit'
+                                disabled={isLoading}
+                                onClick={() => setLoading(true)}
+                            >
+                                {loading ? ("Uploading...") : ("Publish")}
                             </button>
                         </div>
 
