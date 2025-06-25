@@ -18,7 +18,7 @@ export const uploadProfileImage = asyncHandler(async (req, res) => {
             const publicId = user.image.split('/').pop().split('.')[0];
             
             try {
-                await cloudinary.uploader.destroy(`cursor-app/${publicId}`);
+                await cloudinary.uploader.destroy(`cursor-app/profile/${publicId}`);
                 console.log("Deleted old profile image:", publicId);
             } catch (err) {
                 console.warn("Failed to delete old profile image:", err.message);
