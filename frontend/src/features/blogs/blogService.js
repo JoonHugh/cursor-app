@@ -51,14 +51,14 @@ const deleteBlog = async (blogData, token) => {
 
     const response = await axios.delete(API_URL + blogData._id, blogData, config);
 
-    return response;
+    return response.data;
 }
 
 const blogService = {
     getBlogs,
     postBlog,
     updateBlog,
-    deleteBlog
+    deleteBlog,
 }
 
 export default blogService

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import { FaRegTrashCan } from "react-icons/fa6";
 import BlogForm from './BlogForm.jsx';
-import { updateBlog } from '../src/features/blogs/blogSlice.js';
+import { updateBlog, deleteBlog } from '../src/features/blogs/blogSlice.js';
 
 
 
@@ -106,7 +106,7 @@ function BlogItem({ blog }) {
                                 onClick={() => setDeletePopup(false)} 
                                 className={styles["cancel-button"]}>No, Cancel</button>
                             <button 
-                                onClick={dispatch(deleteBlog(blog._id))} 
+                                onClick={() => (dispatch(deleteBlog({_id: blog._id})), setDeletePopup(false))} 
                                 className={styles["confirm-delete-button"]}>Yes, Delete</button>
                         </div>
                     </div>
