@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import storage from '../middleware/cloudinaryStorage.js';
+import { profileStorage, blogStorage } from '../middleware/cloudinaryStorage.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { uploadProfileImage, uploadBlogImage  } from '../controllers/imageController.js'
 
