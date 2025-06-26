@@ -14,7 +14,7 @@ function SideTrending({ entries }) {
     useEffect(() => {
         const fetchTrendingBlogs = async () => {
             try {
-                const res = await axios.get(`${API_BLOG}trending`);
+                const res = await axios.get(`${API_BLOG}api/trending`);
                 console.log("API Response:", res.data); // 👈 Debug the response
                 setTrendingBlogs(res.data);
             } catch (error) {
