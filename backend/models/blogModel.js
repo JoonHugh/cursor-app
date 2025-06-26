@@ -55,6 +55,10 @@ const blogSchema = mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    trendingScore: {
+        type: Number,
+        default: 0,
+    },
     comments: [{
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
         text: String,
@@ -72,11 +76,27 @@ const blogSchema = mongoose.Schema({
     timestamps: true
 })
 
+function calculateTrendingScore(blog) {
+    const { likes, comments, views, createdAt } = blog;
+    
+    // time that's passed in hours
+    const hoursSincePosted = (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60);
+
+    // how to calculate what blogs should be trending
+    const engagementScore = (likes * 1) + (comments * 2) + (views * 0.5); 
+
+    // trending score (time decay = 1.5)
+    const trendingScore = engagementScore / Math.pow(hoursSincePosted + 1, 1.5);
+
+    return trendingScore
+}
+
 blogSchema.pre('save', function (next) {
     if (this.content) {
         const res = Math.ceil(countWords(this.content) / 238) <= 1 ? "<1 min" : Math.ceil(countWords(this.content) / 238) + " mins";
         this.readTime = res;
     }
+    this.trendingScore =  calculateTrendingScore(this);
     next();
 });
 

@@ -152,7 +152,6 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     const [imageError, setImageError] = useState('');
     const [content, setContent] = useState(blog?.content || "## Start writing your blog post\n\n" + textSample);
     const [loading, setLoading] = useState(false);
-
     
     const categories = [
         { label: "General", value: "GENERAL" },

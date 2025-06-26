@@ -26,7 +26,7 @@ export const updateBlogViews = asyncHandler(async (req, res) => {
 // @access Public
 export const getBlogBySlug = asyncHandler(async (req, res) => {
     try {
-        const blog = await Blog.findOne({ slug: req.params.slug }).populate('user', 'name username country gender about image');
+        const blog = await Blog.findOne({ slug: req.params.slug }).populate('user', 'name username country gender about image trendingScore');
         if (!blog) return res.status(404).json({ error: 'Blog not found' });
         res.json(blog);
     } catch (err) {
@@ -39,7 +39,7 @@ export const getBlogBySlug = asyncHandler(async (req, res) => {
 // @access Private
 export const getBlogs = asyncHandler(async (req, res) => {
     const blogs = await Blog.find({ user: req.user.id })
-        .populate('user', 'name username country gender about image')
+        .populate('user', 'name username country gender about image trendingScore')
         .populate('comments.user', 'name');
 
 

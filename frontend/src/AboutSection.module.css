@@ -10,17 +10,24 @@
     text-align: center;
     border-top:1px solid hsl(0, 0%, 90%);
 }
-.image-container  {
+.image-container {
     display:flex;
     justify-content: center;
     align-content: center;
     width: 125px;
     height: 125px;
     margin-bottom: 1rem;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 50%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;   
-    /* border:1px solid red; */
+    cursor:pointer;
+    /* border:10px solid red; */
+}
+.image-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .about-name {
     font-weight: 500;
