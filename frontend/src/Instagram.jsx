@@ -15,7 +15,7 @@ function Instagram({ images }) {
             </div>
             <a className={styles["username-link"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><span className={styles["username"]}>joonhugh</span></a>
             <a className={styles["entity-link"]} href="https://hugh-dev.com/" target="_blank"><span className={styles["entity-name"]}>Hugh Dev Studios</span></a>
-            <span className={styles["meta-info"]}>512 FOLLOWING 473 FOLLOWERS</span>
+            <span className={styles["meta-info"]}>475 FOLLOWERS 513 FOLLOWING</span>
             <div className={styles["grid"]}>
                 {images.map((src, index) => (
                     <div key={`instagram-post-${index}`} className={styles["post-container"]}>
@@ -29,10 +29,12 @@ function Instagram({ images }) {
                     </div>
                 ))}
             </div>
-            <button className={styles["follow-button"]}href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank">
-                <span className={styles["btn-text"]}>FOLLOW</span>
-                <span className={styles["btn-icon"]}><FaInstagram /></span>
-            </button>
+            <a className={styles["follow-link"]}href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank">
+                <button className={styles["follow-button"]}>
+                    <span className={styles["btn-text"]}>FOLLOW</span>
+                    <span className={styles["btn-icon"]}><FaInstagram /></span>
+                </button>
+            </a>
         </div>
     );
 }

@@ -27,7 +27,7 @@ function Follow() {
                     </div>
                     <div className={styles["columns"]}>
                         <a className={styles["instagram-icon"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><FaInstagram />
-                            <span>473</span>
+                            <span>475</span>
                         </a>
                     </div>
                     <div className={styles["columns"]}>
