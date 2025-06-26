@@ -142,9 +142,10 @@ export const getTrending = asyncHandler(async (req, res) => {
     try {
         console.log("Route hit!"); // Basic verification
 
-        const blogs = await Blog.find()
+        const blogs = await Blog.find({ trendingScore: { $exists: true } })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
-        .limit(5);
+        .limit(5)
+        .populate('user', 'name username country gender about image trendingScore')
         console.log("MongoDB Query:", blogs.getFilter());
 
         res.status(200).json(blogs);
