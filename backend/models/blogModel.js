@@ -77,16 +77,20 @@ const blogSchema = mongoose.Schema({
 })
 
 function calculateTrendingScore(blog) {
-    const { likes, comments, views, createdAt } = blog;
-    
+    const { likes, comments = [], views, createdAt } = blog;
+    console.log("Likes:", likes, "Comments:", comments.length, "Views:", views, "CreatedAt:", createdAt);
+
     // time that's passed in hours
     const hoursSincePosted = (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60);
+    console.log("Hours since posted:", hoursSincePosted);
 
     // how to calculate what blogs should be trending
-    const engagementScore = (likes * 1) + (comments * 2) + (views * 0.5); 
+    const engagementScore = (likes * 1) + (comments.length * 2) + (views * 0.5); 
+    console.log("Engagement score:", engagementScore);
 
     // trending score (time decay = 1.5)
     const trendingScore = engagementScore / Math.pow(hoursSincePosted + 1, 1.5);
+    console.log("Trending score:", trendingScore);
 
     return trendingScore
 }
