@@ -7,6 +7,9 @@ import colors from 'colors';
 import connectDB from './config/db.js';
 import cors from 'cors';
 import uploadRoutes from './routes/imageRoutes.js';
+import cron from 'node-cron';
+import Blog from "./models/blogModel.js";
+
 
 const allowedOrigins = [
     'http://localhost:5173',  // Vite dev server default
@@ -45,5 +48,13 @@ app.get('/health', (req, res) => {
   });
 
 app.use(errorHandler);
+
+cron.schedule("0 */6 * * *", async () => {
+    const blogs = await Blog.find({});
+    for (const blog of blogs) {
+        blog.trendingScore = calculateTrendingScore(blog);
+        await blog.save();
+    }
+})
  
 app.listen(PORT, console.log(`Server running on port ${PORT}`));

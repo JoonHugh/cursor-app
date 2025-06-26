@@ -77,11 +77,14 @@ const blogSchema = mongoose.Schema({
 })
 
 function calculateTrendingScore(blog) {
-    const { likes, comments = [], views, createdAt } = blog;
+    const { likes = 0, comments = [], views = 0, createdAt = newDate() } = blog;
     console.log("Likes:", likes, "Comments:", comments.length, "Views:", views, "CreatedAt:", createdAt);
 
     // time that's passed in hours
-    const hoursSincePosted = (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60);
+    const hoursSincePosted = Math.max(
+        (Date.now() - new Date(createdAt).getTime()) / (1000 * 60 * 60),
+        0.1
+    )
     console.log("Hours since posted:", hoursSincePosted);
 
     // how to calculate what blogs should be trending
@@ -103,6 +106,27 @@ blogSchema.pre('save', function (next) {
     this.trendingScore =  calculateTrendingScore(this);
     next();
 });
+
+blogSchema.pre('findOneAndUpdate', async function (next) {
+    const update = this._update;
+    if (update.$inc?.likes || update.$inc?.views || update.$push?.comments) {
+        const blog = await this.model.findOne(this.getQuery());
+        const updatedData = {
+            ...blog.toObject(),
+            ...update.$set,
+            likes: blog.likes + (update.$inc?.likes || 0), 
+            views: blog.views + (update.$inc?.views || 0), 
+            comments: update.$push?.comments 
+            ? [...blog.comments, update.$push.comments] 
+            : blog.comments, 
+        }
+    };
+    this._update.$set = {
+        ...this._update.$set,
+        trendingScore: calculateTrendingScore(updatedData),
+    }
+    next();
+})
 
 
 
