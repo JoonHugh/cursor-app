@@ -140,7 +140,9 @@ export const deleteBlog = asyncHandler(async (req, res) => {
 
 export const getTrending = asyncHandler(async (req, res) => {
     try {
-        const blogs = await Blog.find({ trendingScore: { $exists: true } })
+        console.log("Route hit!"); // Basic verification
+
+        const blogs = await Blog.find()
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5);
         console.log("MongoDB Query:", blogs.getFilter());
@@ -148,6 +150,6 @@ export const getTrending = asyncHandler(async (req, res) => {
         res.status(200).json(blogs);
     } catch (error) {
         res.status(500);
-        throw new Error("Error:", error.message);
+        throw new Error("Error retrieving trending blog posts:", error.message);
     }
 })
