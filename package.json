@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
     "start": "node server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm start\" \"npm run vite\""
@@ -28,6 +27,7 @@
     "mongoose": "^8.15.1",
     "multer": "^2.0.1",
     "multer-storage-cloudinary": "^4.0.0",
+    "node-cron": "^4.1.1",
     "react-redux": "^9.2.0"
   },
   "devDependencies": {
