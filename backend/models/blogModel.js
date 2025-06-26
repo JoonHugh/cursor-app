@@ -119,11 +119,12 @@ blogSchema.pre('findOneAndUpdate', async function (next) {
             comments: update.$push?.comments 
             ? [...blog.comments, update.$push.comments] 
             : blog.comments, 
-        }
-    };
-    this._update.$set = {
-        ...this._update.$set,
-        trendingScore: calculateTrendingScore(updatedData),
+        };
+
+        this._update.$set = {
+            ...this._update.$set,
+            trendingScore: calculateTrendingScore(updatedData),
+        };
     }
     next();
 })
