@@ -137,3 +137,15 @@ export const deleteBlog = asyncHandler(async (req, res) => {
 
     res.status(200).json({ id: req.params.id });
 });
+
+export const getTrending = asyncHandler(async (req, res) => {
+    try {
+        const blogs = await Blog.find({})
+        .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
+        .limit(5);
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(500);
+        throw new Error("Error:", error.message);
+    }
+})

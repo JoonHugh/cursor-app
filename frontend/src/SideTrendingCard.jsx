@@ -2,17 +2,18 @@ import styles from './SideTrendingCard.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 
-function SideTrendingCard({ index, entry }) {
+function SideTrendingCard({ index, blog }) {
 
-    const categoryLink = "/category/" + entry.category;
-    const titleLink = "/title/" + entry.title;
-    const nameLink = "/author/" + entry.name;
+    const categoryLink = "/category/" + blog.category;
+    const titleLink = "/title/" + blog.title;
+    const nameLink = "/author/" + blog.name;
     
+    console.log(blog);
 
     return(
         <div className={styles["grid"]}>
             <a className={styles["image-container"]} href="link-to-blog">
-                <img className={styles["image"]} src={entry.image}></img>
+                <img className={styles["image"]} src={blog.image}></img>
                 <div className={styles["index"]}>
                     <span className={styles["number"]}>{index + 1}</span>
                     <span className={styles["arrow"]}><FontAwesomeIcon icon={faLongArrowAltRight} /></span>
@@ -20,13 +21,13 @@ function SideTrendingCard({ index, entry }) {
             </a>
             <div className={styles["text-meta"]}>
                 <div className={styles["category-link"]}>
-                    <a href={categoryLink}>{entry.category}</a>
+                    <a href={categoryLink}>{blog.category}</a>
                 </div>
                 <div className={styles["title-link"]}>
-                    <a href={titleLink}>{entry.title}</a>
+                    <a href={titleLink}>{blog.title}</a>
                 </div>
                 <div className={styles["blog-meta"]}>
-                    <a className={styles["name-link"]} href={nameLink}>{entry.name}</a> • <span className={styles["date"]}>JUNE 2025</span>
+                    <a className={styles["name-link"]} href={nameLink}>{blog.name}</a> • <span className={styles["date"]}>JUNE 2025</span>
                 </div>
             </div>
         </div>
