@@ -19,6 +19,7 @@ function SideTrending({ entries }) {
                 setTrendingBlogs(res.data);
             } catch (error) {
                 console.error("Failed to get trending blogs", error);
+                setTrendingBlogs([]);
             } finally {
                 setLoading(false);
             }

@@ -140,9 +140,11 @@ export const deleteBlog = asyncHandler(async (req, res) => {
 
 export const getTrending = asyncHandler(async (req, res) => {
     try {
-        const blogs = await Blog.find({})
+        const blogs = await Blog.find({ trendingScore: { $exists: true } })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5);
+        console.log("MongoDB Query:", blogs.getFilter());
+
         res.status(200).json(blogs);
     } catch (error) {
         res.status(500);
