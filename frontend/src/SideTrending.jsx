@@ -3,7 +3,9 @@ import SideTrendingCard from './SideTrendingCard.jsx';
 import axios from 'axios';
 import { useState, useEffect } from  'react';
 
-function SideTrending({ entries }) {
+function SideTrending() {
+
+    const DEBUG = import.meta.env.DEBUG;
 
     const API_BLOG = import.meta.env.VITE_BLOG_API_URL;
 
@@ -15,10 +17,10 @@ function SideTrending({ entries }) {
         const fetchTrendingBlogs = async () => {
             try {
                 const res = await axios.get(`${API_BLOG}api/trending`);
-                console.log("API Response:", res.data); // 👈 Debug the response
+                if (true) console.log("API Response:", res.data); // 👈 Debug the response
                 setTrendingBlogs(res.data);
             } catch (error) {
-                console.error("Failed to get trending blogs", error);
+                if (DEBUG) console.error("Failed to get trending blogs", error);
                 setTrendingBlogs([]);
             } finally {
                 setLoading(false);

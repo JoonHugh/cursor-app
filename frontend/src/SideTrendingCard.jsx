@@ -6,9 +6,7 @@ function SideTrendingCard({ index, blog }) {
 
     const categoryLink = "/category/" + blog.category;
     const titleLink = "/title/" + blog.title;
-    const nameLink = "/author/" + blog.name;
-    
-    console.log(blog);
+    const nameLink = "/author/" + blog.user?.name;
 
     return(
         <div className={styles["grid"]}>
@@ -27,7 +25,7 @@ function SideTrendingCard({ index, blog }) {
                     <a href={titleLink}>{blog.title}</a>
                 </div>
                 <div className={styles["blog-meta"]}>
-                    <a className={styles["name-link"]} href={nameLink}>{blog.name}</a> • <span className={styles["date"]}>JUNE 2025</span>
+                    <a className={styles["name-link"]} href={nameLink}>{blog.user?.name}</a> • <span className={styles["date"]}>JUNE 2025</span>
                 </div>
             </div>
         </div>

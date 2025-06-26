@@ -21,7 +21,7 @@ function SideBar({ images, className }) {
             <div className={styles["main-container"]}>
                 <Follow />
                 <Instagram images={images}/>
-                <SideTrending entries={entries}/>
+                <SideTrending />
             </div>
         </div>
     );

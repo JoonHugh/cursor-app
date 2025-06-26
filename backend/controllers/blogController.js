@@ -145,6 +145,7 @@ export const getTrending = asyncHandler(async (req, res) => {
         const blogs = await Blog.find({ trendingScore: { $exists: true } })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5)
+        .populate('user', 'username')
         console.log("MongoDB Query Result:", blogs);
 
         res.status(200).json(blogs);
