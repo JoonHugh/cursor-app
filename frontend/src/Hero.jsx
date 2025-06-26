@@ -4,10 +4,12 @@ import { randomImage, randomViews } from './Blog.jsx';
 import { randomizer }  from './EntryHeader.jsx';
 import { useRef } from 'react';
 
+const DEBUG = import.meta.env.DEBUG;
+
 function randomShares(viewsString) {
-    console.log(viewsString);
+    if (DEBUG) console.log(viewsString);
     const views = viewsString.match(/(\d+)/);
-    console.log("views at 0", views[0]);
+    if (DEBUG) console.log("views at 0", views[0]);
     if (views[0] > 10) return parseInt(views[0] / 42) + ' SHARES';
     
     return parseInt(views[0] * 1000 / 42) + ' SHARES';

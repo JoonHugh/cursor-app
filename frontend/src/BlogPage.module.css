@@ -100,6 +100,11 @@
     font-size: 48px;
     font-weight: 500;
     margin-bottom: 1rem;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 .meta {
     font-size: 12px;

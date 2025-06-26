@@ -93,13 +93,13 @@
     font-size: 16px;
 }
 .outer-grid {
-    /* border:1px solid red; */
     display:grid;
     grid-template-columns: repeat(2, 1fr);
     padding:14px;
     position: relative;
     align-items: center;
     margin-bottom: 1rem;
+    /* border:1px solid red; */
 }
 .tab-name {
     /* border:1px solid blue; */
@@ -115,7 +115,7 @@
     right:0;
     transition: 0.3s ease;
     z-index: 500;
-    /* border:1px solid #cccccc; */
+    /* border:1px solid red; */
 }
 .filter-button:hover {
     border: 1px solid black;

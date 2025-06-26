@@ -10,7 +10,7 @@
     width:75%;
     max-width: 900px;
     margin: auto;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 .form-container h3 {
     margin: 1.5rem 0;
@@ -93,7 +93,20 @@
     background-color: hsl(34, 100%, 75%);
     transform: scale(1.025);
 }
-.profile-info {
+.dev-profile {
     /* border:1px solid red; */
     /* width:100%; */
+    height: 100px;
+    overflow-x: scroll;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.dev-profile:hover {
+    opacity: 1;
+}
+.updated-date {
+    margin-bottom: 1rem;
+}
+.form p {
+    margin-bottom: 0.5rem;
 }

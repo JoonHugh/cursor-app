@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const DEBUG = import.meta.env.DEBUG;
 const API_URL = import.meta.env.VITE_AUTH_API_URL;
 
 // Register user
@@ -10,14 +11,14 @@ const register = async (userData) => {
         localStorage.setItem('user', JSON.stringify(response.data))
     } // if
     
-    console.log("Registration response:", response.data);
+    if (DEBUG) console.log("Registration response:", response.data);
 
     return response.data;
-}
+} // register
 
 // Login user
 const login = async (userData) => {
-    console.log(`TESTING: ${API_URL}login`)
+    if (DEBUG) console.log(`TESTING: ${API_URL}login`)
 
     const response = await axios.post(API_URL + 'login', userData);
 
@@ -26,7 +27,7 @@ const login = async (userData) => {
     } // if
 
     return response.data;
-}
+} // login
 
 // Logout user
 const logout = () => {
@@ -44,9 +45,11 @@ const update = async (userData) => {
         },
     }
 
-    console.log("💡 Sending update to:", API_URL + 'me');
-    console.log("🧾 Data:", userData);
-    console.log("🔐 Auth:", user?.token);
+    if (DEBUG) {
+        console.log("💡 Sending update to:", API_URL + 'me');
+        console.log("🧾 Data:", userData);
+        console.log("🔐 Auth:", user?.token);
+    } // if
     const response = await axios.put(API_URL + 'me', userData, config);
 
     // if (response.data) {
@@ -71,16 +74,16 @@ const update = async (userData) => {
         localStorage.setItem('user', JSON.stringify(updatedUser));
         
         return updatedUser;        
-    }
+    } // if
 
     return response.data;
-}
+} // update
 
 const authService = {
     register,
     logout,
     login,
     update,
-}
+} // authService
 
 export default authService;

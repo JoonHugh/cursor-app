@@ -8,13 +8,16 @@ import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import { FiEdit } from "react-icons/fi";
 import ImageUpload from "../src/ImageUpload.jsx";
+import { toast } from 'react-toastify';
+
+
+const DEBUG = import.meta.env.DEBUG;
 
 function Profile() {
 
-    const { user, isLoading, isSuccess, isError, message } = useSelector(
-        (state) => state.auth
-    );
+    const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    
     const fileInputRef = useRef(null);
     const [isUploading, setIsUploading] = useState(false);
     const [previewImage, setPreviewImage] = useState(user?.image || "../assets/defaultprofilepic.jpg")
@@ -32,9 +35,9 @@ function Profile() {
 
 
     useEffect(() => {
-        if (isSuccess) alert("Profile updated!");
-        if (isError) alert(`Update failed: ${message}`);
-        // dispatch(reset());
+        if (isSuccess) toast.success("Successfully updated profile!")
+        if (isError) toast.error("Error updating profile.")
+        dispatch(reset());
     }, [isSuccess, isError, message, dispatch]);
 
     const onChange = (e) => {
@@ -49,15 +52,21 @@ function Profile() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        dispatch(update(formData));
+        if (formData.username !== "") {
+            dispatch(update(formData));
+        } else {
+            toast.error("Must have username");
+        }
         // In your Profile component
-        console.log("Redux user state:", user);
-        console.log("Form data state:", formData);
+        if (DEBUG) {
+            console.log("Redux user state:", user);
+            console.log("Form data state:", formData);
+        }
     };
 
-    const  handleImageClick = () => {
+    const handleImageClick = () => {
         fileInputRef.current.click();
-        console.log("image-container-clicked")
+        if (DEBUG) console.log("image-container-clicked")
     }
 
     const handleImageChange = async (e) => {
@@ -78,14 +87,14 @@ function Profile() {
             });
 
             const data = await res.json();
-            console.log("data object:", data);
+            if (DEBUG) console.log("data object:", data);
 
             setPreviewImage(data.imageUrl);
             setFormData(prev => ({ ...prev, image: data.imageUrl }));
             dispatch(update({ image: data.imageUrl }))
-            console.log("image url:", data.imageUrl);
+            if (DEBUG) console.log("image url:", data.imageUrl);
         } catch (err) {
-            console.error("❌ Image upload failed", err);
+            console.error("Image upload failed", err);
         } finally {
             setIsUploading(false);
         }
@@ -130,20 +139,24 @@ function Profile() {
             </div>
 
             <form onSubmit={onSubmit} className={styles["form"]}>
+                
+                <p>Name:</p>
                 <label className={styles["profile-info"]}>
-                    <p>Name:</p>
                     <input name="name" value={formData.name} onChange={onChange} />
                 </label>
+                
+                <p>Username:</p>
                 <label className={styles["profile-info"]}>
-                    <p>Username:</p>
                     <input name="username" value={formData.username} onChange={onChange} />
                 </label>
+                
+                <p>Email:</p>
                 <label className={styles["profile-info"]}>
-                    <p>Email:</p>
                     <input name="email" value={formData.email} onChange={onChange} />
                 </label>
+                
+                <p>New Password:</p>
                 <label className={styles["profile-info"]}>
-                    <p>New Password:</p>
                     <input
                         type="password"
                         name="password"
@@ -151,8 +164,9 @@ function Profile() {
                         onChange={onChange}
                     />
                 </label>
+                
+                <p>Gender:</p>
                 <label className={styles["profile-info"]}>
-                    <p>Gender:</p>
                     <Select
                         className={styles["select-tags"]}
                         type="text"
@@ -189,8 +203,9 @@ function Profile() {
                         }}
                     />
                 </label>
+                
+                <p>Country:</p>
                 <label className={styles["profile-info"]}>
-                    <p>Country:</p>
                     <Select
                         className={styles["select-tags"]}
                         type="text"
@@ -227,8 +242,9 @@ function Profile() {
                         }}
                     />
                 </label>
+                
+                <p className={styles["label"]}>About:</p>
                 <label className={styles["profile-info"]}>
-                    <p>About:</p>
                     <MDEditor
                         height={300}
                         className={styles["about-editor"]}
@@ -255,7 +271,7 @@ function Profile() {
                     </button>
                 </div>
             </form>
-            <p>
+            <p className={styles["created-date"]}>
                 Date joined:{" "}
                 {new Date(user.createdAt).toLocaleString("en-US", {
                     month: "short",
@@ -263,7 +279,7 @@ function Profile() {
                     year: "numeric",
                 })}
             </p>
-            <p>
+            <p className={styles["updated-date"]}>
                 Last updated:{" "}
                 {new Date(user.updatedAt).toLocaleString("en-US", {
                     month: "short",
@@ -272,7 +288,7 @@ function Profile() {
                 })}
             </p>
 
-            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <pre className={styles["dev-profile"]}>{JSON.stringify(user, null, 2)}</pre>
         </div>
     );
 }

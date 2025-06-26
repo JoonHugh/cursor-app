@@ -93,7 +93,13 @@ export const blogSlice = createSlice({
             .addCase(updateBlog.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.blogs.push(action.payload);
+                // Find and replace the blog instead of pushing
+                const index = state.blogs.findIndex(
+                    blog => blog._id === action.payload._id
+                );
+                if (index !== -1) {
+                    state.blogs[index] = action.payload;
+                }
             })
             .addCase(updateBlog.rejected, (state, action)  => {
                 state.isLoading = false;

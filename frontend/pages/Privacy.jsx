@@ -3,7 +3,7 @@ import styles from './Privacy.module.css'
 function Privacy() {
   return (
     <div className={styles["container"]}>
-      <main class="privacy">
+      <main className={styles["privacy"]}>
         <section id="Privacy-Policy">
           <h1>Privacy Policy for cursor</h1>
           <p>

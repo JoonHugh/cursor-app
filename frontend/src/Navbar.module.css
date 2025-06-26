@@ -36,6 +36,12 @@
     padding:4px 2rem;
     /* border:1px solid red; */
 }
+.list {
+    transition:transform 0.2s ease;
+}
+.list:hover {
+    transform: translateX(2px);
+}
 .list-items span {
     font-size: 16px;
     /* border:1px solid red; */

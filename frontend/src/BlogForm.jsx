@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './BlogForm.module.css';
-import { createBlog } from './features/blogs/blogSlice.js';
 import MDEditor from "@uiw/react-md-editor";
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
@@ -12,14 +11,14 @@ import ImageUpload from './ImageUpload.jsx';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import rehypeSanitize from "rehype-sanitize";
+import { toast } from 'react-toastify';
+
 
 function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
 
     const DEBUG = import.meta.env.DEBUG;
     
     const { user } = useSelector((state) => state.auth);
-    const { isLoading } = useSelector((state) => state.blogs);
-    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const textSample = `
@@ -139,8 +138,6 @@ Markdown is **simple**, **readable**, and **powerful**. Whether you're writing a
 Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more information.`;
 
     const [title, setTitle] = useState(blog?.title || "");
-    const [titleError, setTitleError] = useState(false);
-    const [showCountdown, setShowCountdown] = useState(false);
     const [slug, setSlug] = useState(blog?.slug || "");
     const [category, setCategory] = useState(
         blog ? { label: blog.category, value: blog.category } : { label: "General", value: "GENERAL" }
@@ -149,7 +146,6 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     const [published, setPublished] = useState(blog?.published ?? true);
     const [featured, setFeatured] = useState(blog?.featured ?? false);
     const [image, setImage] = useState(blog?.image || null);
-    const [imageError, setImageError] = useState('');
     const [content, setContent] = useState(blog?.content || "## Start writing your blog post\n\n" + textSample);
     const [loading, setLoading] = useState(false);
     
@@ -296,17 +292,18 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
     
     const onSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-
-        if (!image && !blog?.image) {
-            setImageError('No image selected');
-            setShowCountdown(true);
-            setTimeout(() => {
-              setImageError('');
-              setShowCountdown(false);
-            }, 5000);
+        
+        if (title.trim() === "") {
+            toast.error("Why are you trying to break my blog site with a whitespace?");
             return;
         }
+        
+        if (!image && !blog?.image) {
+            toast.error("No image was selected")
+            return;
+        }
+        
+        setLoading(true);
 
         let imageUrl = blog?.image || null;
 
@@ -316,9 +313,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
 
             try {
                 if (DEBUG) console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}blog`);
-                console.log(`TESTING  IMAGE  UPLOAD: ${import.meta.env.VITE_IMAGE_API_URL}blog`);
                 const res = await fetch(`${import.meta.env.VITE_IMAGE_API_URL}blog`, {
-                // const res = await fetch("http://localhost:5000/api/upload", {
                     method: "POST",
                     headers: {
                         Authorization: `Bearer ${user.token}`,
@@ -335,9 +330,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                 setLoading(false);
             }
         } else {
-            setImageError('No image selected')
-            setShowCountdown(true);
-            setTimeout(() => (setImageError(''), setShowCountdown(false)), 5000);
+            toast.error("No image was selected.")
             return;
         }
 
@@ -364,6 +357,27 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
         }
     };
 
+    const handleTitleChange = (e) => {
+        const input = e.target.value;
+
+        if (input.length <= 60) {
+            setTitle(input);
+            const baseSlug = input.toLowerCase()
+                .replace(/[^a-z0-9 ]/gi, '')
+                .replace(/\s+/g, '-');
+            setSlug(baseSlug);
+        } else {
+            toast.error("Title must be 60 characters or fewer")
+        }
+
+    } // handleTitleChange
+
+    const handleTitleBlur = () => {
+        if (title.trim()) {
+            const randomSuffix = nanoid(6); // generates short uniqueID
+            setSlug(`${slug}-${randomSuffix}`)
+        }
+    }
 
     const handleCancel = () => {
         if(setEditPopup) {
@@ -371,17 +385,8 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
         } else {
             navigate('/dashboard')
         }
-    }
-        // dispatch(createBlog(blog))
-        //     .unwrap()
-        //     .then(() => {
-        //         navigate('/dashboard');
-        //     })
-        //     .catch((err) => console.error(err))
-        // setTitle('');
-        // setImage('');
-        // setContent(textSample);
-        
+    } // handleCancel
+
     return(
         <section className={styles["form"]}>
             {blog ? (
@@ -391,44 +396,14 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
             )}
             <form onSubmit={onSubmit}>
                 <div className={styles['form-group']}>
-                    <label>Title
-                        {titleError && (
-                            <div className={styles["error-container"]}>
-                                <span className={styles["error-message"]}> 
-                                    Title must be 70 characters or fewer
-                                </span>
-                                {showCountdown && (
-                                    <div className={`${styles["countdown"]} ${styles["animate"]}`}></div>
-                                )}
-                            </div>
-                        )}
-                    </label>
+                    <label>Title</label>
                     <input 
                         type="text" 
                         name="title" 
                         id="title" 
                         value={title} 
-                        onChange={(e) => {
-                            const input = e.target.value;
-
-                            if (input.length <= 70) {
-                                setTitle(input);
-                                const baseSlug = input.toLowerCase().replace(/[^a-z0-9 ]/gi, '').replace(/\s+/g, '-');
-                                const randomSuffix = nanoid(6); // generates short uniqueID
-                                setSlug(`${baseSlug}-${randomSuffix}`)
-
-                            } else {
-                                if (!titleError) {
-                                    setTitleError(true);
-                                    setShowCountdown(true);
-                        
-                                    setTimeout(() => {
-                                        setTitleError(false);
-                                        setShowCountdown(false);
-                                    }, 5000); // match with CSS transition
-                                }
-                            }
-                        }} // onChange
+                        onChange={handleTitleChange} // onChange
+                        onBlur={handleTitleBlur}
                         placeholder='Blog Title'
                         required
                     />
@@ -440,7 +415,6 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         name="slug" 
                         id="slug" 
                         value={slug}
-                        // onChange={(e) => setSlug(e.target.value)}
                         placeholder='Blog Link'
                         disabled
                     />
@@ -524,41 +498,23 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
 
                 </div> 
                 <div className={styles['form-group']}>
-                    <label>Featured Image
-                        {imageError && (
-                            <div className={styles["error-container"]}>
-                                <span className={styles["error-message"]}> 
-                                    {imageError}
-                                </span>
-                                {showCountdown && (
-                                    <div className={`${styles["countdown"]} ${styles["animate"]}`}></div>
-                                )}
-                            </div>
-                        )}
-                    </label>
+                    <label>Featured Image</label>
                     <ImageUpload 
                         className={styles["image-upload"]}
                         value={image}
                         onImageSelect={(file) => {
                             if (!file) return;
-                            
                             if (!ALLOWED_TYPES.includes(file.type)) {
-                                setImageError("Only JPG, PNG, or WEBP images allowed");
+                                toast.error("Only JPG, PNG, or WEBP images allowed.");
                                 setImage(null);
-                                setShowCountdown(true);
-                                setTimeout(() => (setImageError(''), setShowCountdown(false)), 5000);
                                 return;
                             }
-
                             if (file.size > MAX_IMAGE_SIZE) {
-                                setImageError("Image must be under 5MB.");
+                                toast.error("Image must be under 5MB.");
                                 setImage(null);
-                                setShowCountdown(true);
-                                setTimeout(() => (setImageError(''), setShowCountdown(false)), 5000);
                                 return;
                             }
                             
-                            setImageError('');
                             setImage(file);
                             if (DEBUG) console.log("TESTING")
                             if (DEBUG) console.log("image link: ", file)
@@ -571,11 +527,10 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                 <div className={styles['form-group']}>
                     <label>Content</label>
                     <MDEditor 
-                        height="500px"
+                        height={500}
                         className={styles["content-editor"]} 
                         value={content} 
                         onChange={setContent} 
-                        visibleDragbar={false}
                         previewOptions={{
                             rehypePlugins: [[rehypeSanitize]],
                         }}
@@ -583,28 +538,28 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                 </div>
                 <FormGroup className={styles["check-group"]}>
                     <FormControlLabel control={<Checkbox 
-                                                defaultChecked={published}
-                                                onChange={() => setPublished(!published)}
-                                                sx={{
-                                                    color: 'rgb(255, 195, 117);',
-                                                    '&.Mui-checked': {
+                                                    defaultChecked={published}
+                                                    onChange={() => setPublished(!published)}
+                                                    sx={{
                                                         color: 'rgb(255, 195, 117);',
-                                                    },
-                                                }}
-                                            />} 
+                                                        '&.Mui-checked': {
+                                                            color: 'rgb(255, 195, 117);',
+                                                        },
+                                                    }}
+                                                />} 
                                       label={<span className={styles["label"]}>Public</span>}/>
                     <FormControlLabel control={<Checkbox 
-                                                defaultChecked={featured}
-                                                onChange={() => setFeatured(!featured)}
-                                                sx={{
-                                                color: 'rgb(255, 195, 117);',
-                                                '&.Mui-checked': {
-                                                    color: 'rgb(255, 195, 117);',
-                                                },
-                                                }}
+                                                    defaultChecked={featured}
+                                                    onChange={() => setFeatured(!featured)}
+                                                    sx={{
+                                                        color: 'rgb(255, 195, 117);',
+                                                        '&.Mui-checked': {
+                                                            color: 'rgb(255, 195, 117);',
+                                                        },
+                                                    }}
                                                 />}
                                                 label={<span 
-                                                    className={styles["label"]}>Feature this post </span>}/>
+                                                className={styles["label"]}>Feature this post </span>}/>
                 </FormGroup>
                 <div className={styles['form-group']}>
                     {blog ? (
@@ -619,8 +574,9 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                                 <button 
                                     className={styles["btn-block"]} 
                                     type='submit'
+                                    disabled={loading}
                                 >
-                                    Save
+                                    {loading ? ("Saving...") : ("Save")}
                                 </button>
                             </div>
                         </>
@@ -630,7 +586,6 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                                 className={styles["btn-block"]} 
                                 type='submit'
                                 disabled={loading}
-                                onClick={() => console.log("CLICKED")}
                             >
                                 {loading ? ("Uploading...") : ("Publish")}
                             </button>

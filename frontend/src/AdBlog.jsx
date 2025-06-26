@@ -1,13 +1,10 @@
 import styles from './AdBlog.module.css';
 import { Parallax } from 'react-scroll-parallax';
-import { randomImage } from './Blog.jsx';
-import { randomizer } from './EntryHeader.jsx';
 import BlogSection from './BlogSection.jsx';
 
+const DEBUG = import.meta.env.DEBUG;
 
 function AdBlog() {
-    const entry = randomizer();
-    console.log(entry)
 
     return(
         <div className={styles["main-container"]}>

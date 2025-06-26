@@ -1,14 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styles from './BlogItem.module.css';
 import { IoMdMore } from "react-icons/io";
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import { FaRegTrashCan } from "react-icons/fa6";
 import BlogForm from './BlogForm.jsx';
 import { updateBlog, deleteBlog } from '../src/features/blogs/blogSlice.js';
-
-
-
+import { toast } from 'react-toastify';
 
 
 function BlogItem({ blog }) {
@@ -18,17 +15,10 @@ function BlogItem({ blog }) {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    
-    const [copySuccess, setCopySuccess] = useState('');
-    const [confirm, setConfirm] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false)
     const [deletePopup, setDeletePopup] = useState(false);
     const [editPopup, setEditPopup] = useState(false);
     const [currentBlog, setCurrentBlog] = useState(null);
-
-    
-    const API_URL = import.meta.env.VITE_BLOG_API_URL; // for Vite
-
 
     const contentLines = blog.content.split('\n');
     const firstLines = contentLines.slice(0, 5).join('\n');
@@ -47,32 +37,47 @@ function BlogItem({ blog }) {
     const dropdown = (e) => {
         e.stopPropagation();
         setShowDropdown((prev) => !prev);
-        console.log("CLICKED");
+        if (DEBUG) console.log("CLICKED");
+    }
+
+    const handleUpdateBlog = async (updatedBlog) => {
+        try {
+            dispatch(updateBlog({ 
+                _id: blog._id,  // Use _id instead of id
+                ...updatedBlog   // This already includes title, slug, etc.
+            })).unwrap()
+            toast.success("Blog updated!")
+        } catch (error) {
+            toast.error("Blog could not be updated");
+        }
     }
 
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(blogURL);
-            setCopySuccess('Copied!')
-            setConfirm(true);
-            setTimeout(() => (setCopySuccess(''), setConfirm(false)), 2000);
+            toast.success("Copied to clipboard!")
         } catch (error) {
             console.error('Failed to copy text: ', err);
-            setCopySuccess('Failed to copy!');
-            setConfirm(false);
+            toast.error("Failed to copy text");
         }
+    }
+
+    const handleDelete = async () => {
+        setDeletePopup(true)
+    }
+
+    const handleDeleteConfirm = async () => {
+        try {
+            dispatch(deleteBlog({_id: blog._id}));
+            toast.success("Blog successfully deleted")
+        } catch (error) {
+            toast.success("Blog could not be deleted")
+        }
+        setDeletePopup(false);
     }
 
     return(
         <>
-            {confirm && 
-                <div className={styles["confirmed"]}>
-                    <span className={styles["confirm-message"]}> 
-                        Copied to clipboard!
-                    </span>
-                    <div className={`${styles["countdown"]} ${styles["animate"]}`}></div>
-                </div>
-            }
             {deletePopup && 
                 <div className={styles["popup-overlay"]}>
                     <div className={styles["popup-box"]}>
@@ -89,10 +94,7 @@ function BlogItem({ blog }) {
                                 onClick={() => setDeletePopup(false)} 
                                 className={styles["cancel-button"]}>No, Cancel</button>
                             <button 
-                                onClick={() => {
-                                    dispatch(deleteBlog({_id: blog._id}));
-                                    setDeletePopup(false);
-                                }} 
+                                onClick={handleDeleteConfirm} 
                                 className={styles["confirm-delete-button"]}>Yes, Delete</button>
                         </div>
                     </div>
@@ -104,23 +106,8 @@ function BlogItem({ blog }) {
                             <BlogForm
                                 blog={currentBlog}
                                 setEditPopup={setEditPopup}
-                                onSubmitHandler={(updatedBlog) => {
-                                    dispatch(updateBlog({ 
-                                        _id: blog._id,  // Use _id instead of id
-                                        ...updatedBlog   // This already includes title, slug, etc.
-                                    })).unwrap()
-                                }}
+                                onSubmitHandler={handleUpdateBlog}
                             />
-                        {/* <div className={styles["popup-buttons"]}>
-                            <button 
-                                onClick={() => setEditPopup(false)} 
-                                className={styles["cancel-button"]}>Cancel
-                            </button>
-                            <button 
-                                onClick={handleEdit} 
-                                className={styles["confirm-edit-button"]}>Save
-                            </button>
-                        </div> */}
                     </div>
 
                 </div>
@@ -151,7 +138,7 @@ function BlogItem({ blog }) {
                                                 setCurrentBlog(blog)
                                             }}>Edit</button>
                                             <button onClick={handleCopy}>Share</button>
-                                            <button onClick={() => setDeletePopup(true)}>Delete</button>
+                                            <button onClick={handleDelete}>Delete</button>
                                         </div>
                                     )}
                                 </div>

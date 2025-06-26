@@ -3,18 +3,10 @@ import styles from './SideBar.module.css';
 import Follow from './Follow.jsx';
 import Instagram from './Instagram.jsx';
 import SideTrending from './SideTrending.jsx';
-import { createEntry } from './BlogGrid.jsx';
 
 function SideBar({ images, className }) {
 
-    const entries = [];
-
-    const DEBUG = false
-
-    for (let i = 0; i < 5; i++) {
-        entries.push(createEntry());
-        if (DEBUG) console.log("image:", entries[i].image);
-    }
+    const DEBUG = import.meta.env.DEBUG;
 
     return(
         <div className={className}>

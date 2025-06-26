@@ -6,8 +6,8 @@ function GridSection({ images }) {
     return(
         <div className={styles["grid"]}>
             {images.map((src, index) => (
-                <div className={styles["post-container"]}>
-                    <img className={styles[`image${index}`]} src={src} key={index}></img>
+                <div className={styles[`post-container-${index}`]} key={index}>
+                    <img className={styles[`image`]} src={src}></img>
                     <div className={styles["post-meta"]}>
                         <div className={styles["post-overlay"]}></div>
                         <div className={styles["post-meta-content"]}>

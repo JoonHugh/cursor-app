@@ -11,6 +11,9 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 
 
 function Login() {
+
+  const DEBUG = import.meta.env.DEBUG;
+  
   const containerVariants = {
     hidden: {
       clipPath: 'inset(50% 0% 50% 0%)',
@@ -78,10 +81,16 @@ function Login() {
       email,
       password,
     }
-    
-    console.log("Submitting login", userData);
+
+    if (DEBUG) console.log("Submitting login", userData);
 
     dispatch(login(userData));
+
+    if (isSuccess) {
+      navigate('/')
+    } else {
+      console.log("error! Try again");
+    }
   }
 
   if (isLoading) {
