@@ -145,12 +145,11 @@ export const getTrending = asyncHandler(async (req, res) => {
         const blogs = await Blog.find({ trendingScore: { $exists: true } })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5)
-        .populate('user', 'name username country gender about image trendingScore')
-        console.log("MongoDB Query:", blogs.getFilter());
+        console.log("MongoDB Query Result:", blogs);
 
         res.status(200).json(blogs);
     } catch (error) {
-        res.status(500);
-        throw new Error("Error retrieving trending blog posts:", error.message);
+        console.error("Trending fetch failed:", error); // log full error
+        res.status(500).json({ message: error.message || "Server error" });
     }
 })
