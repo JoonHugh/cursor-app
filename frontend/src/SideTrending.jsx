@@ -17,7 +17,7 @@ function SideTrending() {
         const fetchTrendingBlogs = async () => {
             try {
                 const res = await axios.get(`${API_BLOG}api/trending`);
-                if (true) console.log("API Response:", res.data); // 👈 Debug the response
+                if (DEBUG) console.log("API Response:", res.data); // 👈 Debug the response
                 setTrendingBlogs(res.data);
             } catch (error) {
                 if (DEBUG) console.error("Failed to get trending blogs", error);
