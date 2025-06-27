@@ -157,6 +157,7 @@ export const getTrending = asyncHandler(async (req, res) => {
 
 export const likeBlog = asyncHandler(async (req, res) => {
     try {
+        console.log("Here 0")
         const blog = await Blog.findById(req.params.id);
 
         if (!blog) {
