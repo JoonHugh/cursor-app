@@ -28,51 +28,51 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 
 ## Features
 
-- Authentication
+- **Authentication**:
     I implemented authentication using JWT and Bcrypt to encrypt users' passwords. This is important because I don't want to store plaintext passwords in my database, and it allows users to login / register their blog profiles so that they can start interacting with the site and create blogs.
 
-- Viewing Created Blogs
+- **Viewing Created Blogs**:
     Users can navigate to "My Blogs" or Dashboard page and is able to view their blogs using a search bar and filtering methods. These were inspired by Airbnb and I think they look quite nice. I'm thinking about adding a max blog count preset by the user so that the blog list doesn't stretch very far downwards. The search bar and filtering categories can be used in conjunction with each other.
 
-- Creating Blogs
+- **Creating Blogs**:
     In this tab, users can create their blog with whatever their imaginations can come up with. Each blog is equipped with a Title, a Featured Image (Hero image), and some content. If you don't have any of these three, the blog cannot be posted. 
 
     To feature an image, I implemented a drag and drop or click to upload the image into cloudinary service which stores images and videos specifically. However, this uploader cannot handle videos as of just yet, and I'm thinking about adding this feature in the future.
 
-- Trending Algorithm
+- **Trending Algorithm**:
     I implemented a trending section using an algorithm that calculated an engagement score based off of the comments, likes, and views of a post.
 
-- Like Posts
+- **Like Posts**:
     After a lot of confusion, I was able to add the like functionality to my blogs. This allows users to upvote and increase  the trending score of individual blogs, which boosts its visibility to the trending home page or sidegrid trending.
 
-- Markdown Text Editor
+- **Markdown Text Editor**:
     The way users create and format their blog posts is through a mardown text editor instead of creating my own text editor from scratch becacuse that's insanity. There's a possibility I ccould have gone with a WYSIWYG text editor, but that is much more complex. 
     
     Users are able to preview how their markdown looks like before they post it. Users are also able to use images in the markdown browser, however, they must use a link because there's no way to save local images in the markdown browser.
 
-- Markdown Blog Page Preview
+- **Markdown Blog Page Preview**:
     Users type their content in a Markdown Text Editor and then when entering the actual blog page, the markdown gets parsed into HTML and is displayed to the blog page.
 
-- Friends Social Network Functionality ??
+- **Friends Social Network Functionality ??**:
     I'm thinking about adding this feature, but as of right now, I would just like to finish this project.
 
-- Public / Private Blog Posts
+- **Public / Private Blog Posts**:
     Before posting, Users can choose to make their blog posts public or private. This makes it so that anyone that isn't authorized cannot see the blog post, and anyone who is authorized (Blog author and friends (not implemented)) can see thee post. 
 
-- Menu Sidebar Navigation
+- **Menu Sidebar Navigation**:
     Clicking the menu button in the header will open a Sidebar Navigation, allowing users to navigate to different pages. 
 
-- Profile
+- **Profile**:
     Users can navigate to their profile page, and set various fields to reflect on their blog posts. Name is the user's real name (don't have to give accurate name), Username is what people who view the blogs sees, About is displayed below every blog posts, giving information about the author/creator. 
 
     I have not implemented any features with Gender, or Country as of just yet. I also need to implement a forget password link in the login page. This should send an email to the user and request a password reset. It does not make sense to be able to only have a  "New Password" field under profile, as that defeats the purpose if the user forgets their password.
 
     Under here, users can change their profile picture, which automatically deletes the old profile picture over at cloudinary, and uploads the recent one on pressing "Update Profile"
 
-- Advertisers
+- **Advertisers**:
     Future advertisers can have their ads displayed on the home page or other sections that I will eventually come up with. This feature is not yet implemented, but I used Parallax Scrolling for the advertisement which makes it pretty and futuristic. 
 
-- Tags
+- **Tags**:
     I'm not really doing much with these right now other than listing them below every blog post. Maybe later I can dedicate a whole page to filtering out different tags.
 
 

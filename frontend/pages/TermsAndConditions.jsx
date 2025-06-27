@@ -8,7 +8,7 @@ function TermsAndConditions() {
 
       <p>
         These Terms and Conditions govern your use of our blog platform, Cursor,
-        accessible from <a href="https://www.cursor.com">www.cursor.com</a>.
+        accessible from <a href="https://cursor-app-beryl.vercel.app/">cursor-app-beryl.vercel.app</a>.
       </p>
 
       <p>
@@ -94,7 +94,7 @@ function TermsAndConditions() {
       <h2>10. Contact Us</h2>
       <p>
         If you have any questions about these Terms, please contact us at{" "}
-        <a href="mailto:support@cursor.com">support@cursor.com</a>.
+        <a href="mailto:joonhugh2021@gmail.com">joonhugh2021@gmail.com</a>.
       </p>
     </div>
   );

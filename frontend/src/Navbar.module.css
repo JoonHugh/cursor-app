@@ -14,7 +14,8 @@
     /* width: 300px; */
     min-width: none;
     padding:1rem;
-    transform: translateX(5px);
+    display:flex;
+    /* transform: translateX(5px); */
     align-items: center;
     /* border:1px solid red; */
 }
@@ -79,7 +80,17 @@
     color: #333;
   }
   
-  .menuItem:hover {
+.menuItem:hover {
     background-color: rgba(250, 235, 215, 0.3); /* subtle antiquewhite hover */
     color: #000;
-  }
+}
+
+.icon {
+    font-size: 26px;
+    /* border:1px solid red; */
+    display:flex;
+    padding: none;
+}
+.icon-button {
+    transform: translateY(2px);
+}

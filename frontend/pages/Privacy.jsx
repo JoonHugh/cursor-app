@@ -7,7 +7,7 @@ function Privacy() {
         <section id="Privacy-Policy">
           <h1>Privacy Policy for cursor</h1>
           <p>
-            At <span className={styles["name"]} >cursor</span>, accessible from <span className={styles["name"]} >www.cursor.com</span>, one of our main
+            At <span className={styles["name"]} >cursor</span>, accessible from <span className={styles["name"]} >cursor-app-beryl.vercel.app</span>, one of our main
             priorities is the privacy of our visitors. This Privacy Policy
             document contains types of information that is collected and
             recorded by <span className={styles["name"]} >cursor</span> and how we use it.

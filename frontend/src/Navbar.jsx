@@ -6,6 +6,8 @@ import { LiaReadme } from 'react-icons/lia';
 import { TbShieldLock } from 'react-icons/tb';
 import { FiHome } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
+import { IoCloseOutline } from "react-icons/io5";
+
 
 
 import styles from './Navbar.module.css';
@@ -51,8 +53,8 @@ import styles from './Navbar.module.css';
             >
                 {/* <Toolbar className={styles["toolbar"]}> */}
                 <div className={styles["menu-icon"]}>
-                    <IconButton onClick={toggleDrawer}>
-                        <IoMenu className={styles["icon"]} />
+                    <IconButton onClick={toggleDrawer} className={styles["icon-button"]}>
+                        <IoCloseOutline className={styles["icon"]} />
                     </IconButton>
                         <a className={styles["website-name"]} href="/">cursor</a>
                 </div>
