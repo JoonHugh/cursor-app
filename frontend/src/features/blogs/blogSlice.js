@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import blogService from './blogService.js';
-import BlogGrid from '../../BlogGrid.jsx';
 
 const initialState = {
     blogs: [],
@@ -139,11 +138,15 @@ export const blogSlice = createSlice({
             .addCase(likeBlog.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                const index = state.blogs.findIndex(
-                    (blog) => blog._id === action.payload._id
-                )
-                if (index !== -1) {
-                    state.blogs[index] = action.payload;
+                const updatedBlog = action.payload;
+
+                if (updatedBlog?._id) {
+                    const index = state.blogs.findIndex(
+                        (blog) => blog._id === updatedBlog._id
+                    );
+                    if (index !== -1) {
+                        state.blogs[index] = updatedBlog;
+                    }
                 }
             })
             .addCase(likeBlog.rejected, (state, action)  => {
