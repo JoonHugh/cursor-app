@@ -168,7 +168,7 @@ export const likeBlog = asyncHandler(async (req, res) => {
         if (!Array.isArray(blog.likes)) {
             blog.likes = [];
           }
-      
+        console.log("Here 1.5")
         const alreadyLiked = blog.likes.some(
             like => like.user.toString() === req.user.id.toString()
         );
