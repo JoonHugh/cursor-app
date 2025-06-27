@@ -78,7 +78,7 @@ const blogSchema = mongoose.Schema({
 
 function calculateTrendingScore(blog) {
     const { likes = 0, comments = [], views = 0, createdAt = newDate() } = blog;
-    console.log("Likes:", likes, "Comments:", comments.length, "Views:", views, "CreatedAt:", createdAt);
+    console.log("Likes:", likes, "Comments:", (comments.length || 0), "Views:", views, "CreatedAt:", createdAt);
 
     // time that's passed in hours
     const hoursSincePosted = Math.max(
@@ -88,7 +88,7 @@ function calculateTrendingScore(blog) {
     console.log("Hours since posted:", hoursSincePosted);
 
     // how to calculate what blogs should be trending
-    const engagementScore = (likes * 1) + (comments.length * 2) + (views * 0.5); 
+    const engagementScore = (likes * 1) + ((comments.length || 0) * 2) + (views * 0.5); 
     console.log("Engagement score:", engagementScore);
 
     // trending score (time decay = 1.5)
@@ -112,32 +112,32 @@ blogSchema.pre('save', function (next) {
     next();
 });
 
-blogSchema.pre('findOneAndUpdate', async function (next) {
-    const update = this._update;
+// blogSchema.pre('findOneAndUpdate', async function (next) {
+//     const update = this._update;
 
-    const isLikeChange = update.$push?.likes || update.$pull?.likes || update.$set?.likes;
-    const isViewChange = update.$inc?.views;
-    const isCommentChange = update.$push?.comments;
+//     const isLikeChange = update.$push?.likes || update.$pull?.likes || update.$set?.likes;
+//     const isViewChange = update.$inc?.views;
+//     const isCommentChange = update.$push?.comments;
 
-    if (isLikeChange || isViewChange || isCommentChange) {
-        const blog = await this.model.findOne(this.getQuery());
+//     if (isLikeChange || isViewChange || isCommentChange) {
+//         const blog = await this.model.findOne(this.getQuery());
 
-        const updatedData = {
-            ...blog.toObject(),
-            ...update.$set,
-            likes: blog.likes ? blog.likes.length : 0, 
-            views: blog.views + (update.$inc?.views || 0), 
-            comments: blog.comments
-            ? blog.comments.length + (isCommentChange ? 1 : 0) : 0,
-        };
+//         const updatedData = {
+//             ...blog.toObject(),
+//             ...update.$set,
+//             likes: blog.likes ? blog.likes.length : 0, 
+//             views: blog.views + (update.$inc?.views || 0), 
+//             comments: blog.comments
+//             ? blog.comments.length + (isCommentChange ? 1 : 0) : 0,
+//         };
 
-        this._update.$set = {
-            ...this._update.$set,
-            trendingScore: calculateTrendingScore(updatedData),
-        };
-    }
-    next();
-})
+//         this._update.$set = {
+//             ...this._update.$set,
+//             trendingScore: calculateTrendingScore(updatedData),
+//         };
+//     }
+//     next();
+// })
 
 
 
