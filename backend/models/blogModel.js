@@ -112,33 +112,4 @@ blogSchema.pre('save', function (next) {
     next();
 });
 
-// blogSchema.pre('findOneAndUpdate', async function (next) {
-//     const update = this._update;
-
-//     const isLikeChange = update.$push?.likes || update.$pull?.likes || update.$set?.likes;
-//     const isViewChange = update.$inc?.views;
-//     const isCommentChange = update.$push?.comments;
-
-//     if (isLikeChange || isViewChange || isCommentChange) {
-//         const blog = await this.model.findOne(this.getQuery());
-
-//         const updatedData = {
-//             ...blog.toObject(),
-//             ...update.$set,
-//             likes: blog.likes ? blog.likes.length : 0, 
-//             views: blog.views + (update.$inc?.views || 0), 
-//             comments: blog.comments
-//             ? blog.comments.length + (isCommentChange ? 1 : 0) : 0,
-//         };
-
-//         this._update.$set = {
-//             ...this._update.$set,
-//             trendingScore: calculateTrendingScore(updatedData),
-//         };
-//     }
-//     next();
-// })
-
-
-
 export default mongoose.model('Blog', blogSchema)

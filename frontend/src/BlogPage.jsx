@@ -18,6 +18,7 @@ import { likeBlog } from './features/blogs/blogSlice.js'
 function BlogPage() {
 
     const API_URL = import.meta.env.VITE_BLOG_API_URL; // for Vite
+    const DEBUG = import.meta.env.DEBUG;
 
 
     const images = [
@@ -103,13 +104,12 @@ function BlogPage() {
         };
     }, [slug, user, navigate]);
 
-    const userLiked = blog?.likes?.some(
-        like => like.user?.toString() === user?._id
-    ) || false;
+    const likedUserIds = new Set(blog?.likes?.map(like => like.user?.toString()));
+    const userLiked = likedUserIds.has(user?._id?.toString());
 
     const handleLike = async (e) => {
         e.preventDefault();
-        console.log("Clicked!");
+        if (DEBUG) console.log("Clicked!");
         if (!user) {
             toast.error("Please log in to like blogs");
             return;
@@ -117,8 +117,8 @@ function BlogPage() {
 
         try {
             setIsLiking(true);
-
-            console.log('Dispatching like with:', { _id: blog._id });
+            
+            if (DEBUG) console.log('Dispatching like with:', { _id: blog._id });
             await dispatch(likeBlog({ _id: blog._id })).unwrap();
             const res = await axios.get(`${API_URL}${slug}`);
             setBlog(res.data);
