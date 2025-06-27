@@ -61,10 +61,10 @@ const likeBlog = async (blogData, token) => {
             Authorization: `Bearer ${token}`
         }
     }
+    console.log("going to this backend:", API_URL+blogData._id+'/like');
+    const response = await axios.post(`${API_URL}${blogData._id}/like`, {}, config);
 
-    const response = await axios.post(`${API_URL}${blogData._id}/like`, config);
-
-    return response.data
+    return response.data;
 }
 
 const blogService = {

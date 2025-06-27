@@ -54,10 +54,11 @@ export const deleteBlog = createAsyncThunk('blogs/delete', async (blogData, thun
     }
 })
 
-export const likeBlog = createAsyncThunk('blogs/like', async (BlogGrid, thunkAPI) => {
+export const likeBlog = createAsyncThunk('blogs/like', async (blogData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token;
         const response = await blogService.likeBlog(blogData, token);
+        return response.data;
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);

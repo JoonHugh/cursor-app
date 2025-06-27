@@ -117,7 +117,7 @@ function BlogPage() {
 
         try {
             setIsLiking(true);
-            dispatch(likeBlog(blog._id).unwrap());
+            await dispatch(likeBlog(blog.id).unwrap());
         } catch (error) {
             toast.error(error.message);
         } finally {
