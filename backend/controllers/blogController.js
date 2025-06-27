@@ -175,7 +175,7 @@ export const likeBlog = asyncHandler(async (req, res) => {
         } else {
             blog.likes.push({
                 user: req.user._id,
-                createdAt: newDate();
+                createdAt: new Date(),
             });
         }
 
