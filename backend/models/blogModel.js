@@ -103,31 +103,41 @@ blogSchema.pre('save', function (next) {
         const res = Math.ceil(countWords(this.content) / 238) <= 1 ? "<1 min" : Math.ceil(countWords(this.content) / 238) + " mins";
         this.readTime = res;
     }
-    this.trendingScore =  calculateTrendingScore(this);
+    this.trendingScore =  calculateTrendingScore({
+        likes: this.likes?.length || 0,
+        views: this.views || 0,
+        comments: this.comments?.length || 0,
+        createdAt: this.createdAt || new Date()
+    });
     next();
 });
 
-blogSchema.pre('findOneAndUpdate', async function (next) {
-    const update = this._update;
-    if (update.$inc?.likes || update.$inc?.views || update.$push?.comments) {
-        const blog = await this.model.findOne(this.getQuery());
-        const updatedData = {
-            ...blog.toObject(),
-            ...update.$set,
-            likes: blog.likes + (update.$inc?.likes || 0), 
-            views: blog.views + (update.$inc?.views || 0), 
-            comments: update.$push?.comments 
-            ? [...blog.comments, update.$push.comments] 
-            : blog.comments, 
-        };
+// blogSchema.pre('findOneAndUpdate', async function (next) {
+//     const update = this._update;
 
-        this._update.$set = {
-            ...this._update.$set,
-            trendingScore: calculateTrendingScore(updatedData),
-        };
-    }
-    next();
-})
+//     const isLikeChange = update.$push?.likes || update.$pull?.likes || update.$set?.likes;
+//     const isViewChange = update.$inc?.views;
+//     const isCommentChange = update.$push?.comments;
+
+//     if (isLikeChange || isViewChange || isCommentChange) {
+//         const blog = await this.model.findOne(this.getQuery());
+
+//         const updatedData = {
+//             ...blog.toObject(),
+//             ...update.$set,
+//             likes: blog.likes ? blog.likes.length : 0, 
+//             views: blog.views + (update.$inc?.views || 0), 
+//             comments: blog.comments
+//             ? blog.comments.length + (isCommentChange ? 1 : 0) : 0,
+//         };
+
+//         this._update.$set = {
+//             ...this._update.$set,
+//             trendingScore: calculateTrendingScore(updatedData),
+//         };
+//     }
+//     next();
+// })
 
 
 
