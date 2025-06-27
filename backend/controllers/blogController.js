@@ -3,6 +3,8 @@ import asyncHandler from 'express-async-handler';
 import Blog from '../models/blogModel.js';
 import User from '../models/userModel.js';
 
+const DEBUG = false;
+
 // @desc Update view count by 1
 // @PUT /blogs/:id/views
 // @access Public
@@ -140,13 +142,13 @@ export const deleteBlog = asyncHandler(async (req, res) => {
 
 export const getTrending = asyncHandler(async (req, res) => {
     try {
-        console.log("Route hit!"); // Basic verification
+        if (DEBUG) console.log("Route hit!"); // Basic verification
 
         const blogs = await Blog.find({ trendingScore: { $exists: true } })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5)
         .populate('user', 'username')
-        console.log("MongoDB Query Result:", blogs);
+        if (DEBUG) console.log("MongoDB Query Result:", blogs);
 
         res.status(200).json(blogs);
     } catch (error) {
@@ -157,43 +159,45 @@ export const getTrending = asyncHandler(async (req, res) => {
 
 export const likeBlog = asyncHandler(async (req, res) => {
     try {
-        console.log("Here 0")
+        if (DEBUG) console.log("Here 0")
         const blog = await Blog.findById(req.params.id);
 
         if (!blog) {
             res.status(404);
             throw new Error('Blog not found');
         }
-        console.log("Here 1")
+        if (DEBUG) console.log("Here 1")
         if (!Array.isArray(blog.likes)) {
             blog.likes = [];
           }
-        console.log("All linkes before checking:", blog.likes)
-        console.log("Here 1.5")
+        if (DEBUG) {
+            console.log("All likes before checking:", blog.likes)
+            console.log("Here 1.5")
+        }
         const alreadyLiked = blog.likes.some(
             like => {
                 console.log("Inspecting like.user:", like.user);
                 return like.user && like.user.toString() === req.user.id.toString();
             }
         );
-        console.log("Here 2")
+        if (DEBUG)  console.log("Here 2")
         if (alreadyLiked) {
             console.log("Here 3")
             blog.likes = blog.likes.filter(
                 like => like.user.toString() !== req.user._id.toString()
             );
-            console.log("Here 4")
+            if (DEBUG) console.log("Here 4")
         } else {
-            console.log("Here 5")
+            if (DEBUG) console.log("Here 5")
             blog.likes.push({
                 user: req.user._id,
                 createdAt: new Date(),
             });
-            console.log("Here 6")
+            if (DEBUG) console.log("Here 6")
         }
-        console.log("Here 7")
+        if (DEBUG) console.log("Here 7")
         await blog.save();
-        console.log("Here 8")
+        if (DEBUG) console.log("Here 8")
         res.status(200).json(blog);
     } catch(error) {
         res.status(500)

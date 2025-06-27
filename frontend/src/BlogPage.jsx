@@ -171,7 +171,7 @@ function BlogPage() {
             <div className={styles["container"]}>
                 <div className={styles["markdown-container"]}>
                     <div className={styles["markdown-content"]}>
-                        <div className={styles["like-button"]}>{userLiked ? (<FaHeart onClick={handleLike} disabled={isLiking}/>) : (<FaRegHeart onClick={handleLike} disabled={isLiking} />)}</div>
+                        <div className={styles["like-button"]}>{userLiked ? (<FaHeart onClick={handleLike} disabled={isLiking} color="red"/>) : (<FaRegHeart onClick={handleLike} disabled={isLiking} />)}</div>
                         <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
                     <Tags blog={blog}/>
