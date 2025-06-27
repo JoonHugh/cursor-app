@@ -168,9 +168,13 @@ export const likeBlog = asyncHandler(async (req, res) => {
         if (!Array.isArray(blog.likes)) {
             blog.likes = [];
           }
+        console.log("All linkes before checking:", blog.likes)
         console.log("Here 1.5")
         const alreadyLiked = blog.likes.some(
-            like => like.user.toString() === req.user.id.toString()
+            like => {
+                console.log("Inspecting like.user:", like.user);
+                return like.user && like.user.toString() === req.user.id.toString();
+            }
         );
         console.log("Here 2")
         if (alreadyLiked) {
@@ -190,10 +194,7 @@ export const likeBlog = asyncHandler(async (req, res) => {
         console.log("Here 7")
         await blog.save();
         console.log("Here 8")
-        res.status(200).json({
-            _id: blog._id,
-            likes: blog.likes.map(like => like.user), 
-          });
+        res.status(200).json(blog);
     } catch(error) {
         res.status(500)
         throw new Error ("Likes not updated");
