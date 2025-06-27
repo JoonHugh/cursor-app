@@ -42,6 +42,9 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - Trending Algorithm
     I implemented a trending section using an algorithm that calculated an engagement score based off of the comments, likes, and views of a post.
 
+- Like Posts
+    After a lot of confusion, I was able to add the like functionality to my blogs. This allows users to upvote and increase  the trending score of individual blogs, which boosts its visibility to the trending home page or sidegrid trending.
+
 - Markdown Text Editor
     The way users create and format their blog posts is through a mardown text editor instead of creating my own text editor from scratch becacuse that's insanity. There's a possibility I ccould have gone with a WYSIWYG text editor, but that is much more complex. 
     
