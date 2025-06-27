@@ -54,11 +54,25 @@ const deleteBlog = async (blogData, token) => {
     return response.data;
 }
 
+// Like blog
+const likeBlog = async (blogData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.post(`${API_URL}${blogData._id}/like`, config);
+
+    return response.data
+}
+
 const blogService = {
     getBlogs,
     postBlog,
     updateBlog,
     deleteBlog,
+    likeBlog,
 }
 
 export default blogService

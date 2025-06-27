@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import blogService from './blogService.js';
+import BlogGrid from '../../BlogGrid.jsx';
 
 const initialState = {
     blogs: [],
@@ -47,6 +48,16 @@ export const deleteBlog = createAsyncThunk('blogs/delete', async (blogData, thun
     try {
         const token = thunkAPI.getState().auth.user.token;
         return await blogService.deleteBlog(blogData, token);
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
+export const likeBlog = createAsyncThunk('blogs/like', async (BlogGrid, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const response = await blogService.likeBlog(blogData, token);
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
@@ -117,6 +128,24 @@ export const blogSlice = createSlice({
                 )
             })
             .addCase(deleteBlog.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(likeBlog.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(likeBlog.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                const index = state.blogs.findIndex(
+                    (blog) => blog._id === action.payload.id
+                )
+                if (index !== -1) {
+                    state.blogs[index] = action.payload;
+                }
+            })
+            .addCase(likeBlog.rejected, (state, action)  => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
