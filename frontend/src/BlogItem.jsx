@@ -153,7 +153,7 @@ function BlogItem({ blog }) {
                         <div className={styles["bottom"]}>
                             <div className={styles["meta"]}>
                                 <span className={styles["comments"]}>{Object.keys(blog.comments).length} comments</span>
-                                <span className={styles["likes"]}>{blog.likes} likes</span>
+                                <span className={styles["likes"]}>{blog.likes?.length || 0} likes</span>
                             </div>
                         </div>
                     </div>

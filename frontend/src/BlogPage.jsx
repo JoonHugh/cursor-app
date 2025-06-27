@@ -162,7 +162,7 @@ function BlogPage() {
                             <span className={styles["category"]}>{blog.category}</span>
                             <h1 className={styles["title"]}>{blog.title}</h1>
                             <div className={styles["meta"]}>
-                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>•<span>{blog.user?.username}</span>•{blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}•<span className={styles["likes"]}><FaRegHeart /> {blog.likes.length} likes</span>
+                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>•<span>{blog.user?.username}</span>•{blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}•<span className={styles["likes"]}><FaRegHeart /> {blog.likes?.length || 0} likes</span>
                             </div>
                         </div>
                     </div>
