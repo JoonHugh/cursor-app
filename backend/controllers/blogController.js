@@ -186,8 +186,9 @@ export const likeBlog = asyncHandler(async (req, res) => {
         console.log("Here 7")
         await blog.save();
         console.log("Here 8")
-        res.status(200).json(blog);
+        res.status(200)
     } catch(error) {
-        res.status(500).json({ error: error.message });
+        res.status(500)
+        throw new Error ("Likes not updated");
     }
 })

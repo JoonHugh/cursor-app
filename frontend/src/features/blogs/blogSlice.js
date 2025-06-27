@@ -58,7 +58,7 @@ export const likeBlog = createAsyncThunk('blogs/like', async (blogData, thunkAPI
     try {
         const token = thunkAPI.getState().auth.user.token;
         const response = await blogService.likeBlog(blogData, token);
-        return response.data;
+        return response;
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);
@@ -140,7 +140,7 @@ export const blogSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 const index = state.blogs.findIndex(
-                    (blog) => blog._id === action.payload.id
+                    (blog) => blog._id === action.payload._id
                 )
                 if (index !== -1) {
                     state.blogs[index] = action.payload;

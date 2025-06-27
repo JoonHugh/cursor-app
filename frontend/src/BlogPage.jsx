@@ -117,7 +117,11 @@ function BlogPage() {
 
         try {
             setIsLiking(true);
-            await dispatch(likeBlog(blog.id).unwrap());
+
+            console.log('Dispatching like with:', { _id: blog._id });
+            await dispatch(likeBlog({ _id: blog._id })).unwrap();
+            const res = await axios.get(`${API_URL}${slug}`);
+            setBlog(res.data);
         } catch (error) {
             toast.error(error.message);
         } finally {
