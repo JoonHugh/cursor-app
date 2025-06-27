@@ -163,23 +163,28 @@ export const likeBlog = asyncHandler(async (req, res) => {
             res.status(404);
             throw new Error('Blog not found');
         }
-
+        console.log("Here 1")
         const alreadyLiked = blog.likes.some(
             like => like.user.toString() === req.user._id.toString()
         );
-
+        console.log("Here 2")
         if (alreadyLiked) {
+            console.log("Here 3")
             blog.likes = blog.likes.filter(
                 like => like.user.toString() !== req.user._id.toString()
             );
+            console.log("Here 4")
         } else {
+            console.log("Here 5")
             blog.likes.push({
                 user: req.user._id,
                 createdAt: new Date(),
             });
+            console.log("Here 6")
         }
-
+        console.log("Here 7")
         await blog.save();
+        console.log("Here 8")
         res.status(200).json(blog);
     } catch(error) {
         res.status(500).json({ error: error.message });

@@ -10,6 +10,8 @@ import Tags from './Tags.jsx';
 import Subscribe from './Subscribe.jsx'
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
+import { toast } from 'react-toastify';
+import { likeBlog } from '../../backend/controllers/blogController.js'
 
 
 
@@ -39,22 +41,6 @@ function BlogPage() {
     const [isLiking, setIsLiking] = useState(false);
 
     const navigate = useNavigate();
-
-    const handleLike = async () => {
-        if (!user) {
-            toast.error("Please log in to like blogs");
-            return;
-        }
-
-        try {
-            setIsLiking(true);
-            dispatch(likeBlog(blog._id).unwrap());
-        } catch (error) {
-            toast.error(error.message);
-        } finally {
-            setIsLiking(false);
-        }
-    }
 
     useEffect(() => {
         let isMounted = true; // flag
@@ -116,6 +102,28 @@ function BlogPage() {
             isMounted = false;
         };
     }, [slug, user, navigate]);
+
+    const userLiked = blog?.likes?.some(
+        like => like.user?.toString() === user?._id
+    ) || false;
+
+    const handleLike = async (e) => {
+        e.preventDefault();
+        console.log("Clicked!");
+        if (!user) {
+            toast.error("Please log in to like blogs");
+            return;
+        }
+
+        try {
+            setIsLiking(true);
+            dispatch(likeBlog(blog._id).unwrap());
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setIsLiking(false);
+        }
+    }
 
     if (loading) return
     (
