@@ -11,7 +11,7 @@ import Subscribe from './Subscribe.jsx'
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { toast } from 'react-toastify';
-import { likeBlog } from '../../backend/controllers/blogController.js'
+import { likeBlog } from './features/blogs/blogSlice.js'
 
 
 

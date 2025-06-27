@@ -165,6 +165,10 @@ export const likeBlog = asyncHandler(async (req, res) => {
             throw new Error('Blog not found');
         }
         console.log("Here 1")
+        if (!Array.isArray(blog.likes)) {
+            blog.likes = [];
+          }
+      
         const alreadyLiked = blog.likes.some(
             like => like.user.toString() === req.user._id.toString()
         );
