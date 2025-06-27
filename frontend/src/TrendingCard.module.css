@@ -5,7 +5,6 @@
     /* border:1px solid blue; */
     position: relative;
     overflow: hidden;
-    cursor:pointer;
 }
 .trending-card-image {
     width:100%;
@@ -22,6 +21,10 @@
 }
 .trending-card-image:hover .post-number {
     transform: translateY(0);
+}
+.text {
+    text-decoration: none;
+    color:black;
 }
 .title {
     font-weight: 400;

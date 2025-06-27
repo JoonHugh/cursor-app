@@ -69,6 +69,9 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - Advertisers
     Future advertisers can have their ads displayed on the home page or other sections that I will eventually come up with. This feature is not yet implemented, but I used Parallax Scrolling for the advertisement which makes it pretty and futuristic. 
 
+- Tags
+    I'm not really doing much with these right now other than listing them below every blog post. Maybe later I can dedicate a whole page to filtering out different tags.
+
 
 # Blogs
 

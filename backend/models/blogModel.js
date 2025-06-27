@@ -43,10 +43,10 @@ const blogSchema = mongoose.Schema({
         type: String,
         default: 0,
     },
-    likes: {
-        type: Number,
-        default: 0,
-    },
+    likes: [{
+        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        createdAt: { type: Date, default: Date.now }
+    }],
     views: {
         type: Number,
         default: 0,

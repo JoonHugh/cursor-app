@@ -154,3 +154,34 @@ export const getTrending = asyncHandler(async (req, res) => {
         res.status(500).json({ message: error.message || "Server error" });
     }
 })
+
+export const likeBlog = asyncHandler(async (req, res) => {
+    try {
+        const blog = await Blog.findById(req.params.id);
+
+        if (!blog) {
+            res.status(404);
+            throw new Error('Blog not found');
+        }
+
+        const alreadyLiked = blog.likes.some(
+            like => like.user.toString() === req.user._id.toString()
+        );
+
+        if (alreadyLiked) {
+            blog.likes = blog.likes.filter(
+                like => like.user.toString() !== req.user._id.toString()
+            );
+        } else {
+            blog.likes.push({
+                user: req.user._id,
+                createdAt: newDate();
+            });
+        }
+
+        await blog.save();
+        res.status(200).json(blog);
+    } catch(error) {
+        res.status(500).json({ error: error.message });
+    }
+})

@@ -1,15 +1,17 @@
 import styles from './BlogPage.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
 import SideBar from './SideBar.jsx';
 import MDEditor from "@uiw/react-md-editor";
 import AboutSection from './AboutSection.jsx';
 import Tags from './Tags.jsx';
 import Subscribe from './Subscribe.jsx'
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
+
+
 
 function BlogPage() {
 
@@ -33,8 +35,26 @@ function BlogPage() {
 
 
     const { user } = useSelector((state) => state.auth)
+    const dispatch = useDispatch();
+    const [isLiking, setIsLiking] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleLike = async () => {
+        if (!user) {
+            toast.error("Please log in to like blogs");
+            return;
+        }
+
+        try {
+            setIsLiking(true);
+            dispatch(likeBlog(blog._id).unwrap());
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setIsLiking(false);
+        }
+    }
 
     useEffect(() => {
         let isMounted = true; // flag
@@ -125,12 +145,12 @@ function BlogPage() {
                         src={blog.image?.startsWith('http') ? blog.image : '/assets/interior.jpg'}
                         alt="hero-image"
                     />
-                        <div className={styles["hero-container"]}>
-                            <div className={styles["box"]}>
-                                <span className={styles["category"]}>{blog.category}</span>
-                                <h1 className={styles["title"]}>{blog.title}</h1>
-                                <div className={styles["meta"]}>
-                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> • <span>{blog.user?.username}</span>  • {blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}
+                    <div className={styles["hero-container"]}>
+                        <div className={styles["box"]}>
+                            <span className={styles["category"]}>{blog.category}</span>
+                            <h1 className={styles["title"]}>{blog.title}</h1>
+                            <div className={styles["meta"]}>
+                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>•<span>{blog.user?.username}</span>•{blog.published ? (<span>{pageViews} Views</span>) : (<span>Private Post</span>)}•<span className={styles["likes"]}><FaRegHeart /> {blog.likes} likes</span>
                             </div>
                         </div>
                     </div>
@@ -139,6 +159,7 @@ function BlogPage() {
             <div className={styles["container"]}>
                 <div className={styles["markdown-container"]}>
                     <div className={styles["markdown-content"]}>
+                        <div className={styles["like-button"]}>{userLiked ? (<FaHeart onClick={handleLike} disabled={isLiking}/>) : (<FaRegHeart onClick={handleLike} disabled={isLiking} />)}</div>
                         <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
                     <Tags blog={blog}/>

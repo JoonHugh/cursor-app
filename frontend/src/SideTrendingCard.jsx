@@ -10,7 +10,7 @@ function SideTrendingCard({ index, blog }) {
 
     return(
         <div className={styles["grid"]}>
-            <a className={styles["image-container"]} href="link-to-blog">
+            <a className={styles["image-container"]} href={titleLink}>
                 <img className={styles["image"]} src={blog.image}></img>
                 <div className={styles["index"]}>
                     <span className={styles["number"]}>{index + 1}</span>
@@ -22,7 +22,7 @@ function SideTrendingCard({ index, blog }) {
                     <a href={categoryLink}>{blog.category}</a>
                 </div>
                 <div className={styles["title-link"]}>
-                    <a href={titleLink}>{blog.title}</a>
+                    <a className={styles["title"]} href={titleLink}>{blog.title}</a>
                 </div>
                 <div className={styles["blog-meta"]}>
                     <a className={styles["name-link"]} href={nameLink}>{blog.user?.username}</a> • <span className={styles["date"]}>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>

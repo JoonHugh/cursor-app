@@ -108,6 +108,17 @@
 }
 .meta {
     font-size: 12px;
+    display:flex;
+    flex-direction: row;
+    gap:6px;
+    align-items: center;
+    /* border:1px solid red; */
+}
+.likes {
+    display:flex;
+    gap: inherit;
+    align-items: center;
+    /* border:1px solid lightgreen; */
 }
 .markdown-container {
     /* display:block; */
@@ -123,13 +134,26 @@
     /* height:auto; */
 }
 .markdown-content {
+    position: relative;
     margin-bottom: 3rem;
 }
 .markdown-preview {
-    border:1px solid hsl(0, 0%, 90%);
-    padding:2rem;
+    border-bottom:1px solid hsl(0, 0%, 90%);
+    padding-bottom: 2rem;
     box-sizing: border-box;
     line-height: 1.5rem;
+    /* border:1px solid red; */
+}
+.like-button {
+    display:flex;
+    position: absolute;
+    top: -2rem;
+    font-size: 24px;
+    transition: 0.2s ease;
+    /* overflow: hidden; */
+}
+.like-button:hover {
+    color:red;
 }
 
 .markdown-preview ul,
@@ -230,11 +254,11 @@
         grid-template-columns: 1fr;
     }
     .hero-container {
-        width: 71.25%;
+        width: 85.5%;
     }
     .markdown-container {
         margin-bottom: 1.5rem;
-        width:75%;
+        width:90%;
     }
     .markdown-preview {
         max-width: 100%;
