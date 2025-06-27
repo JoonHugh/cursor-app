@@ -170,7 +170,7 @@ export const likeBlog = asyncHandler(async (req, res) => {
           }
       
         const alreadyLiked = blog.likes.some(
-            like => like.user.toString() === req.user._id.toString()
+            like => like.user.toString() === req.user.id.toString()
         );
         console.log("Here 2")
         if (alreadyLiked) {
