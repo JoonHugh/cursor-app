@@ -114,9 +114,7 @@ export const updateBlog = asyncHandler(async (req, res) => {
     res.status(200).json(updatedBlog);
 });
 
-// @desc DELETE blog
-// @route DELETE /blogs/:id
-// @access Private
+c
 export const deleteBlog = asyncHandler(async (req, res) => {
     const blog = await Blog.findById(req.params.id);
 
@@ -140,6 +138,9 @@ export const deleteBlog = asyncHandler(async (req, res) => {
     res.status(200).json({ id: req.params.id });
 });
 
+// @desc GET Trending blogs
+// @route GET /blogs/api/trending/
+// @access Public
 export const getTrending = asyncHandler(async (req, res) => {
     try {
         if (DEBUG) console.log("Route hit!"); // Basic verification
@@ -157,6 +158,9 @@ export const getTrending = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc LIKE blogs
+// @route POST /blogs/:id/like
+// @access Private
 export const likeBlog = asyncHandler(async (req, res) => {
     try {
         if (DEBUG) console.log("Here 0")
@@ -203,4 +207,24 @@ export const likeBlog = asyncHandler(async (req, res) => {
         res.status(500)
         throw new Error ("Likes not updated");
     }
-})
+}) // likeBlog
+
+// @desc GET Recommended blogs
+// @route GET /blogs/user/:userId?exclude=<currentBlogId>
+// @access Private
+export const getRecommended = asyncHandler( async(req, res) => {
+    const { authorId } = req.params;
+    const { exclude } = req.query;
+
+    try {
+        const query = { authorId };
+        if (exclude) {
+            query._id = { $ne: exclude };
+        }
+
+        const blogs = await Blog.find(query).limit(8).sort({ createdAt: -1});
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch recommended blogs"});
+    }
+}) // getRecommended

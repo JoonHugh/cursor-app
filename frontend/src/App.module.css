@@ -2,7 +2,8 @@
   box-sizing: border-box;
   word-spacing: .125rem;
   letter-spacing: .025em;
-
+}
+body {
 }
 .main-container {
   width:100%;

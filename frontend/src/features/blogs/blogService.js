@@ -67,12 +67,21 @@ const likeBlog = async (blogData, token) => {
     return response.data;
 }
 
+const fetchRecommended = async (authorId, excludeId) => {
+    console.log("fetching recommended!");
+    console.log(`with authorId: ${authorId} and trying to exclude ${excludeId}`)
+    const response = await axios.get(`/api/blogs/author/${authorId}?exclude=${excludeId}`);
+
+    return response.data;
+}
+
 const blogService = {
     getBlogs,
     postBlog,
     updateBlog,
     deleteBlog,
     likeBlog,
+    fetchRecommended,
 }
 
 export default blogService

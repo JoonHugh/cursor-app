@@ -3,6 +3,7 @@ import blogService from './blogService.js';
 
 const initialState = {
     blogs: [],
+    recommendedBlogs: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -63,6 +64,18 @@ export const likeBlog = createAsyncThunk('blogs/like', async (blogData, thunkAPI
         return thunkAPI.rejectWithValue(message);
     }
 })
+
+export const fetchRecommended = createAsyncThunk('recommended/fetchRecommended', async ({ authorId, excludeId }) => {
+    try {
+        
+        const response = await blogService.fetchRecommended(authorId, excludeId)
+        return response.data;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const blogSlice = createSlice({
     name: 'blog',
@@ -150,6 +163,19 @@ export const blogSlice = createSlice({
                 }
             })
             .addCase(likeBlog.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(fetchRecommended.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchRecommended.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.recommendedBlogs = action.payload;
+            })
+            .addCase(fetchRecommended.rejected, (state, action)  => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

@@ -12,6 +12,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import { likeBlog } from './features/blogs/blogSlice.js'
+import Recommended from './Recommended.jsx';
 
 
 
@@ -177,6 +178,7 @@ function BlogPage() {
                     <Tags blog={blog}/>
                     <AboutSection blog={blog}/>
                     <Subscribe />
+                    <Recommended blog={blog}/>
                 </div>
                 <div className={styles["side-bar"]}>
                     <SideBar className={styles["SideBar"]} images={images}/>
