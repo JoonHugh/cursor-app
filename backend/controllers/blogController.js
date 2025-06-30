@@ -252,21 +252,25 @@ export const getRecommended = asyncHandler( async(req, res) => {
     if (tagsArray.length > 0 && category) {
         await fetchStep({ tags: { $in: tagsArray }, category });
     }
+    console.log("tags array:", tagsArray);
 
     // Step 2: category only
     if (allBlogs.length < 8 && category) {
         await fetchStep({ category });
     }
+    console.log("category:", category);
 
     // Step 3: trending
     if (allBlogs.length < 8) {
         await fetchStep({ trendingScore: { $exists: true } }, { trendingScore: -1 });
     }
+    console.log("trending:", trendingScore);
 
     // Step 4: newest
     if (allBlogs.length < 8) {
         await fetchStep({}, { createdAt: -1 });
     }
+    console.log("newest:", creeatedAt);
 
     res.status(200).json(allBlogs);
 }) // getRecommended
