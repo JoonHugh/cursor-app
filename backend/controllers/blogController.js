@@ -228,25 +228,30 @@ export const getRecommended = asyncHandler( async(req, res) => {
         // user: { $ne: new mongoose.Types.ObjectId(userId) },
         published: true,
     };
-    console.log("matchConditions", matchConditions);
 
+    console.log("matchConditions", matchConditions);
+    console.log("tags", tagsArray);
 
     if (exclude && mongoose.Types.ObjectId.isValid(exclude)) {
         matchConditions._id = { $ne: new mongoose.Types.ObjectId(exclude) };
     }
+    console.log("id", matchConditions._id)
 
     if (category) {
         matchConditions.category = category;
     }
+    console.log("category", matchConditions.category)
 
     if (tagsArray.length > 0) {
         matchConditions.tags = { $in: tagsArray };
     }
 
+    console.log("tags", matchConditions.tags)
+
     try {
         const blogs = await Blog.aggregate([
             { $match: matchConditions },
-            { $sample: { size: 5 } }, // random 5 recommended blogs
+            { $sample: { size: 8 } }, // random 5 recommended blogs
         ]);
 
         console.log("Recommended blogs result:", blogs);
