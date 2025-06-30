@@ -264,13 +264,13 @@ export const getRecommended = asyncHandler( async(req, res) => {
     if (allBlogs.length < 8) {
         await fetchStep({ trendingScore: { $exists: true } }, { trendingScore: -1 });
     }
-    console.log("trending:", trendingScore);
+    console.log("trending:", Blog.trendingScore);
 
     // Step 4: newest
     if (allBlogs.length < 8) {
         await fetchStep({}, { createdAt: -1 });
     }
-    console.log("newest:", creeatedAt);
+    console.log("newest:", Blog.createdAt);
 
     res.status(200).json(allBlogs);
 }) // getRecommended
