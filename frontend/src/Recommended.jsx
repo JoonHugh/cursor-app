@@ -10,7 +10,7 @@ function Recommended({ blog }) {
 
     useEffect(() => {
         if (blog.user?._id && blog?._id) {
-            dispatch(fetchRecommended({ authorId: blog.user._id, excludeId: blog._id}))
+            dispatch(fetchRecommended({ authorId: blog.user._id, excludeId: blog._id, tags: blog.tags.join(','), category: blog.category }))
         }
     }, [blog, dispatch]);
 

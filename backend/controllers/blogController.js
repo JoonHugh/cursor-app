@@ -213,15 +213,69 @@ export const likeBlog = asyncHandler(async (req, res) => {
 // @access Private
 export const getRecommended = asyncHandler( async(req, res) => {
     const { authorId } = req.params;
-    const { exclude } = req.query;
+    const { exclude, tags, category } = req.query;
 
+    const tagsArray = tags ? tags.split(',') : [];
+  
     try {
-        const query = { user: authorId };
-        if (exclude) {
-            query._id = { $ne: exclude };
+      const blogs = await Blog.aggregate([
+        {
+          $match: {
+            user: { $ne: authorId }, // exclude same author if desired
+            _id: { $ne: new mongoose.Types.ObjectId(exclude) },
+          }
+        },
+        {
+          $addFields: {
+            tagMatchCount: {
+              $size: {
+                $ifNull: [
+                  {
+                    $filter: {
+                      input: "$tags",
+                      as: "tag",
+                      cond: { $in: ["$$tag", tagsArray] }
+                    }
+                  },
+                  []
+                ]
+              }
+            },
+            categoryMatch: {
+              $cond: { if: { $eq: ["$category", category] }, then: 1, else: 0 }
+            }
+          }
+        },
+        {
+          $addFields: {
+            relevanceScore: {
+              $add: [
+                { $multiply: ["$tagMatchCount", 5] }, // weight tag matches
+                { $multiply: ["$categoryMatch", 3] },  // weight category match
+                { $ifNull: ["$trendingScore", 0] },    // trending score
+                { $divide: [{ $toLong: "$createdAt" }, 10000000000000] } // small weight for recency
+              ]
+            }
+          }
+        },
+        {
+          $sort: { relevanceScore: -1 }
+        },
+        {
+          $limit: 8
+        },
+        {
+          $lookup: {
+            from: "users",
+            localField: "user",
+            foreignField: "_id",
+            as: "user"
+          }
+        },
+        {
+          $unwind: "$user"
         }
-
-        const blogs = await Blog.find(query).limit(8).sort({ createdAt: -1,  trendingScore: -1});
+      ]);
         res.status(200).json(blogs);
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch recommended blogs"});
