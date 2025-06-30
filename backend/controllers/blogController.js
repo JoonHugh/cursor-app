@@ -224,41 +224,46 @@ export const getRecommended = asyncHandler( async(req, res) => {
         return res.status(400).json({ error: 'Invalid userId' });
     }
 
-    const matchConditions = {
-        // user: { $ne: new mongoose.Types.ObjectId(userId) },
+    
+    const excludeCondition = exclude && mongoose.Types.ObjectId.isValid(exclude)
+        ? { _id: { $ne: new mongoose.Types.ObjectId(exclude) } }
+        : {};
+
+    const commonConditions = {
         published: true,
+        ...excludeCondition,
+        user: { $ne: new mongoose.Types.ObjectId(userId) },
     };
 
-    console.log("matchConditions", matchConditions);
-    console.log("tags", tagsArray);
+    let blogs = [];
 
-    if (exclude && mongoose.Types.ObjectId.isValid(exclude)) {
-        matchConditions._id = { $ne: new mongoose.Types.ObjectId(exclude) };
-    }
-    console.log("id", matchConditions._id)
-
-    if (category) {
-        matchConditions.category = category;
-    }
-    console.log("category", matchConditions.category)
-
-    // if (tagsArray.length > 0) {
-    //     matchConditions.tags = { $in: tagsArray };
-    // }
-
-    // console.log("tags", matchConditions.tags)
-
-    try {
-        const blogs = await Blog.aggregate([
-            { $match: matchConditions },
-            { $sample: { size: 8 } }, // random 5 recommended blogs
+    // 1. Match tags + category
+    if (tagsArray.length > 0 && category && category !== 'ALL') {
+        blogs = await Blog.aggregate([
+            { $match: { ...commonConditions, tags: { $in: tagsArray }, category } },
+            { $sample: { size: 8 } },
         ]);
+    }
 
-        console.log("Recommended blogs result:", blogs);
+    // 2. Match only category
+    if (blogs.length === 0 && category && category !== 'ALL') {
+        blogs = await Blog.aggregate([
+            { $match: { ...commonConditions, category } },
+            { $sample: { size: 8 } },
+        ]);
+    }
 
-        res.status(200).json(blogs);
-    } catch (err) {
-        console.error("🔥 Error in getRecommended:", err.message, err.stack);
-        res.status(500).json({ error: "Failed to fetch recommended blogs" });
+    // 3. Match trending
+    if (blogs.length === 0) {
+        blogs = await Blog.find({ ...commonConditions, trendingScore: { $exists: true } })
+            .sort({ trendingScore: -1 })
+            .limit(8);
+    }
+
+    // 4. Fallback to latest
+    if (blogs.length === 0) {
+        blogs = await Blog.find(commonConditions)
+            .sort({ createdAt: -1 })
+            .limit(8);
     }
 }) // getRecommended
