@@ -67,7 +67,7 @@ const likeBlog = async (blogData, token) => {
     return response.data;
 }
 
-const fetchRecommended = async (authorId, excludeId, tags, category) => {
+const fetchRecommended = async (userId, excludeId, tags, category) => {
     const queryParams = new URLSearchParams({
         exclude: excludeId,
         tags,
@@ -75,9 +75,9 @@ const fetchRecommended = async (authorId, excludeId, tags, category) => {
       }).toString();
 
     console.log("fetching recommended!");
-    console.log(`with authorId: ${authorId} with params ${queryParams}`)
-    
-    const response = await axios.get(`${API_URL}user/${authorId}?${queryParams}`);
+    console.log(`with userId: ${userId} with params ${queryParams}`)
+
+    const response = await axios.get(`${API_URL}user/${userId}?${queryParams}`);
 
     return response.data;
 }

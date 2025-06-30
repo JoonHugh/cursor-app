@@ -212,7 +212,7 @@ export const likeBlog = asyncHandler(async (req, res) => {
 // @route GET /blogs/user/:userId?exclude=<currentBlogId>
 // @access Private
 export const getRecommended = asyncHandler( async(req, res) => {
-    const { authorId } = req.params;
+    const { userId } = req.params;
     const { exclude, tags, category } = req.query;
 
     const tagsArray = tags ? tags.split(',') : [];
@@ -221,7 +221,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
       const blogs = await Blog.aggregate([
         {
           $match: {
-            // user: { $ne: authorId }, // exclude same author if desired
+            user: { $ne: new mongoose.Types.ObjectId(userId) },
             _id: { $ne: new mongoose.Types.ObjectId(exclude) },
           }
         },

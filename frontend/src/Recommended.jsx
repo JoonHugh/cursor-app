@@ -10,7 +10,7 @@ function Recommended({ blog }) {
 
     useEffect(() => {
         if (blog.user?._id && blog?._id) {
-            dispatch(fetchRecommended({ authorId: blog.user._id, excludeId: blog._id, tags: blog.tags.join(','), category: blog.category }))
+            dispatch(fetchRecommended({ userId: blog.user._id, excludeId: blog._id, tags: blog.tags.join(','), category: blog.category }))
         }
     }, [blog, dispatch]);
 
@@ -26,7 +26,7 @@ function Recommended({ blog }) {
                         <span className={styles["category"]}>{blog.category}</span>
                         <span className={styles["title"]}>{blog.title}</span>
                         <div className={styles["meta"]}>
-                            <span className={styles["author"]}>{blog.user.username}</span>
+                            <span className={styles["user"]}>{blog.user.username}</span>
                             <span className={styles["date"]}>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>
                         </div>
                     </div>
