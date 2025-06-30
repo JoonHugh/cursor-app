@@ -221,7 +221,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
       const blogs = await Blog.aggregate([
         {
           $match: {
-            user: { $ne: authorId }, // exclude same author if desired
+            // user: { $ne: authorId }, // exclude same author if desired
             _id: { $ne: new mongoose.Types.ObjectId(exclude) },
           }
         },
