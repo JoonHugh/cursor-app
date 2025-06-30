@@ -22,7 +22,7 @@ function Recommended({ blog }) {
                 {isError && <p>Error: {message}</p>}
                 {Array.isArray(recommendedBlogs) && recommendedBlogs.map((blog) => (
                     <div className={styles["image-container"]} key={blog._id}>
-                        <img src={blog.image} alt="blog-image" />
+                        <img src={blog.image ? blog.image : "/assets/interior2.jpg"} alt="blog-image" />
                         <span className={styles["category"]}>{blog.category}</span>
                         <span className={styles["title"]}>{blog.title}</span>
                         <div className={styles["meta"]}>

@@ -217,7 +217,9 @@ export const getRecommended = asyncHandler( async(req, res) => {
     const { userId } = req.params;
     const { exclude, tags, category } = req.query;
 
-    const tagsArray = tags ? tags.split(',') : [];
+    const tagsArray = tags ? tags.split(',').map(tag => tag.trim().toUpperCase()) : [];
+    const normalizedCategory = category?.trim().toUpperCase();
+
     const excludeId = exclude && mongoose.Types.ObjectId.isValid(exclude)
         ? new mongoose.Types.ObjectId(exclude)
         : null;
@@ -241,6 +243,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
             ...additionalConditions,
             _id: { ...commonConditions._id, $nin: alreadyFetchedIds },
         };
+        console.log("Running query with (finalMatch) :", finalMatch);
 
         let query = Blog.find(finalMatch).populate('user', 'username');
         if (sort) query = query.sort(sort);
@@ -249,28 +252,26 @@ export const getRecommended = asyncHandler( async(req, res) => {
     };
 
     // Step 1: tags + category
-    if (tagsArray.length > 0 && category) {
-        await fetchStep({ tags: { $in: tagsArray }, category });
+    if (tagsArray.length > 0 && normalizedCategory) {
+        await fetchStep({ tags: { $in: tagsArray }, category: normalizedCategory });
     }
     console.log("tags array:", tagsArray);
 
     // Step 2: category only
-    if (allBlogs.length < 8 && category) {
-        await fetchStep({ category });
+    if (allBlogs.length < 8 && normalizedCategory) {
+        await fetchStep({ normalizedCategory });
     }
-    console.log("category:", category);
+    console.log("category:", normalizedCategory);
 
     // Step 3: trending
     if (allBlogs.length < 8) {
         await fetchStep({ trendingScore: { $exists: true } }, { trendingScore: -1 });
     }
-    console.log("trending:", Blog.trendingScore);
 
     // Step 4: newest
     if (allBlogs.length < 8) {
         await fetchStep({}, { createdAt: -1 });
     }
-    console.log("newest:", Blog.createdAt);
 
     res.status(200).json(allBlogs);
 }) // getRecommended
