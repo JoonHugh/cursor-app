@@ -218,52 +218,55 @@ export const getRecommended = asyncHandler( async(req, res) => {
     const { exclude, tags, category } = req.query;
 
     const tagsArray = tags ? tags.split(',') : [];
-
+    const excludeId = exclude && mongoose.Types.ObjectId.isValid(exclude)
+        ? new mongoose.Types.ObjectId(exclude)
+        : null;
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
         return res.status(400).json({ error: 'Invalid userId' });
     }
 
-    
-    const excludeCondition = exclude && mongoose.Types.ObjectId.isValid(exclude)
-        ? { _id: { $ne: new mongoose.Types.ObjectId(exclude) } }
-        : {};
-
     const commonConditions = {
         published: true,
-        ...excludeCondition,
         user: { $ne: new mongoose.Types.ObjectId(userId) },
     };
+    if (excludeId) commonConditions._id = { $ne: excludeId };
 
-    let blogs = [];
+    let allBlogs = [];
 
-    // 1. Match tags + category
+    const fetchStep = async (additionalConditions, sort = null) => {
+        const alreadyFetchedIds = allBlogs.map(blog => blog._id);
+        const finalMatch = {
+            ...commonConditions,
+            ...additionalConditions,
+            _id: { ...commonConditions._id, $nin: alreadyFetchedIds },
+        };
+
+        let query = Blog.find(finalMatch);
+        if (sort) query = query.sort(sort);
+        const result = await query.limit(8 - allBlogs.length);
+        allBlogs = allBlogs.concat(result);
+    };
+
+    // Step 1: tags + category
     if (tagsArray.length > 0 && category && category !== 'ALL') {
-        blogs = await Blog.aggregate([
-            { $match: { ...commonConditions, tags: { $in: tagsArray }, category } },
-            { $sample: { size: 8 } },
-        ]);
+        await fetchStep({ tags: { $in: tagsArray }, category });
     }
 
-    // 2. Match only category
-    if (blogs.length === 0 && category && category !== 'ALL') {
-        blogs = await Blog.aggregate([
-            { $match: { ...commonConditions, category } },
-            { $sample: { size: 8 } },
-        ]);
+    // Step 2: category only
+    if (allBlogs.length < 8 && category && category !== 'ALL') {
+        await fetchStep({ category });
     }
 
-    // 3. Match trending
-    if (blogs.length === 0) {
-        blogs = await Blog.find({ ...commonConditions, trendingScore: { $exists: true } })
-            .sort({ trendingScore: -1 })
-            .limit(8);
+    // Step 3: trending
+    if (allBlogs.length < 8) {
+        await fetchStep({ trendingScore: { $exists: true } }, { trendingScore: -1 });
     }
 
-    // 4. Fallback to latest
-    if (blogs.length === 0) {
-        blogs = await Blog.find(commonConditions)
-            .sort({ createdAt: -1 })
-            .limit(8);
+    // Step 4: newest
+    if (allBlogs.length < 8) {
+        await fetchStep({}, { createdAt: -1 });
     }
+
+    res.status(200).json(allBlogs);
 }) // getRecommended
