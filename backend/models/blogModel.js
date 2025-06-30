@@ -77,7 +77,7 @@ const blogSchema = mongoose.Schema({
 })
 
 function calculateTrendingScore(blog) {
-    const { likes = 0, comments = [], views = 0, createdAt = newDate() } = blog;
+    const { likes = 0, comments = [], views = 0, createdAt = new Date() } = blog;
     console.log("Likes:", likes, "Comments:", (comments.length || 0), "Views:", views, "CreatedAt:", createdAt);
 
     // time that's passed in hours

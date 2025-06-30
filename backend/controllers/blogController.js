@@ -216,68 +216,38 @@ export const getRecommended = asyncHandler( async(req, res) => {
     const { exclude, tags, category } = req.query;
 
     const tagsArray = tags ? tags.split(',') : [];
-  
+
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+        return res.status(400).json({ error: 'Invalid userId' });
+    }
+
+    const matchConditions = {
+        user: { $ne: new mongoose.Types.ObjectId(userId) },
+        published: true,
+    };
+
+    if (exclude && mongoose.Types.ObjectId.isValid(exclude)) {
+        matchConditions._id = { $ne: new mongoose.Types.ObjectId(exclude) };
+    }
+
+    if (category && category !== 'ALL') {
+        matchConditions.category = category;
+    }
+
+    if (tagsArray.length > 0) {
+        matchConditions.tags = { $in: tagsArray };
+    }
+
     try {
-      const blogs = await Blog.aggregate([
-        {
-          $match: {
-            user: { $ne: new mongoose.Types.ObjectId(userId) },
-            _id: { $ne: new mongoose.Types.ObjectId(exclude) },
-          }
-        },
-        {
-          $addFields: {
-            tagMatchCount: {
-              $size: {
-                $ifNull: [
-                  {
-                    $filter: {
-                      input: "$tags",
-                      as: "tag",
-                      cond: { $in: ["$$tag", tagsArray] }
-                    }
-                  },
-                  []
-                ]
-              }
-            },
-            categoryMatch: {
-              $cond: { if: { $eq: ["$category", category] }, then: 1, else: 0 }
-            }
-          }
-        },
-        {
-          $addFields: {
-            relevanceScore: {
-              $add: [
-                { $multiply: ["$tagMatchCount", 5] }, // weight tag matches
-                { $multiply: ["$categoryMatch", 3] },  // weight category match
-                { $ifNull: ["$trendingScore", 0] },    // trending score
-                { $divide: [{ $toLong: "$createdAt" }, 10000000000000] } // small weight for recency
-              ]
-            }
-          }
-        },
-        {
-          $sort: { relevanceScore: -1 }
-        },
-        {
-          $limit: 8
-        },
-        {
-          $lookup: {
-            from: "users",
-            localField: "user",
-            foreignField: "_id",
-            as: "user"
-          }
-        },
-        {
-          $unwind: "$user"
-        }
-      ]);
+        const blogs = await Blog.aggregate([
+            { $match: matchConditions },
+            { $sample: { size: 5 } }, // random 5 recommended blogs
+        ]);
+
         res.status(200).json(blogs);
-    } catch (error) {
-        res.status(500).json({ error: "Failed to fetch recommended blogs"});
+    } catch (err) {
+        console.error("🔥 Error in getRecommended:", err.message, err.stack);
+        res.status(500).json({ error: "Failed to fetch recommended blogs" });
     }
 }) // getRecommended
