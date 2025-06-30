@@ -6,7 +6,7 @@ import { fetchRecommended } from './features/blogs/blogSlice.js';
 function Recommended({ blog }) {
 
     const dispatch = useDispatch();
-    const { blogs: recommendedBlogs, isLoading, isError, message } = useSelector(state => state.blogs);
+    const { recommendedBlogs, isLoading, isError, message } = useSelector(state => state.blogs);
 
     useEffect(() => {
         if (blog.user?._id && blog?._id) {
@@ -20,8 +20,8 @@ function Recommended({ blog }) {
             <div className={styles["carasol"]}>
                 {isLoading && <p>Loading...</p>}
                 {isError && <p>Error: {message}</p>}
-                {recommendedBlogs.map((blog) => (
-                    <div className={styles["image-container"]}>
+                {Array.isArray(recommendedBlogs) && recommendedBlogs.map((blog) => (
+                    <div className={styles["image-container"]} key={blog._id}>
                         <img src={blog.image} alt="blog-image" />
                         <span className={styles["category"]}>{blog.category}</span>
                         <span className={styles["title"]}>{blog.title}</span>

@@ -67,9 +67,11 @@ export const likeBlog = createAsyncThunk('blogs/like', async (blogData, thunkAPI
 
 export const fetchRecommended = createAsyncThunk('recommended/fetchRecommended', async ({ authorId, excludeId }) => {
     try {
-        
+        console.log("Here");
         const response = await blogService.fetchRecommended(authorId, excludeId)
-        return response.data;
+        console.log("Here2");
+        console.log("response:", response);
+        return response;
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
         return thunkAPI.rejectWithValue(message);

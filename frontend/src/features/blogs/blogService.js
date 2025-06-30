@@ -70,7 +70,7 @@ const likeBlog = async (blogData, token) => {
 const fetchRecommended = async (authorId, excludeId) => {
     console.log("fetching recommended!");
     console.log(`with authorId: ${authorId} and trying to exclude ${excludeId}`)
-    const response = await axios.get(`/api/blogs/author/${authorId}?exclude=${excludeId}`);
+    const response = await axios.get(`${API_URL}user/${authorId}?exclude=${excludeId}`);
 
     return response.data;
 }

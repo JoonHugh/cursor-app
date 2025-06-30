@@ -216,12 +216,12 @@ export const getRecommended = asyncHandler( async(req, res) => {
     const { exclude } = req.query;
 
     try {
-        const query = { authorId };
+        const query = { user: authorId };
         if (exclude) {
             query._id = { $ne: exclude };
         }
 
-        const blogs = await Blog.find(query).limit(8).sort({ createdAt: -1});
+        const blogs = await Blog.find(query).limit(8).sort({ createdAt: -1,  trendingScore: -1});
         res.status(200).json(blogs);
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch recommended blogs"});
