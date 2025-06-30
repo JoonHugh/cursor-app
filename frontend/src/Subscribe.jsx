@@ -1,7 +1,7 @@
 import styles from './Subscribe.module.css';
 import { toast } from 'react-toastify';
 
-function Subscribe() {
+function Subscribe({ blog }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -11,7 +11,7 @@ function Subscribe() {
         <div className={styles["main-container"]}>
             <div className={styles["container"]}>
                 <label className={styles["label"]}>SUBSCRIBE</label>
-                <span className={styles["info"]}>Get notified of your favorite blogger's latest updates!</span>
+                <span className={styles["info"]}>Get notified of {blog.user.username}'s latest updates and posts!</span>
                 <form onSubmit={onSubmit} className={styles["form"]}>
                     <div className={styles["input-container"]}>
                         <input className={styles["input-email"]} type="email" placeholder="Enter your email"></input>

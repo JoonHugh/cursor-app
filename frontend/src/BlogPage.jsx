@@ -13,6 +13,7 @@ import { FaHeart } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import { likeBlog } from './features/blogs/blogSlice.js'
 import Recommended from './Recommended.jsx';
+import Comments from './Comments.jsx';
 
 
 
@@ -177,8 +178,9 @@ function BlogPage() {
                     </div>
                     <Tags blog={blog}/>
                     <AboutSection blog={blog}/>
-                    <Subscribe />
+                    <Subscribe blog={blog}/>
                     <Recommended blog={blog}/>
+                    <Comments blog={blog} user={user} />
                 </div>
                 <div className={styles["side-bar"]}>
                     <SideBar className={styles["SideBar"]} images={images}/>

@@ -50,7 +50,7 @@ function Recommended({ blog }) {
     const totalDots = Math.ceil((recommendedBlogs?.length || 0) / itemsPerPage);
 
     return (
-        <>
+        <div className={styles["container"]}>
             <p className={styles["section-title"]}>You may also like</p>
             {/* <div className={styles["carousel"]}> */}
             {isLoading && <p>Loading...</p>}
@@ -87,7 +87,7 @@ function Recommended({ blog }) {
                     />
                 ))}
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,3 +1,7 @@
+.container {
+    margin-bottom: 3rem;
+}
+
 .section-title {
     font-size: 12px;
     text-transform: uppercase;
@@ -14,6 +18,7 @@
     touch-action: pan-x;
     display: block; /* important: avoid flex/grid */
     width: 100%; /* make sure it's constrained */
+    /* border:1px solid red; */
 }
 
 .carousel-container::-webkit-scrollbar {
