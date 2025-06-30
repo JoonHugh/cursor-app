@@ -242,7 +242,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
             _id: { ...commonConditions._id, $nin: alreadyFetchedIds },
         };
 
-        let query = Blog.find(finalMatch);
+        let query = Blog.find(finalMatch).populate('user', 'username');
         if (sort) query = query.sort(sort);
         const result = await query.limit(8 - allBlogs.length);
         allBlogs = allBlogs.concat(result);
