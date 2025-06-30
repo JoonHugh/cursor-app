@@ -225,15 +225,17 @@ export const getRecommended = asyncHandler( async(req, res) => {
     }
 
     const matchConditions = {
-        user: { $ne: new mongoose.Types.ObjectId(userId) },
+        // user: { $ne: new mongoose.Types.ObjectId(userId) },
         published: true,
     };
+    console.log("matchConditions", matchConditions);
+
 
     if (exclude && mongoose.Types.ObjectId.isValid(exclude)) {
         matchConditions._id = { $ne: new mongoose.Types.ObjectId(exclude) };
     }
 
-    if (category && category !== 'ALL') {
+    if (category) {
         matchConditions.category = category;
     }
 
@@ -246,6 +248,8 @@ export const getRecommended = asyncHandler( async(req, res) => {
             { $match: matchConditions },
             { $sample: { size: 5 } }, // random 5 recommended blogs
         ]);
+
+        console.log("Recommended blogs result:", blogs);
 
         res.status(200).json(blogs);
     } catch (err) {
