@@ -3,6 +3,8 @@ import asyncHandler from 'express-async-handler';
 import Blog from '../models/blogModel.js';
 import User from '../models/userModel.js';
 
+import mongoose from 'mongoose'
+
 const DEBUG = false;
 
 // @desc Update view count by 1
