@@ -114,7 +114,6 @@ export const updateBlog = asyncHandler(async (req, res) => {
     res.status(200).json(updatedBlog);
 });
 
-c
 export const deleteBlog = asyncHandler(async (req, res) => {
     const blog = await Blog.findById(req.params.id);
 
