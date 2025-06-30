@@ -242,11 +242,11 @@ export const getRecommended = asyncHandler( async(req, res) => {
     }
     console.log("category", matchConditions.category)
 
-    if (tagsArray.length > 0) {
-        matchConditions.tags = { $in: tagsArray };
-    }
+    // if (tagsArray.length > 0) {
+    //     matchConditions.tags = { $in: tagsArray };
+    // }
 
-    console.log("tags", matchConditions.tags)
+    // console.log("tags", matchConditions.tags)
 
     try {
         const blogs = await Blog.aggregate([
