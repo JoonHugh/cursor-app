@@ -1,0 +1,106 @@
+.section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.carousel-container {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+    display: block; /* important: avoid flex/grid */
+    width: 100%; /* make sure it's constrained */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel {
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: nowrap;
+    gap: 2.5rem;
+    /* box-sizing: border-box; */
+    padding-bottom: 1rem;
+}
+
+.carousel-item {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    text-decoration: none;
+    flex: 0 0 calc((100% - 2.5rem) / 2); /* default 2 items per slide */
+    transition: transform 0.3s ease;
+    /* border:1px solid blue; */
+}
+
+.category {
+    font-size: 11px;
+    font-weight: 500;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #000;
+    display: block;
+}
+
+.meta {
+    display: flex;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.image-container {
+    width: 100%;
+    height: 250px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    /* border:1px solid red; */
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: #000;
+}
+
+@media (min-width: 1020px) {
+    .carousel-item {
+        flex: 0 0 calc((100% - 2 * 2.5rem) / 3); /* 3 items, 2 gaps */
+    }
+}

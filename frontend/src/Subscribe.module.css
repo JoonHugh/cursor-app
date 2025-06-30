@@ -1,8 +1,8 @@
 .main-container {
     padding-bottom: 3rem;
     margin-top: 3rem;
-    margin-bottom: 4rem;
-    border-bottom: 1px solid hsl(0, 0%, 90%);
+    /* margin-bottom: 2rem; */
+    /* border-bottom: 1px solid hsl(0, 0%, 90%); */
 }
 
 .container {
