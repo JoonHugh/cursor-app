@@ -26,7 +26,7 @@ function Recommended({ blog }) {
                         <span className={styles["category"]}>{blog.category}</span>
                         <span className={styles["title"]}>{blog.title}</span>
                         <div className={styles["meta"]}>
-                            <span className={styles["user"]}>{blog.user}</span>
+                            <span className={styles["user"]}>{blog.user.username}</span>
                             <span className={styles["date"]}>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span>
                         </div>
                     </div>

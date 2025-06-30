@@ -228,7 +228,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
 
     const commonConditions = {
         published: true,
-        user: { $ne: new mongoose.Types.ObjectId(userId) },
+        // user: { $ne: new mongoose.Types.ObjectId(userId) },
     };
     if (excludeId) commonConditions._id = { $ne: excludeId };
 
@@ -249,12 +249,12 @@ export const getRecommended = asyncHandler( async(req, res) => {
     };
 
     // Step 1: tags + category
-    if (tagsArray.length > 0 && category && category !== 'ALL') {
+    if (tagsArray.length > 0 && category) {
         await fetchStep({ tags: { $in: tagsArray }, category });
     }
 
     // Step 2: category only
-    if (allBlogs.length < 8 && category && category !== 'ALL') {
+    if (allBlogs.length < 8 && category) {
         await fetchStep({ category });
     }
 
