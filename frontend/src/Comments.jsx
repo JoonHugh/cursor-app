@@ -101,7 +101,7 @@ function Comments({ blog, user }) {
                             <div className={styles["text"]}>
                                 <p>{comment.text}</p>
                                 <div className={styles["actions"]}>
-                                    <button className={styles["reply"]} onClick={() => setShowReplyForm((prev) => (prev === comment._id ? null : comment._id))}><BsChatLeftTextFill />Reply</button>
+                                    <button className={styles["reply-button"]} onClick={() => setShowReplyForm((prev) => (prev === comment._id ? null : comment._id))}><BsChatLeftTextFill />Reply</button>
                                     <button className={styles["more"]}><IoIosMore /></button>
                                 </div>
 
@@ -119,33 +119,33 @@ function Comments({ blog, user }) {
 
                                 {comment.replies && comment.replies.length > 0 && (
                                 <div className={styles["replies-container"]}>
-                                    {comment.replies.map((reply, rIndex) => (
+                                    {comment.replies.map((reply, rIndex) => (console.log(reply),
                                     <div key={rIndex} className={styles["reply"]}>
                                         <div className={styles["user-info"]}>
-                                        <img 
-                                            src={reply.user?.image || "/assets/defaultprofilepic.jpg"} 
-                                            alt="avatar" 
-                                            className={styles["avatar"]}
-                                        />
-                                        <div>
-                                            <p className={styles["comment-meta"]}>
-                                                <span className={styles["username"]}>{reply.user?.username}</span>
-                                                <span className={styles["user-meta"]}>
-                                                    {(reply.user.gender || reply.user.country) &&
-                                                    <span>
-                                                        ({reply.user.gender && `${reply.user.gender}, `} 
-                                                        {reply.user.country && `${reply.user.country}`})
+                                            <img 
+                                                src={reply.user?.image || "/assets/defaultprofilepic.jpg"} 
+                                                alt="avatar" 
+                                                className={styles["avatar"]}
+                                            />
+                                            <div>
+                                                <p className={styles["comment-meta"]}>
+                                                    <span className={styles["username"]}>{reply.user?.username}</span>
+                                                    <span className={styles["user-meta"]}>
+                                                        {(reply.user.gender || reply.user.country) &&
+                                                        <span>
+                                                            ({reply.user.gender && `${reply.user.gender}, `} 
+                                                            {reply.user.country && `${reply.user.country}`})
+                                                        </span>
+                                                        }
+                                                        <span>
+                                                            {formatDistanceToNow(new Date(reply.createdAt), { addSuffix: true })}
+                                                        </span>
                                                     </span>
-                                                    }
-                                                    <span>
-                                                    {formatDistanceToNow(new Date(reply.createdAt), { addSuffix: true })}
-                                                    </span>
-                                                </span>
-                                            </p>
-                                        </div>
+                                                </p>
+                                            </div>
                                         </div>
                                         <div className={styles["text"]}>
-                                        <p>{reply.text}</p>
+                                            <p>{reply.text}</p>
                                         </div>
                                     </div>
                                     ))}

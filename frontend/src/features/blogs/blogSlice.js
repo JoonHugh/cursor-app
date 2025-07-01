@@ -223,7 +223,7 @@ export const blogSlice = createSlice({
             .addCase(addComment.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.comments.push(action.payload.comment);
+                state.comments = action.payload.comment;
             })
             .addCase(addComment.rejected, (state, action)  => {
                 state.isLoading = false;
