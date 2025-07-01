@@ -78,13 +78,13 @@ function Comments({ blog, user }) {
                         <div key={index} className={styles["comment"]}>
                             <div className={styles["user-info"]}>
                                 <img 
-                                    src={comment.user?.image || "/assets/defaultprofilepic.jpc"} 
+                                    src={comment.user?.image || "/assets/defaultprofilepic.jpg"} 
                                     alt="avatar" 
                                     className={styles["avatar"]}/>
                                 <div>
                                     <p className={styles["comment-meta"]}>
                                         <span className={styles["username"]}>{comment.user?.username}</span>
-                                        <p className={styles["user-meta"]}>
+                                        <span className={styles["user-meta"]}>
                                             {(comment.user.gender || comment.user.country) &&
                                                 <span>
                                                     ({comment.user.gender && `${comment.user.gender}, `} 
@@ -94,7 +94,7 @@ function Comments({ blog, user }) {
                                             <span>
                                                 {formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}
                                             </span>
-                                        </p>
+                                        </span>
                                     </p>
                                 </div>
                             </div>
@@ -115,6 +115,41 @@ function Comments({ blog, user }) {
                                         />
                                         <button type="submit" className={styles["submit"]}>Reply</button>
                                     </form>
+                                )}
+
+                                {comment.replies && comment.replies.length > 0 && (
+                                <div className={styles["replies-container"]}>
+                                    {comment.replies.map((reply, rIndex) => (
+                                    <div key={rIndex} className={styles["reply"]}>
+                                        <div className={styles["user-info"]}>
+                                        <img 
+                                            src={reply.user?.image || "/assets/defaultprofilepic.jpg"} 
+                                            alt="avatar" 
+                                            className={styles["avatar"]}
+                                        />
+                                        <div>
+                                            <p className={styles["comment-meta"]}>
+                                                <span className={styles["username"]}>{reply.user?.username}</span>
+                                                <span className={styles["user-meta"]}>
+                                                    {(reply.user.gender || reply.user.country) &&
+                                                    <span>
+                                                        ({reply.user.gender && `${reply.user.gender}, `} 
+                                                        {reply.user.country && `${reply.user.country}`})
+                                                    </span>
+                                                    }
+                                                    <span>
+                                                    {formatDistanceToNow(new Date(reply.createdAt), { addSuffix: true })}
+                                                    </span>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        </div>
+                                        <div className={styles["text"]}>
+                                        <p>{reply.text}</p>
+                                        </div>
+                                    </div>
+                                    ))}
+                                </div>
                                 )}
 
 

@@ -309,7 +309,7 @@ export const addComment = asyncHandler( async(req, res) => {
 
         await blog.save();
 
-        const updatedBlog = await blog.populate('comments.user replies.user', 'name username image gender country')
+        const updatedBlog = await blog.populate('comments.user comments.replies.user', 'name username image gender country')
 
         res.status(201).json({ message: 'Comment added', comment: comment });
     } catch (error) {
