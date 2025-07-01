@@ -321,7 +321,7 @@ export const getComments = asyncHandler( async(req, res) => {
     const { id } = req.params;
     try {
         const blog = await Blog.findById(id)
-            .populate('comments.user', 'name username image gender country');
+            .populate('comments.user comments.results.user', 'name username image gender country');
 
         if (!blog) return res.status(400).json({ message: 'Blog not found' });
 
