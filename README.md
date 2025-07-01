@@ -65,7 +65,7 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - **Profile**:
     Users can navigate to their profile page, and set various fields to reflect on their blog posts. Name is the user's real name (don't have to give accurate name), Username is what people who view the blogs sees, About is displayed below every blog posts, giving information about the author/creator. 
 
-    I have not implemented any features with Gender, or Country as of just yet. I also need to implement a forget password link in the login page. This should send an email to the user and request a password reset. It does not make sense to be able to only have a  "New Password" field under profile, as that defeats the purpose if the user forgets their password.
+   Fields such as gender and country are used during commenting. I also need to implement a forget password link in the login page. This should send an email to the user and request a password reset. It does not make sense to be able to only have a  "New Password" field under profile, as that defeats the purpose if the user forgets their password.
 
     Under here, users can change their profile picture, which automatically deletes the old profile picture over at cloudinary, and uploads the recent one on pressing "Update Profile"
 
@@ -75,6 +75,11 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - **Tags**:
     I'm not really doing much with these right now other than listing them below every blog post. Maybe later I can dedicate a whole page to filtering out different tags.
 
+- **Recommendation**:
+    In blog pages, there is a recommendation section where a list of other blogs are given to the user to choose from. These recommendations are sorted from a decreasing priority with tags + category coming in first, then just categories, then trending blogs, then newest blogs. This is a carousel, so the user is able to click on any blogs and even scroll through them horizontally with a scroll snap.
+
+- **Comments**:
+    Users are able to comment under blog posts once they're signed in. Other signed in users are then able to reply to those comments with only a 1 layer deep comment tree. The commenting feature uses information from user input fields from profile such as geneder and country. 
 
 # Blogs
 

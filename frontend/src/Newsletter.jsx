@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 
 function Newsletter() {
 
-    const onSubmit = () => {
+    const onSubmit = (e) => {
+        e.preventDefault();
         toast.success("Subscribed!");
     }
 

@@ -108,4 +108,7 @@
     .carousel-item {
         flex: 0 0 calc((100% - 2 * 2.5rem) / 3); /* 3 items, 2 gaps */
     }
+    .image-container {
+        height: 160px;
+    }
 }
