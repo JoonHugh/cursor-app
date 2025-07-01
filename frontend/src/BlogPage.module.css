@@ -258,6 +258,9 @@
     background-color: hsl(34, 100%, 81%);
 }
 
+.other-components {
+    width: 95%;
+}
 
 @media (max-width: 1020px) {
     .container {
