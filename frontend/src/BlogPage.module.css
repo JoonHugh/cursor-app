@@ -54,7 +54,7 @@
     max-width: 1080px;
     margin:auto;
     display:grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: minmax(0, 3fr) minmax(300px, 1fr);
     gap:2rem;
     align-content: start;
     /* border:1px solid red; */
@@ -126,6 +126,7 @@
 .markdown-container {
     /* display:block; */
     width:100%;
+    max-width: 100%;
     height: 100%;
     margin:auto;
     margin-bottom: 3rem;
@@ -133,6 +134,7 @@
     border-radius: 4px;
     word-break: break-word;
     overflow-wrap: break-word;
+    word-wrap: break-word;
     /* position: absolute; */
     /* height:auto; */
 }
@@ -141,11 +143,16 @@
     margin-bottom: 3rem;
 }
 .markdown-preview {
-    border-bottom:1px solid hsl(0, 0%, 90%);
+    width: 100%;
+    max-width: 100%;
     padding-bottom: 2rem;
     box-sizing: border-box;
     line-height: 1.5rem;
     color: #777;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    
+    border-bottom:1px solid hsl(0, 0%, 90%);
     /* border:1px solid red; */
 }
 .markdown-preview h1,
