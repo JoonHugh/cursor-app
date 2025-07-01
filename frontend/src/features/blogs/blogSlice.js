@@ -4,6 +4,7 @@ import blogService from './blogService.js';
 const initialState = {
     blogs: [],
     recommendedBlogs: [],
+    comments: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -78,6 +79,27 @@ export const fetchRecommended = createAsyncThunk('recommended/fetchRecommended',
     }
   }
 );
+
+export const fetchComments = createAsyncThunk('comments/fetchComments', async (blogData, thunkAPI) => {
+    try {
+        const response = await blogService.fetchComments(blogData);
+        return response;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const addComment = createAsyncThunk('comments/addComment', async (blogData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const response = await blogService.addComment(blogData, token);
+        return response;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+});
 
 export const blogSlice = createSlice({
     name: 'blog',
@@ -178,6 +200,32 @@ export const blogSlice = createSlice({
                 state.recommendedBlogs = action.payload;
             })
             .addCase(fetchRecommended.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(fetchComments.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchComments.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.comments = action.payload;
+            })
+            .addCase(fetchComments.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(addComment.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(addComment.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.comments.push(action.payload.comment);
+            })
+            .addCase(addComment.rejected, (state, action)  => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

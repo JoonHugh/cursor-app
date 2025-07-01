@@ -34,10 +34,6 @@ const userSchema = mongoose.Schema( {
         type: String,
         default: 'Some things about me...',
     },
-    socials: {
-        type: [String],
-        default: '',
-    },
 }, {
     timestamps: true
 } )

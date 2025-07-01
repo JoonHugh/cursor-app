@@ -275,3 +275,49 @@ export const getRecommended = asyncHandler( async(req, res) => {
 
     res.status(200).json(allBlogs);
 }) // getRecommended
+
+
+export const addComment = asyncHandler( async(req, res) => {
+    const { text } = req.body;
+
+    if (!text) return res.status(400).json({ message: 'Comment text is required' });
+
+    try {
+        const blog = await Blog.findById(req.params.id);
+        if (!blog) return res.status(400).json({ message: 'No blog found' });
+
+        const comment = {
+            user: req.user._id,
+            text,
+            createdAt: new Date(),
+        }
+
+        blog.comments.push(comment);
+        await blog.save();
+
+        const populatedBlog = await blog.populate('comments.user', 'name username image gender country')
+        const lastComment = populatedBlog.comments[populatedBlog.comments.length - 1];
+
+        res.status(201).json({ message: 'Comment added', comment: lastComment });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}); // addComment
+
+export const getComments = asyncHandler( async(req, res) => {
+    const { id } = req.params;
+    try {
+        const blog = await Blog.findById(id)
+            .populate('comments.user', 'name username image gender country');
+
+        if (!blog) return res.status(400).json({ message: 'Blog not found' });
+
+        res.json(blog.comments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}); // getComments
+
+export const deleteComment = asyncHandler( async(req, res) => {
+
+}); // getComments

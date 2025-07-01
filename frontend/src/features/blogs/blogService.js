@@ -82,6 +82,26 @@ const fetchRecommended = async (userId, excludeId, tags, category) => {
     return response.data;
 }
 
+const fetchComments = async (blogData) => {
+    const response = await axios.get(`${API_URL}${blogData._id}/comment`);
+    
+    return response.data;
+}
+
+const addComment = async (blogData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.post(`${API_URL}${blogData._id}/comment`, {
+        text: blogData.text
+    }, config);
+    
+    return response.data
+}
+
 const blogService = {
     getBlogs,
     postBlog,
@@ -89,6 +109,8 @@ const blogService = {
     deleteBlog,
     likeBlog,
     fetchRecommended,
+    fetchComments,
+    addComment,
 }
 
 export default blogService

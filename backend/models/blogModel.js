@@ -62,6 +62,7 @@ const blogSchema = mongoose.Schema({
     comments: [{
         user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
         text: String,
+        replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
         createdAt: {type: Date, default: Date.now },
     }],
     createdAt: {
