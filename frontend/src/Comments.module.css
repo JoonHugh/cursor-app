@@ -46,5 +46,103 @@
     cursor: pointer;
     border: none;
     outline: none;
-    
 }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  .comment {
+    display:flex;
+    flex-direction: column;
+    /* gap:1rem; */
+    /* border:1px solid blue; */
+  }
+  .comment p {
+    /* border:1px solid olive; */
+  }
+  .comment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* border:1px solid green; */
+  }
+  
+  .user-info {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    /* border:1px solid palevioletred; */
+  }
+  
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* border:1px solid plum; */
+  }
+  
+  .username {
+    font-weight: 500;
+    color:black;
+    /* border:1px solid cyan; */
+  }
+  
+  .comment-meta {
+    display:flex;
+    flex-direction: row;
+    gap:8px;
+    font-size: 0.8rem;
+    color: gray;
+    /* border:1px solid rgb(143, 143, 7); */
+  }
+  .user-meta {
+    display:flex;
+    flex-direction: row;
+    gap:8px;
+    /* border:1px solid rgb(143, 143, 7); */
+  }
+  
+  .text {
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    font-size: 13px;
+    margin-left: 16px;
+    padding-left: Calc(16px + .8rem);
+    /* padding-bottom: Calc(16px + .8rem); */
+    /* border-left: 1px solid #dd6060; */
+    /* border-bottom: 1px solid #bd5454; */
+    /* border:1px solid lightcoral; */
+    border-bottom-left-radius: 12px;
+  }
+  .actions {
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+    /* border:1px solid red; */
+  }
+  .reply {
+    display:flex;
+    flex-direction: row;
+    gap:8px;
+    font-size: 13px;
+  }
+  .actions button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border:none;
+    outline:none;
+    cursor: pointer;
+  }
+  .reply-input {
+    padding: 1rem;
+    width:100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border:1px solid #eee;
+    outline:none;
+  }

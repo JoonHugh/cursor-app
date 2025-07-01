@@ -100,20 +100,10 @@ function Profile() {
         }
     };
     
-    // const changeImage = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onload = (event) => {
-    //             setFormData(...formData, {"image": event.target.})
-    //         }
-    //     }
-    // }
-
     const genders = [
-        { label: "Male", value: "MALE" },
-        { label: "Female", value: "FEMALE" },
-        { label: "Other", value: "OTHER" },
+        { label: "He/Him", value: "He/Him" },
+        { label: "She/Her", value: "She/Her" },
+        { label: "They/Them", value: "They/Them" },
     ];
     const options = useMemo(() => countryList().getData(), []);
 

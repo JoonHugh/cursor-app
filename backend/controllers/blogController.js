@@ -278,7 +278,7 @@ export const getRecommended = asyncHandler( async(req, res) => {
 
 
 export const addComment = asyncHandler( async(req, res) => {
-    const { text } = req.body;
+    const { text, parentId } = req.body;
 
     if (!text) return res.status(400).json({ message: 'Comment text is required' });
 
@@ -290,15 +290,28 @@ export const addComment = asyncHandler( async(req, res) => {
             user: req.user._id,
             text,
             createdAt: new Date(),
+            replies: []
         }
 
-        blog.comments.push(comment);
+        if (parentId) {
+            // nested reply
+            const parentComment = blog.comments.id(parentId);
+            if (!parentComment) return res.status(404).json({ message: "Parent comment not found"});
+
+            parentComment.replies.push({
+                user: req.user._id,
+                text,
+                createdAt: new Date()
+            });
+        } else {
+            blog.comments.push(comment);
+        }
+
         await blog.save();
 
-        const populatedBlog = await blog.populate('comments.user', 'name username image gender country')
-        const lastComment = populatedBlog.comments[populatedBlog.comments.length - 1];
+        const updatedBlog = await blog.populate('comments.user replies.user', 'name username image gender country')
 
-        res.status(201).json({ message: 'Comment added', comment: lastComment });
+        res.status(201).json({ message: 'Comment added', comment: comment });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

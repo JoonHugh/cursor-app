@@ -96,7 +96,8 @@ const addComment = async (blogData, token) => {
     }
 
     const response = await axios.post(`${API_URL}${blogData._id}/comment`, {
-        text: blogData.text
+        text: blogData.text,
+        parentId: blogData.parentId || null
     }, config);
     
     return response.data

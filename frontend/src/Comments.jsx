@@ -2,13 +2,23 @@ import styles from './Comments.module.css';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchComments, addComment } from './features/blogs/blogSlice.js';
+import { formatDistanceToNow } from 'date-fns';
+import { BsChatLeftTextFill } from "react-icons/bs";
+import { IoIosMore } from "react-icons/io";
+import { toast } from 'react-toastify';
+
+
+
+
 
 function Comments({ blog, user }) {
 
     const [comment, setComment] = useState('')
+    const [showReplyForm, setShowReplyForm] = useState(null);
+    const [replyText, setReplyText] = useState('');
     const dispatch = useDispatch();
 
-    const { comments, isLoading } = useSelector(state => state.blog);
+    const { comments, isLoading } = useSelector(state => state.blogs);
 
     useEffect(() => {
         if (blog?._id) {
@@ -17,15 +27,29 @@ function Comments({ blog, user }) {
     }, [blog?._id, dispatch]);
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         // blog.comments.push({ user: user, text: comment })
-        if (!comment.trim()) return;
-
-        dispatch(addComment({ _id: blog._id, text: comment }));
-        console.log(blog.comments);
-        setComment('');
+        try {
+            if (!comment.trim()) return;
+    
+            await dispatch(addComment({ _id: blog._id, text: comment })).unwrap();
+            console.log("comments:", comments);
+            setComment('');
+            toast.success('Comment posted');
+        } catch (error) {
+            toast.error('Failed to post comment');
+        }
     }
+
+    const handleReplySubmit = (e, parentId) => {
+        e.preventDefault();
+        if (!replyText.trim()) return;
+      
+        dispatch(addComment({ _id: blog._id, text: replyText, parentId }));
+        setReplyText('');
+        setShowReplyForm(null);
+      };
 
     return(
         <div className={styles["container"]}>
@@ -50,24 +74,53 @@ function Comments({ blog, user }) {
 
             <div className={styles["comment-list"]}>
                 {comments?.length > 0 ? (
-                    comments.map((comment, index) => {
+                    comments.map((comment, index) => (
                         <div key={index} className={styles["comment"]}>
                             <div className={styles["user-info"]}>
-                                <img src={comment.user?.image || "/assets/defaultprofilepic.jpc"} alt="avatar" />
+                                <img 
+                                    src={comment.user?.image || "/assets/defaultprofilepic.jpc"} 
+                                    alt="avatar" 
+                                    className={styles["avatar"]}/>
                                 <div>
-                                    <p className={styles["username"]}>{comment.user?.username}</p>
-                                    <p className={styles["meta"]}>
-                                        {comment.user?.gender && `${comment.user.gender}, `} 
-                                        {comment.user?.country}
+                                    <p className={styles["comment-meta"]}>
+                                        <span className={styles["username"]}>{comment.user?.username}</span>
+                                        <p className={styles["user-meta"]}>
+                                            {(comment.user.gender || comment.user.country) &&
+                                                <span>
+                                                    ({comment.user.gender && `${comment.user.gender}, `} 
+                                                    {comment.user.country && `${comment.user.country}`})
+                                                </span>
+                                            }
+                                            <span>
+                                                {formatDistanceToNow(new Date(comment.createdAt), { addSuffix: true })}
+                                            </span>
+                                        </p>
                                     </p>
                                 </div>
                             </div>
-                            <p className={styles["text"]}>{comment.text}</p>
-                            <p className={styles["date"]}>
-                                {new Date(comment.createdAt).toLocaleDateString()}
-                            </p>
+                            <div className={styles["text"]}>
+                                <p>{comment.text}</p>
+                                <div className={styles["actions"]}>
+                                    <button className={styles["reply"]} onClick={() => setShowReplyForm((prev) => (prev === comment._id ? null : comment._id))}><BsChatLeftTextFill />Reply</button>
+                                    <button className={styles["more"]}><IoIosMore /></button>
+                                </div>
+
+                                {showReplyForm === comment._id && (
+                                    <form onSubmit={(e) => handleReplySubmit(e, comment._id)}>
+                                        <textarea 
+                                        value={replyText}
+                                        onChange={(e) => setReplyText(e.target.value)}
+                                        className={styles["reply-input"]}
+                                        placeholder="Write a reply..."
+                                        />
+                                        <button type="submit" className={styles["submit"]}>Reply</button>
+                                    </form>
+                                )}
+
+
+                            </div>
                         </div>
-                    })
+                    ))
                 ) : (
                     <p>No comments yet</p>
                 )}
