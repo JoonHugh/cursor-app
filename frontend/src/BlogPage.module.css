@@ -1,3 +1,6 @@
+.main-container {
+    margin-bottom: 3rem;
+}
 .loading-container {
     display:flex;
     flex-direction: column;
@@ -217,17 +220,14 @@
     box-sizing: border-box;
 }
 .SideBar {
-    /* position: absolute;
-    top:0;
-    left:0;  */
-    /* MAYBE SOME IDEAS WITH SCALE */
-    /* display: block; */
-    /* position:; */
-    width: 100%; /* takes full width of parent */
-    /* border:1px solid green; */
-    box-sizing: border-box;
-    /* position: fixed; */
+    position: sticky;
+    top:-5.5rem;
+    margin-bottom: 3rem;
 }
+.markdown-wrapper {
+    position: relative;
+    width: 100%;
+  }
 .private-post-message {
     display:flex;
     flex-direction: column;

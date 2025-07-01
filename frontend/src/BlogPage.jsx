@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import { likeBlog } from './features/blogs/blogSlice.js'
 import Recommended from './Recommended.jsx';
 import Comments from './Comments.jsx';
+import GridSection from './GridSection.jsx';
 
 
 
@@ -151,7 +152,7 @@ function BlogPage() {
     );
 
     return(
-        <div>
+        <div className={styles["main-container"]}>
             <div className={styles["hero-section"]}>
                 <div className={styles["image-container"]}>
                     <img 
@@ -186,6 +187,7 @@ function BlogPage() {
                     <SideBar className={styles["SideBar"]} images={images}/>
                 </div>
             </div>
+            <GridSection />
         </div>
     ) // return
 

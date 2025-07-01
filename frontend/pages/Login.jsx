@@ -13,7 +13,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 function Login() {
 
   const DEBUG = import.meta.env.DEBUG;
-  
+
   const containerVariants = {
     hidden: {
       clipPath: 'inset(50% 0% 50% 0%)',
@@ -60,7 +60,7 @@ function Login() {
 
     // if (isSuccess || user) {
     if (isSuccess) {
-      navigate('/')
+      navigate(-1)
     } // if
 
     dispatch(reset());
@@ -87,7 +87,7 @@ function Login() {
     dispatch(login(userData));
 
     if (isSuccess) {
-      navigate('/')
+      navigate(-1)
     } else {
       console.log("error! Try again");
     }
@@ -121,7 +121,7 @@ function Login() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3 }}
           >
-            <Link className={styles["go-back"]} to={'/'}><IoIosArrowRoundBack /> Go back</Link>
+            <Link className={styles["go-back"]} to='..' relative="path"><IoIosArrowRoundBack /> Go back</Link>
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}

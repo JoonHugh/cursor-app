@@ -4,9 +4,16 @@ import Follow from './Follow.jsx';
 import Instagram from './Instagram.jsx';
 import SideTrending from './SideTrending.jsx';
 
-function SideBar({ images, className }) {
+function SideBar({ className }) {
 
-    const DEBUG = import.meta.env.DEBUG;
+    const images = [
+        '/assets/insta1.png',
+        '/assets/insta2.png',
+        '/assets/insta3.png',
+        '/assets/insta4.png',
+        '/assets/insta5.png',
+        '/assets/insta6.png'
+    ];
 
     return(
         <div className={className}>

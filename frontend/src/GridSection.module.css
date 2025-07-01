@@ -6,6 +6,7 @@
     border:none;
     outline: none;
     box-shadow: none;
+    /* margin-bottom: 3rem; */
 }
 .grid img {
     display:block;
@@ -64,4 +65,11 @@
 .post-container:hover .post-meta-content {
     opacity: 1;
     transform:translate(-50%, -50%)
+}
+
+@media (min-width: 1021px) {
+    .grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: none;
+    }
 }

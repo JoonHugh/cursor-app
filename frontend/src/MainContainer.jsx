@@ -7,23 +7,14 @@ import Newsletter from './Newsletter.jsx';
 
 function MainContainer() {
 
-    const images = [
-        '/assets/insta1.png',
-        '/assets/insta2.png',
-        '/assets/insta3.png',
-        '/assets/insta4.png',
-        '/assets/insta5.png',
-        '/assets/insta6.png'
-    ];
-
     return(
         <div className={styles["app-font"]}>
             <div className={styles['main-container']}>
                 <Hero />
                 <BlogGrid />
-                <SideBar images={images} />
+                <SideBar />
             </div>
-                <GridSection images={images} />
+                <GridSection />
             <div className={styles['main-container2']}>
                 <Newsletter />
             </div>

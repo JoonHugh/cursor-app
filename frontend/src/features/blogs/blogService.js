@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const  API_URL = import.meta.env.VITE_BLOG_API_URL;
+const DEBUG = import.meta.env.DEBUG;
+const API_URL = import.meta.env.VITE_BLOG_API_URL;
 
 // Get user blogs
 const getBlogs = async (token) => {
@@ -74,8 +75,8 @@ const fetchRecommended = async (userId, excludeId, tags, category) => {
         category
       }).toString();
 
-    console.log("fetching recommended!");
-    console.log(`with userId: ${userId} with params ${queryParams}`)
+    if (DEBUG) console.log("fetching recommended!");
+    if (DEBUG) console.log(`with userId: ${userId} with params ${queryParams}`)
 
     const response = await axios.get(`${API_URL}user/${userId}?${queryParams}`);
 

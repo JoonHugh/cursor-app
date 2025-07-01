@@ -10,7 +10,7 @@
     text-align: center;
     align-items: center;
     padding-bottom: 3rem;
-    border-bottom:1px solid hsl(0, 0%, 90%);
+    /* border-bottom:1px solid hsl(0, 0%, 90%); */
     margin-bottom: 3rem;
 }
 .main-container h2 {

@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { BsChatLeftTextFill } from "react-icons/bs";
 import { IoIosMore } from "react-icons/io";
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,6 +18,7 @@ function Comments({ blog, user }) {
     const [showReplyForm, setShowReplyForm] = useState(null);
     const [replyText, setReplyText] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { comments, isLoading } = useSelector(state => state.blogs);
 
@@ -65,9 +67,13 @@ function Comments({ blog, user }) {
                     <button type="submit" className={styles["submit"]}>Post comment</button>
                 </form>
             ) : (
-                <p>
-                    Must be logged in to comment!
-                </p>
+                <div className={styles["login"]}>
+                    <p className={styles["login-prompt"]}>Log in or register to leave a comment</p>
+                    <div className={styles["button-group"]}>
+                        <button onClick={() => navigate('/login')}>Login</button>
+                        <button onClick={() => navigate('/register')}>Register</button>
+                    </div>
+                </div>
             )}
 
             {isLoading && <p>Loading comments...</p>}
@@ -119,7 +125,7 @@ function Comments({ blog, user }) {
 
                                 {comment.replies && comment.replies.length > 0 && (
                                 <div className={styles["replies-container"]}>
-                                    {comment.replies.map((reply, rIndex) => (console.log(reply),
+                                    {comment.replies.map((reply, rIndex) => (
                                     <div key={rIndex} className={styles["reply"]}>
                                         <div className={styles["user-info"]}>
                                             <img 

@@ -7,3 +7,12 @@
 .main-container h5 {
     font-weight: 500;
 }
+
+@media (min-width: 1021px) {
+    .side-bar {
+        position: sticky;
+        top: 2rem; /* adjust based on desired spacing from top */
+        align-self: start; /* ensures it sticks at top of its column */
+        height: fit-content;
+    }
+}

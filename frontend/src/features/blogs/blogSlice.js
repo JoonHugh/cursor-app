@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import blogService from './blogService.js';
 
+const DEBUG = import.meta.env.DEBUG;
+
 const initialState = {
     blogs: [],
     recommendedBlogs: [],
@@ -68,10 +70,10 @@ export const likeBlog = createAsyncThunk('blogs/like', async (blogData, thunkAPI
 
 export const fetchRecommended = createAsyncThunk('recommended/fetchRecommended', async ({ userId, excludeId, tags, category }) => {
     try {
-        console.log("Here");
+        if (DEBUG) console.log("Here");
         const response = await blogService.fetchRecommended(userId, excludeId, tags, category)
-        console.log("Here2");
-        console.log("response:", response);
+        if (DEBUG) console.log("Here2");
+        if (DEBUG) console.log("response:", response);
         return response;
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();

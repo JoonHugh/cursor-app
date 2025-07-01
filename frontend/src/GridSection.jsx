@@ -2,7 +2,17 @@ import styles from './GridSection.module.css';
 import { FiHeart } from "react-icons/fi";
 import { BiComment } from "react-icons/bi";
 
-function GridSection({ images }) {
+function GridSection() {
+
+    const images = [
+        '/assets/insta1.png',
+        '/assets/insta2.png',
+        '/assets/insta3.png',
+        '/assets/insta4.png',
+        '/assets/insta5.png',
+        '/assets/insta6.png'
+    ];
+
     return(
         <div className={styles["grid"]}>
             {images.map((src, index) => (
