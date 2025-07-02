@@ -7,12 +7,15 @@ import { TbShieldLock } from 'react-icons/tb';
 import { FiHome } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg";
 import { IoCloseOutline } from "react-icons/io5";
-
+import { LuDoorClosed } from "react-icons/lu";
+import { CiLogin } from "react-icons/ci";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 
 import styles from './Navbar.module.css';
 
-    function NavBar() {
+    function NavBar({ user, onLogout}) {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -75,12 +78,35 @@ import styles from './Navbar.module.css';
                         </ListItem>
                     ))}
                     <p>Account</p>
-                    {accountItems.map(({text, icon, link}) => (
-                        <ListItem key={text} component="a" href={link} className={styles["list"]}>
-                            <ListItemIcon className={styles["list-icons"]}>{icon}</ListItemIcon>
-                            <ListItemText primary={text} className={styles["text"]}/>
-                        </ListItem>
-                    ))}
+                    {user ? (
+                        <>
+                            {accountItems.map(({text, icon, link}) => (
+                                <ListItem key={text} component="a" href={link} className={styles["list"]}>
+                                    <ListItemIcon className={styles["list-icons"]}>{icon}</ListItemIcon>
+                                    <ListItemText primary={text} className={styles["text"]}/>
+                                </ListItem>
+                            ))}
+                            <ListItem component="a" href="/dashboard" className={styles["list"]}>
+                                <ListItemIcon className={styles["list-icons"]}><MdOutlineSpaceDashboard /></ListItemIcon>
+                                <ListItemText primary="My Blogs" className={styles["text"]} />
+                            </ListItem>
+                            <ListItem component="a" onClick={onLogout} className={styles["list"]}>
+                                <ListItemIcon className={styles["list-icons"]}><LuDoorClosed /></ListItemIcon>
+                                <ListItemText primary="Logout" className={styles["text"]} />
+                            </ListItem>
+                        </>
+                    ) : (
+                        <>
+                            <ListItem component="a" href="/login" className={styles["list"]}>
+                                <ListItemIcon className={styles["list-icons"]}><CiLogin /></ListItemIcon>
+                                <ListItemText primary="Login" className={styles["text"]} />
+                            </ListItem>
+                            <ListItem component="a" href="/register" className={styles["list"]}>
+                                <ListItemIcon className={styles["list-icons"]}><FaUser /></ListItemIcon>
+                                <ListItemText primary="Register" className={styles["text"]} />
+                            </ListItem>
+                        </>
+                    )}
                 </List>
             </Drawer>
         </div>

@@ -36,4 +36,7 @@ body {
   .main-container {
       width: 100%;
   }
+  .main-container2 {
+    padding-top:0;
+  }
 }

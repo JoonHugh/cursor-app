@@ -53,3 +53,7 @@
 .pinterest-icon:hover {
     color: #E72B1C;
 }
+
+@media (max-width: 768px) {
+    
+}

@@ -1,13 +1,12 @@
-import { BsMoonStars } from "react-icons/bs";
-import { CiLogin, CiLogout } from "react-icons/ci";
+import { LuDoorClosed } from "react-icons/lu";
+import { CiLogin } from "react-icons/ci";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { MdOutlineSpaceDashboard } from "react-icons/md";
 import styles from './Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from './features/auth/authSlice.js';
 import NavBar from './Navbar.jsx';
-import { LuDoorClosed } from "react-icons/lu";
 
 
 
@@ -29,7 +28,7 @@ function Header() {
         <div className={styles["header-grid"]}>
                 {/* <button className={styles["menu-button"]} ><IoMenu /></button> */}
                 <div className={styles["navbar"]}>
-                    <NavBar />
+                    <NavBar user={user} onLogout={onLogout}/>
                 </div>
                 <h1 className={styles["website-name"]}><Link to="/">cursor</Link></h1>
                 <ul className={styles["button-group"]}>

@@ -134,3 +134,13 @@
     display:flex;
     margin-right: 6px;
 }
+
+@media (max-width: 768px) {
+    .header-grid {
+        width: 100%;
+        /* border:4px solid lightblue; */
+    }
+    .button-group {
+        display: none;
+    }
+ }

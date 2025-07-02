@@ -24,14 +24,19 @@
 }
 .form {
     width:70%;
+    display:flex;
+    flex-direction: column;
     /* border:1px solid blue; */
 }
 .inputs  {
+    display:flex;
+    flex-direction: row;
     margin-bottom: 1rem;
     box-shadow: 0px 0px 0px 0.5px rgba(0.1, 0.1, 0.1, 0.1); 
+    /* border:1px solid red; */
 }
 .email-input {
-    width:75%;
+    width:100%;
     padding: 9px;
     padding-left: 20px;
     border:none;
@@ -40,7 +45,7 @@
     box-sizing: border-box;
 }
 .submit {
-    width:25%;
+    /* width:25%; */
     padding: 9px;
     border:none;
     border-radius: 0;
@@ -48,7 +53,6 @@
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    letter-spacing: .1rem;
     color:white;
     cursor:pointer;
     box-sizing: border-box;
@@ -67,4 +71,10 @@
 .disclaimer a:hover {
     color:hsl(0, 0%, 50%);
 
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        padding-top:3rem;
+    }
 }
