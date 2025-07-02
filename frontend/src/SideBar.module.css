@@ -1,5 +1,7 @@
 .main-container {
-    width:350px;
+    width: 100%;
+    max-width:350px;
+    box-sizing: border-box;
     margin:auto;
     margin-bottom: 6rem;
     /* border:1px solid red; */

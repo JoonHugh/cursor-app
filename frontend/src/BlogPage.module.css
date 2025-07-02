@@ -57,6 +57,7 @@
     grid-template-columns: minmax(0, 3fr) minmax(300px, 1fr);
     gap:2rem;
     align-content: start;
+    box-sizing: border-box;
     /* border:1px solid red; */
 }
 .image-container {
@@ -222,14 +223,19 @@
 .side-bar {
     position: relative;
     display:block;
-    /* border:1px solid coral; */
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+    /* border:1px solid coral; */
 }
 .SideBar {
     position: sticky;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     top:-5.5rem;
     margin-bottom: 3rem;
+    /* border:1px solid blue; */
 }
 .markdown-wrapper {
     position: relative;
