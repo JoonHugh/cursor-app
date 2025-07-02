@@ -104,7 +104,9 @@
     }
     .entry-image {
         height: 100%;
+        min-height: 300px;
         max-height: 300px;
+        object-fit: cover;
     }
     .hover-text {
         max-height: 300px;
