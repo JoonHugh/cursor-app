@@ -47,6 +47,9 @@
     transition: transform 0.3s ease;
     /* border:1px solid blue; */
 }
+.carousel-item a {
+    text-decoration: none;
+}
 
 .category {
     font-size: 11px;
@@ -54,6 +57,7 @@
     color: #777;
     margin-bottom: .75rem;
 }
+
 
 .title {
     font-size: 1rem;
@@ -67,8 +71,10 @@
     display: flex;
     gap: 8px;
     font-size: 0.75rem;
-    color: #777;
     margin-bottom: 1rem;
+}
+.meta a {
+    color: #777;
 }
 
 .image-container {

@@ -4,6 +4,15 @@
   letter-spacing: .025em;
 }
 body {
+  min-height: 100vh;
+  margin:0;
+  position: relative;
+  /* border:1px solid red; */
+}
+body::after {
+  content: '';
+  display: block;
+  height: 9rem;
 }
 .main-container {
   width:100%;

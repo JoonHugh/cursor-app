@@ -59,21 +59,25 @@ function Recommended({ blog }) {
             <div className={styles["carousel-container"]} onScroll={handleScroll} ref={carouselRef}>
                 <div className={styles["carousel"]}>
                     {Array.isArray(recommendedBlogs) && recommendedBlogs.map((blog) => (
-                        <a href={`/blog/${blog.slug}`} className={styles["carousel-item"]} key={blog._id}>
-                            <div className={styles["image-container"]}>
+                        <div className={styles["carousel-item"]} key={blog._id}>
+                            <a href={`/blog/${blog.slug}`} className={styles["image-container"]}>
                                 <img
                                     src={blog.image || "/assets/interior2.jpg"}
                                     alt="blog"
                                     className={styles["carousel-image"]}
                                 />
-                            </div>
-                            <span className={styles["category"]}>{blog.category}</span>
-                            <span className={styles["title"]}>{blog.title}</span>
+                            </a>
+                            <a href={`/blog/${blog.slug}`} className={styles["category"]}>{blog.category}</a>
+                            <a href={`/blog/${blog.slug}`} className={styles["title"]}>{blog.title}</a>
                             <div className={styles["meta"]}>
-                                <span className={styles["user"]}>{blog.user?.username}</span> • <span className={styles["date"]}>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}
-                                </span>
+                                <a href={`/blog/${blog.slug}`} className={styles["user"]}>
+                                    {blog.user?.username}
+                                </a> • 
+                                <a href={`/blog/${blog.slug}`} className={styles["date"]}>
+                                    {new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
             </div>

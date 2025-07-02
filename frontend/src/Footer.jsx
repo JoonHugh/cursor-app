@@ -2,7 +2,7 @@ import styles from './Footer.module.css';
 
 function Footer() {
     return(
-        <>
+        <div className={styles["container"]}>
             <div className={styles["main-container"]}>
                 <div className={styles["box"]}>
                     <a href="/home"><h1>cursor</h1></a>
@@ -24,7 +24,7 @@ function Footer() {
             <div className={styles["copyright"]}>
                 <p>Copyright &copy; 2025 <a href="https://hugh-dev.com/">Hugh-Dev Studios</a>. All rights reserved.</p>
             </div>
-        </>
+        </div>
     );
 } // Footer
 

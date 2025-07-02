@@ -11,7 +11,7 @@ function Subscribe({ blog }) {
         <div className={styles["main-container"]}>
             <div className={styles["container"]}>
                 <label className={styles["label"]}>SUBSCRIBE</label>
-                <span className={styles["info"]}>Get notified of {blog.user.username}'s latest updates and posts!</span>
+                <span className={styles["info"]}>Get notified of {blog?.user ? (blog.user.username) : ("your favorite blogger")}'s latest updates and posts!</span>
                 <form onSubmit={onSubmit} className={styles["form"]}>
                     <div className={styles["input-container"]}>
                         <input className={styles["input-email"]} type="email" placeholder="Enter your email"></input>
