@@ -23,7 +23,8 @@
     font-weight: 400;
 }
 .form {
-    width:70%;
+    width:100%;
+    max-width: 450px;
     display:flex;
     flex-direction: column;
     /* border:1px solid blue; */

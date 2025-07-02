@@ -8,16 +8,19 @@ function Footer() {
                     <a href="/home"><h1>cursor</h1></a>
                     <h5>Joon's personal blog website</h5>
                 </div>
-                <div className={styles["navigation"]}>
-                    <div>
-                        <a href="/">Home</a>
-                        <a href="/about">About Us</a>
-                        <a href="/readme">Read Me</a>
-                    </div>
-                    <div>
-                        <a href="/privacy">Privacy Policy</a>
-                        <a href="/tos">Terms & Conditions</a>
-                        <a href="/users/me">Profile</a>
+                <div className={styles["label"]}>
+                    <span>Quick Links</span>
+                    <div className={styles["navigation"]}>
+                        <div>
+                            <a href="/">Home</a>
+                            <a href="/about">About Us</a>
+                            <a href="/readme">Read Me</a>
+                        </div>
+                        <div>
+                            <a href="/privacy">Privacy Policy</a>
+                            <a href="/tos">Terms & Conditions</a>
+                            <a href="/users/me">Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
