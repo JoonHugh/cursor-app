@@ -84,9 +84,8 @@ function Hero() {
                 <h2 className={styles["hero-title"]}>{blog.title}</h2>
                 <div className={styles["hero-meta"]}>
                   <span>{blog.user?.username}</span> • 
-                  <span>{new Date(blog.createdAt).toLocaleDateString()}</span> •
-                  <span>{blog.views} views</span> • 
-                  <span><i className="material-icons">&#xe80d;</i></span>
+                  <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</span> •
+                  <span>{blog.views} views</span>
                 </div>
               </div>
             </div>
