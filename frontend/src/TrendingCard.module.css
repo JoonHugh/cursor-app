@@ -107,6 +107,10 @@
     transform: translate(-50%, -50%);
     opacity: 1;
 }
+.meta {
+    display:flex;
+    justify-content: end;
+}
 
 @media (max-width: 768px) {
     .trending-card-container {
@@ -142,8 +146,6 @@
     }
     .text {
         /* border:1px solid blue; */
-        /* padding-left: 1rem; */
-        /* padding-right: 1rem; */
         display:flex;
         flex-direction: row;
         justify-content: space-between;
@@ -159,5 +161,6 @@
     .meta {
         font-size: 12px;
         justify-self: end;
+        justify-content: end;
     }
 }
