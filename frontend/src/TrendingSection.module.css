@@ -25,16 +25,24 @@
 @media (max-width: 768px) {
     .trending-posts-container {
         /* margin:1rem; */
-        padding:4rem;
+        padding:1rem;
         /* border:1px solid #eee; */
         /* border-radius: 8px; */
     }
     .trending-posts-grid {
         /* gap:2rem; */
-        grid-template-columns: none;
-        grid-template-rows: repeat(4, 1fr);
-        border-radius: 8px;
+        /* grid-template-columns: none;
+        grid-template-rows: repeat(4, 1fr); */
+        /* gap:0; */
+        /* border-radius: 8px; */
         /* border:3px solid greenyellow; */
         /* overflow: hidden; */
+    }
+}
+
+@media (max-width: 450px) {
+    .trending-posts-grid {
+        grid-template-columns: none;
+        grid-template-rows: repeat(4, 1fr);
     }
 }

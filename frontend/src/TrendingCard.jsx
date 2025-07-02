@@ -1,9 +1,13 @@
 import styles from './TrendingCard.module.css';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMediaQuery } from '@mui/material';
 
 
 function TrendingCard({ index, blog }) {
+
+    const isMobile = useMediaQuery('(max-width:768px)');
+
 
     return(
         <div className={styles["trending-card-container"]}>
@@ -15,8 +19,19 @@ function TrendingCard({ index, blog }) {
                     <span className={styles["arrow"]}><FontAwesomeIcon icon={faLongArrowAltRight} /></span>
                 </div>
                 <a className={styles["text"]} href={`blog/${blog.slug}`}>
-                    <h4 className={styles["title"]}><span>{blog.title}</span></h4>
-                    <p className={styles["meta"]}>{new Date(blog.createdAt).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</p>
+                    <div className={styles["blog-info"]}>
+                        <p className={styles["title"]}>{blog.title}</p>
+                            {isMobile && (
+                                <div className={styles["info"]}>
+                                    <p>{blog.user.username}</p>
+                                    <p>{blog.category}</p>
+                                </div>
+                            )}
+                    </div>
+                        <div>
+                            <p className={styles["meta"]}>{new Date(blog.createdAt).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</p>
+                            <p className={styles["meta"]}>{blog.readTime}</p>
+                        </div>
                 </a>
             </div>
     );
