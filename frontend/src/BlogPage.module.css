@@ -1,5 +1,6 @@
 .main-container {
     margin-bottom: 3rem;
+    overflow-x: hidden;
 }
 .loading-container {
     display:flex;
@@ -58,6 +59,7 @@
     gap:2rem;
     align-content: start;
     box-sizing: border-box;
+
     /* border:1px solid red; */
 }
 .image-container {
@@ -136,7 +138,7 @@
     word-break: break-word;
     overflow-wrap: break-word;
     word-wrap: break-word;
-    border:1px solid  red;
+    /* border:1px solid  red; */
     /* position: absolute; */
     /* height:auto; */
 }
@@ -151,6 +153,7 @@
     box-sizing: border-box;
     line-height: 1.5rem;
     color: #777;
+    word-wrap: break-word;
     overflow-wrap: break-word;
     word-break: break-word;
     
@@ -206,6 +209,8 @@
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.95rem;
+    overflow-x: auto;
+    display:block;
     /* border:1px solid red; */
 }
   
@@ -275,16 +280,15 @@
 @media (max-width: 1020px) {
     .container {
         grid-template-columns: 1fr;
-        margin:0;
     }
     .hero-container {
         width: 85.5%;
     }
     .markdown-container {
         margin-bottom: 1.5rem;
-        width:100vw;
         padding:1rem;
-        /* width:100%; */
+        width:100%;
+        /* overflow-x: hidden; */
     }
     .markdown-preview {
         max-width: 100%;

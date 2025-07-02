@@ -6,7 +6,7 @@
   box-sizing: border-box;
   overflow-wrap: break-word;
   background-color: hsl(0, 0%, 97%);
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .section-name {
   text-transform: uppercase;
@@ -79,7 +79,7 @@
   align-items: center;
   border: 1px solid #eee;
   border-radius: 6px;
-  border:1px solid red;
+  /* border:1px solid red; */
 }
 .login-prompt {
   text-align: center;
