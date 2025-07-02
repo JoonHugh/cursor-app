@@ -26,7 +26,6 @@ function Header() {
 
     return(
         <div className={styles["header-grid"]}>
-                {/* <button className={styles["menu-button"]} ><IoMenu /></button> */}
                 <div className={styles["navbar"]}>
                     <NavBar user={user} onLogout={onLogout}/>
                 </div>

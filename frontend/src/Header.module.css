@@ -54,14 +54,6 @@
     background-color: transparent;
     /* border:1px solid pink; */
 }
-.menu-button {
-    justify-self: left;
-
-    transition:.3s ease;
-}
-.menu-button:hover {
-    opacity:0.5;
-}
 
 .button-group {
     display:flex;
@@ -142,5 +134,8 @@
     }
     .button-group {
         display: none;
+    }
+    .navbar {
+        padding-left: 1rem;
     }
  }

@@ -11,13 +11,13 @@ import { LuDoorClosed } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-
-
+import { useMediaQuery } from '@mui/material';
 import styles from './Navbar.module.css';
 
     function NavBar({ user, onLogout}) {
 
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const isMobile = useMediaQuery('(max-width:768px)');
 
     const toggleDrawer = () => {
         setDrawerOpen(!drawerOpen);
@@ -48,7 +48,7 @@ import styles from './Navbar.module.css';
 
             <Drawer
                 className={styles["drawer"]}
-                anchor="left"
+                anchor={isMobile ? 'top' : 'left'}
                 // variant="temporary"
                 sx={{ width: 'auto', minWidth: 'unset'}}
                 open={drawerOpen}
