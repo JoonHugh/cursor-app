@@ -30,9 +30,6 @@
 .box a:hover {
     color:hsl(0, 0%, 50%);
 }
-/* .box h1 {
-    cursor 
-} */
 .box h5 {
     white-space: nowrap;
     font-weight: 400;

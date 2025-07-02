@@ -136,6 +136,7 @@
     word-break: break-word;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    border:1px solid  red;
     /* position: absolute; */
     /* height:auto; */
 }
@@ -271,10 +272,6 @@
     background-color: hsl(34, 100%, 81%);
 }
 
-.other-components {
-    width: 95%;
-}
-
 @media (max-width: 1020px) {
     .container {
         grid-template-columns: 1fr;
@@ -287,7 +284,6 @@
         margin-bottom: 1.5rem;
         width:100vw;
         padding:1rem;
-        /* border:1px solid  red; */
         /* width:100%; */
     }
     .markdown-preview {
