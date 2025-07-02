@@ -3,18 +3,17 @@
   word-spacing: .125rem;
   letter-spacing: .025em;
 }
-body {
-  min-height: 100vh;
-  margin:0;
-  position: relative;
+html, body, #root {
+  height: 100%;
   /* border:1px solid red; */
 }
-body::after {
-  content: '';
-  display: block;
-  height: 9rem;
+body {
+  display: flex;
+  flex-direction: column;
+  /* height:  */
 }
 .main-container {
+  flex:1;
   width:100%;
   padding-top:3rem;
   padding-bottom: 2rem;

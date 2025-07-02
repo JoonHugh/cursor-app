@@ -31,3 +31,9 @@ body {
     word-spacing: .1rem;
     background-color: hsl(220, 20%, 98%);
 }
+
+@media (max-width: 768px) {
+  .main-container {
+      width: 100%;
+  }
+}
