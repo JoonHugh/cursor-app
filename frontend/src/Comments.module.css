@@ -89,7 +89,6 @@
   display: flex;
   flex-direction: row;
   gap: 8px;
-  color:black;
 }
 .login button {
   display: flex;
@@ -98,6 +97,7 @@
   cursor: pointer;
   outline: none;
   transition: 0.2s ease;
+  color:black;
 }
 .login button:hover {
   background-color: antiquewhite;
