@@ -1,6 +1,6 @@
 .main-container {
     margin-bottom: 3rem;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 .loading-container {
     display:flex;
@@ -209,7 +209,7 @@
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.95rem;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     display:block;
     /* border:1px solid red; */
 }
