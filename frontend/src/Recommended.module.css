@@ -52,7 +52,7 @@
     font-size: 11px;
     font-weight: 500;
     color: #777;
-    margin-bottom: 1rem;
+    margin-bottom: .75rem;
 }
 
 .title {
@@ -77,6 +77,10 @@
     box-sizing: border-box;
     margin-bottom: 1rem;
     /* border:1px solid red; */
+    transition: 0.2s ease;
+}
+.image-container:hover {
+    filter: brightness(.9);
 }
 
 .carousel-image {

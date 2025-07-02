@@ -41,6 +41,7 @@
 .navigation div {
     display:flex;
     flex-direction: column;
+    gap:6px;
 }
 .navigation a {
     text-decoration: none;
