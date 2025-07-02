@@ -163,7 +163,9 @@ function Comments({ blog, user }) {
                         </div>
                     ))
                 ) : (
-                    <p>No comments yet</p>
+                    <div className={styles["no-comments"]}>
+                        <p>No comments yet!</p>
+                    </div>
                 )}
 
             </div>

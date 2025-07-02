@@ -278,13 +278,17 @@
 @media (max-width: 1020px) {
     .container {
         grid-template-columns: 1fr;
+        margin:0;
     }
     .hero-container {
         width: 85.5%;
     }
     .markdown-container {
         margin-bottom: 1.5rem;
-        width:90%;
+        width:100vw;
+        padding:1rem;
+        /* border:1px solid  red; */
+        /* width:100%; */
     }
     .markdown-preview {
         max-width: 100%;

@@ -10,7 +10,11 @@ function Recommended({ blog }) {
 
     const carouselRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [itemsPerPage, setItemsPerPage] = useState(window.innerWidth >= 1020 ? 3 : 2);
+    const [itemsPerPage, setItemsPerPage] = useState(() => {
+        if (window.innerWidth < 450) return 1;
+        else if (window.innerWidth < 1020) return 2;
+        else return 3;
+    });
 
     useEffect(() => {
         if (blog.user?._id && blog?._id) {
@@ -20,7 +24,13 @@ function Recommended({ blog }) {
 
     useEffect(() => {
         const handleResize = () => {
-            setItemsPerPage(window.innerWidth >= 1020 ? 3 : 2);
+            if (window.innerWidth < 450) {
+                setItemsPerPage(1);
+            } else if (window.innerWidth < 1020) {
+                setItemsPerPage(2);
+            } else {
+                setItemsPerPage(3);
+            }
         } // handleResize
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
@@ -33,7 +43,7 @@ function Recommended({ blog }) {
         const scrollLeft = container.scrollLeft;
         const containerWidth = container.offsetWidth;
 
-        const index = Math.round(scrollLeft / containerWidth);
+        const index = Math.floor(scrollLeft / containerWidth);
         setActiveIndex(index);
     }
 

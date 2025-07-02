@@ -15,7 +15,7 @@ function Subscribe({ blog }) {
                 <form onSubmit={onSubmit} className={styles["form"]}>
                     <div className={styles["input-container"]}>
                         <input className={styles["input-email"]} type="email" placeholder="Enter your email"></input>
-                        <input type="submit" value="SUBSCRIBE"></input>
+                        <input className={styles["submit"]} type="submit" value="SUBSCRIBE"></input>
                     </div>
                     <span className={styles["disclaimer"]}>By clicking subscribe, you confirm that you have read and are agreeing to our <a href="/tos">terms of use</a> and <a href="/privacy">privacy policy</a> regarding the storage of the data submitted through this form.</span>
                 </form>

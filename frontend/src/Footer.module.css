@@ -1,5 +1,6 @@
 .container {
     width: 100%;
+    /* flex-wrap: wrap; */
     /* margin-top: 4rem; */
 }
 .main-container {
@@ -33,6 +34,7 @@
     cursor 
 } */
 .box h5 {
+    white-space: nowrap;
     font-weight: 400;
     font-size: 16px;
 }
@@ -46,12 +48,14 @@
     display:flex;
     flex-direction: column;
     gap:6px;
+    flex-wrap: wrap;
 }
 .navigation a {
     text-decoration: none;
     color:black;
     font-weight: 500;
     transition:0.3s ease;
+    white-space: flex-wrap;
 }
 .navigation a:hover {
     color:hsl(0, 0%, 50%);
@@ -91,7 +95,8 @@
         display:flex;
         flex-direction: column;
         justify-content: center;
-        gap:0.5rem;
+        gap:2rem;
+        line-height: 0;
     }
     .navigation div {
         display:flex;

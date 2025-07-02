@@ -177,13 +177,11 @@ function BlogPage() {
                         <div className={styles["like-button"]}>{userLiked ? (<FaHeart onClick={handleLike} disabled={isLiking} color="red"/>) : (<FaRegHeart onClick={handleLike} disabled={isLiking} />)}</div>
                         <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} />
                     </div>
-                    {/* <div className={styles["other-components"]}> */}
-                        <Tags blog={blog}/>
-                        <AboutSection blog={blog}/>
-                        <Subscribe blog={blog}/>
-                        <Recommended blog={blog}/>
-                        <Comments blog={blog} user={user} />
-                    {/* </div> */}
+                    <Tags blog={blog}/>
+                    <AboutSection blog={blog}/>
+                    <Subscribe blog={blog}/>
+                    <Recommended blog={blog}/>
+                    <Comments blog={blog} user={user} />
                 </div>
                 <div className={styles["side-bar"]}>
                     <SideBar className={styles["SideBar"]} images={images}/>
