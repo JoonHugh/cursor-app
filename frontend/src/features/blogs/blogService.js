@@ -3,6 +3,13 @@ import axios from 'axios';
 const DEBUG = import.meta.env.DEBUG;
 const API_URL = import.meta.env.VITE_BLOG_API_URL;
 
+
+// Fetch blogs for home page
+const fetchFeatured = async () => {
+    const response = await axios.get(`${API_URL}featured`);
+
+    return response.data;
+}
 // Get user blogs
 const getBlogs = async (token) => {
     const config = {
@@ -80,7 +87,7 @@ const fetchRecommended = async (userId, excludeId, tags, category) => {
 
     const response = await axios.get(`${API_URL}user/${userId}?${queryParams}`);
 
-    return response.data;
+    return response.data.filter(blog => blog.published);
 }
 
 const fetchComments = async (blogData) => {
@@ -105,6 +112,7 @@ const addComment = async (blogData, token) => {
 }
 
 const blogService = {
+    fetchFeatured,
     getBlogs,
     postBlog,
     updateBlog,

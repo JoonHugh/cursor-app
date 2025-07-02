@@ -10,6 +10,7 @@ import {
     getRecommended,
     addComment,
     getComments,
+    fetchFeatured,
 } from '../controllers/blogController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { getBlogBySlug } from '../controllers/blogController.js';
@@ -25,5 +26,6 @@ router.get('/api/trending', getTrending);
 router.post('/:id/like', protect, likeBlog);
 router.get('/user/:userId', getRecommended);
 router.route('/:id/comment').post(protect, addComment).get(getComments);
+router.get('/featured', fetchFeatured);
 
 export default router

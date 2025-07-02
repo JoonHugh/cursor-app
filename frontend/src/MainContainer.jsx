@@ -4,8 +4,17 @@ import styles from './MainContainer.module.css';
 import SideBar from './SideBar.jsx';
 import GridSection from './GridSection.jsx';
 import Newsletter from './Newsletter.jsx';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchFeatured } from './features/blogs/blogSlice.js';
 
 function MainContainer() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchFeatured());
+    }, [dispatch])
 
     return(
         <div className={styles["app-font"]}>

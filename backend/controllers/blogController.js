@@ -38,6 +38,21 @@ export const getBlogBySlug = asyncHandler(async (req, res) => {
     }
 }) // getBlogBySlug
 
+// @desc GET (Fetch) blogs for featured / hero section
+// @route GET /blogs/featured
+// @access public
+export const fetchFeatured = asyncHandler(async (req, res) => {
+    try {
+        const blogs = await Blog.find({ featured: true, published: true })
+            .sort({ views: -1 }) // most viewed first
+            .limit(3)
+            .populate('user', 'name username image country gender');
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
 // @desc GET blogs
 // @route GET /blogs
 // @access Private

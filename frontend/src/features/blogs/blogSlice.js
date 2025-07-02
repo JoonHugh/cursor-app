@@ -6,12 +6,23 @@ const DEBUG = import.meta.env.DEBUG;
 const initialState = {
     blogs: [],
     recommendedBlogs: [],
+    featured: [],
     comments: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: '',
 }
+
+// Fetch blogs for Home page
+export const fetchFeatured = createAsyncThunk('blogs/fetchFeatured', async (_, thunkAPI) => {
+    try {
+        return await blogService.fetchFeatured();
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
 
 // Get user blog posts
 export const getBlogs = createAsyncThunk('blogs/getAll', async (_, thunkAPI) => {
@@ -228,6 +239,19 @@ export const blogSlice = createSlice({
                 state.comments = action.payload.comment;
             })
             .addCase(addComment.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(fetchFeatured.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchFeatured.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.featured = action.payload;
+            })
+            .addCase(fetchFeatured.rejected, (state, action)  => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

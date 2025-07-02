@@ -15,7 +15,7 @@ function TrendingCard({ index, blog }) {
                     <span className={styles["arrow"]}><FontAwesomeIcon icon={faLongArrowAltRight} /></span>
                 </div>
                 <a className={styles["text"]} href={`blog/${blog.slug}`}>
-                    <h4 className={styles["title"]}><a href="#">{blog.title}</a></h4>
+                    <h4 className={styles["title"]}><span>{blog.title}</span></h4>
                     <p className={styles["meta"]}>{new Date(blog.createdAt).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</p>
                 </a>
             </div>
