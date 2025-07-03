@@ -308,8 +308,8 @@
         /* overflow-x: hidden; */
     }
     .markdown-preview {
-        max-width: 100%;
         width: 100%;
+        max-width: 100vw;
     }
     .side-bar {
         max-width: 100%;
