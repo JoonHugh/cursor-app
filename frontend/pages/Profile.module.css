@@ -1,7 +1,9 @@
 .profile-info {
+    width:100%;
     display:flex;
     flex-direction: column;
     margin-bottom: 1rem;
+    /* border:1px solid red; */
 }
 .profile-info input {
     padding: 8px;
@@ -54,6 +56,7 @@
     flex-direction: row;
     justify-self: end;
     gap:24px;
+    /* border:1px solid red; */
 }
 .profile-info p {
     margin-bottom: 0.5rem;
@@ -98,7 +101,7 @@
 }
 .dev-profile {
     /* border:1px solid red; */
-    /* width:100%; */
+    width:100%;
     height: 100px;
     overflow-x: scroll;
     word-break: break-word;
@@ -148,6 +151,9 @@
     border-radius:8px;
     font-weight: 500;
 }
+.select-tags {
+    width:100%;
+}
 
 
 @media (max-width: 768px) {
@@ -164,11 +170,15 @@
         bottom: 6px;
     }
     .form {
+        width: 100%;
+        margin:0;
         margin-bottom: 1rem;
     }
     .form-container {
         width:100%;
         padding:1rem;
+        margin:0;
+        margin-bottom: 1rem;
     }
     .dev-profile {
         width: 100%;
