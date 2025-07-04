@@ -77,9 +77,18 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    if (!email.trim() || !password) {
+      toast.error('All fields are required');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      toast.error('Invalid email format');
+      return;
+    }
+
     const  userData  = {
-      email,
-      password,
+      email: email.trim().toLocaleLowerCase(),
+      password: password.trim(),
     }
 
     if (DEBUG) console.log("Submitting login", userData);

@@ -75,13 +75,30 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    if (!name.trim() || !email.trim() || !password || !password2) {
+      toast.error('All fields are required');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      toast.error('Invalid email format');
+      return;
+    }
+    if (password !== password2) {
+      toast.error('Passwords do not match');
+      return;
+    }
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters');
+      return;
+    }
+
     if (password != password2) {
       toast.error('Passwords do not match');
     } else {
       const userData = {
-        name, 
-        email, 
-        password,
+        name: name.trim(), 
+        email: email.trim().toLowerCase(), 
+        password: password.trim(),
       }
 
     dispatch(register(userData));

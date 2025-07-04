@@ -43,7 +43,7 @@
     border-radius: 10px;
     overflow: hidden;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-    border:1px solid black;
+    /* border:1px solid black; */
 }
 .container h2 {
     font-size: 36px;
