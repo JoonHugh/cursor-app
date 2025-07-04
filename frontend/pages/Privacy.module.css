@@ -20,7 +20,7 @@
 .container {
     display:flex;
     flex-direction: column;
-    border:1px solid #cccccc;
+    /* border:1px solid #cccccc; */
     padding:2rem;
     box-sizing: border-box;
     line-height: 1.5rem;
