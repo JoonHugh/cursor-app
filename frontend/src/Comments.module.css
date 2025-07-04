@@ -65,7 +65,7 @@
   /* border:1px solid blue; */
 }
 .login {
-  margin: auto;
+  margin: 0;
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -79,15 +79,17 @@
   align-items: center;
   border: 1px solid #eee;
   border-radius: 6px;
-  /* border:1px solid red; */
+  border:1px solid red;
 }
 .login-prompt {
   text-align: center;
+  border:1px solid violet;
   /* width:100%; */
 }
 .button-group {
   display: flex;
   flex-direction: row;
+  border:1px solid lightgreen;
   gap: 8px;
 }
 .login button {
@@ -98,6 +100,7 @@
   outline: none;
   transition: 0.2s ease;
   color:black;
+  border:1px solid blue
 }
 .login button:hover {
   background-color: antiquewhite;
