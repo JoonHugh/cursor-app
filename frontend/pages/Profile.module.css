@@ -43,6 +43,9 @@
     border-radius: 50%;
     padding: 6px;
 }
+.about-editor {
+    width: 100%;
+}
 .image-input {
     display:none;
 }
@@ -168,6 +171,7 @@
         padding:1rem;
     }
     .dev-profile {
+        width: 100%;
         height: 50px;
     }
 }

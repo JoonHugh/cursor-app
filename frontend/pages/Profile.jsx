@@ -241,19 +241,22 @@ function Profile() {
                         
                         <p className={styles["label"]}>About:</p>
                         <label className={styles["profile-info"]}>
-                            <MDEditor
-                                height={300}
-                                className={styles["about-editor"]}
-                                value={formData.about}
-                                onChange={(value) => setFormData({ ...formData, about: value })}
-                                previewOptions={{
-                                    rehypePlugins: [[rehypeSanitize]],
-                                }}
-                                textareaProps={{
-                                    maxLength: 300
-                                }}
-                                preview={isMobile ? 'edit' : 'live'}
-                            />
+                            <div data-color-mode="light">
+                            <div className="wmde-markdown-var"> </div>
+                                <MDEditor
+                                    height={300}
+                                    className={styles["about-editor"]}
+                                    value={formData.about}
+                                    onChange={(value) => setFormData({ ...formData, about: value })}
+                                    previewOptions={{
+                                        rehypePlugins: [[rehypeSanitize]],
+                                    }}
+                                    textareaProps={{
+                                        maxLength: 300
+                                    }}
+                                    preview={isMobile ? 'edit' : 'live'}
+                                />
+                            </div>
                         </label>
                         <div className={styles["button-container"]}>
                             <a href="/" className={styles["home-button"]} type="">
