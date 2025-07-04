@@ -207,3 +207,14 @@
     /* border:3px solid blue; */
 }
 
+@media (max-width: 768px) {
+    .form {
+        height: 100%;
+        /* border:1px solid red; */
+    }
+    .btn-grid {
+        /* border:1px solid blue; */
+        padding-bottom: 1rem;
+    }
+
+}

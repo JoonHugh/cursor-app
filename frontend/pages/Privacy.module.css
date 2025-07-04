@@ -18,6 +18,8 @@
 }
 
 .container {
+    display:flex;
+    flex-direction: column;
     border:1px solid #cccccc;
     padding:2rem;
     box-sizing: border-box;
@@ -42,4 +44,12 @@
 
 .name {
     font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: fit-content;
+        padding:1rem;
+        margin:1rem;
+    }
 }

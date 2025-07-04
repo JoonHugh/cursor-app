@@ -98,6 +98,9 @@
     /* width:100%; */
     height: 100px;
     overflow-x: scroll;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -141,4 +144,30 @@
     background-color: antiquewhite;
     border-radius:8px;
     font-weight: 500;
+}
+
+
+@media (max-width: 768px) {
+    .image-container {
+        width: 125px;
+        height: 125px;
+    }
+    .image-container img {
+        width: 125px;
+        height: 125px;
+    }
+    .image-container i {
+        right:6px;
+        bottom: 6px;
+    }
+    .form {
+        margin-bottom: 1rem;
+    }
+    .form-container {
+        width:100%;
+        padding:1rem;
+    }
+    .dev-profile {
+        height: 50px;
+    }
 }

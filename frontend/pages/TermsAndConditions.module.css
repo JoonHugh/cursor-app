@@ -12,6 +12,8 @@
 }
 
 .container {
+    display:flex;
+    flex-direction: column;
     width:75%;
     max-width: 900px;
     margin:3rem auto;
@@ -37,4 +39,13 @@
     overflow-wrap: break-word;
     box-sizing: border-box;
     /* border:1px solid red; */
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        width: fit-content;
+        padding:1rem;
+        margin:1rem;
+    }
 }

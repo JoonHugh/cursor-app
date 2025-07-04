@@ -7,13 +7,16 @@ import countryList from "react-select-country-list";
 import MDEditor from "@uiw/react-md-editor";
 import rehypeSanitize from "rehype-sanitize";
 import { FiEdit } from "react-icons/fi";
-import ImageUpload from "../src/ImageUpload.jsx";
 import { toast } from 'react-toastify';
+import { useMediaQuery } from "@mui/material";
+
 
 
 const DEBUG = import.meta.env.DEBUG;
 
 function Profile() {
+    
+    const isMobile = useMediaQuery('(max-width:768px)');
 
     const { user, isLoading, isSuccess, isError, message } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -249,6 +252,7 @@ function Profile() {
                                 textareaProps={{
                                     maxLength: 300
                                 }}
+                                preview={isMobile ? 'edit' : 'live'}
                             />
                         </label>
                         <div className={styles["button-container"]}>

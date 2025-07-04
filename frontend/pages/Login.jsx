@@ -98,7 +98,7 @@ function Login() {
   }
 
   const fields = [
-    { id: 'email', label: 'Email address', type: 'email', value: email },
+    { id: 'email', label: 'Email Address', type: 'email', value: email },
     { id: 'password', label: 'Password', type: 'password', value: password },
   ];
 
@@ -156,7 +156,6 @@ function Login() {
                   id={field.id}
                   name={field.id}
                   value={field.value}
-                  placeholder={`${field.label}`}
                   onChange={onChange}
                 />
               </motion.div>
@@ -169,7 +168,7 @@ function Login() {
               initial="hidden"
               animate="visible"
             >
-              <button type="submit" className={styles["btn-block"]}>Login</button>
+              <button type="submit" className={styles["btn-block"]}>Log in</button>
             </motion.div>
           </form>
 

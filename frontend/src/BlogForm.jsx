@@ -12,9 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import rehypeSanitize from "rehype-sanitize";
 import { toast } from 'react-toastify';
+import { useMediaQuery } from '@mui/material';
 
 
 function BlogForm({ blog = null, onSubmitHandler, setEditPopup }) {
+
+    const isMobile = useMediaQuery('(max-width:768px)');
 
     const DEBUG = import.meta.env.DEBUG;
     
@@ -534,6 +537,7 @@ Visit [uiwjs/react-md-editor](https://github.com/uiwjs/react-md-editor) for more
                         previewOptions={{
                             rehypePlugins: [[rehypeSanitize]],
                         }}
+                        preview={isMobile ? 'edit' : 'live'}
                     />
                 </div>
                 <FormGroup className={styles["check-group"]}>

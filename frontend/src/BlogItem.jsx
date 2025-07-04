@@ -6,11 +6,14 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import BlogForm from './BlogForm.jsx';
 import { updateBlog, deleteBlog } from '../src/features/blogs/blogSlice.js';
 import { toast } from 'react-toastify';
+import { useMediaQuery } from '@mui/material';
 
 
 function BlogItem({ blog }) {
     
     const DEBUG = import.meta.env.DEBUG;
+
+    const isMobile = useMediaQuery('(max-width:768px)');
 
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -117,17 +120,17 @@ function BlogItem({ blog }) {
                 <div className={styles["grid"]}>
                     <a className={styles["container-link"]} href={'blog/' + blog.slug}>
                         <div className={styles["image-container"]}>
-                            <img src={(blog.image) ? url : "/assets/interior2.jpg"} alt="blog-image"></img>
+                            <img src={(blog.image) ? url : "/assets/interior2.jpg"} alt="blog-image" />
                         </div>
                     </a>
                     <div className={styles["preview-box"]}>
                         <div className={styles["top-grid"]}>
                             <div>
-                                <img src={user?.image || "/assets/defaultprofilepic.jpg"}></img>
+                                <img src={user?.image || "/assets/defaultprofilepic.jpg"} />
                             </div>
                             <div className={styles["top"]}>
-                                <span>{blog.user.username}</span>
-                                <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})} &nbsp; • &nbsp; {blog.readTime}</span>
+                                <span>{blog.user.username}</span> {isMobile && <span>&nbsp; • &nbsp;{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})} &nbsp; • &nbsp; {blog.readTime}</span>}
+                                {!isMobile && <span>{new Date(blog.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})} &nbsp; • &nbsp; {blog.readTime}</span>}
                                 <div className={styles["dropdown"]}>
                                     <button className={styles["more"]} onClick={dropdown}><IoMdMore /></button>
                                     {showDropdown && (

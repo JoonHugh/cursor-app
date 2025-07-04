@@ -90,9 +90,9 @@ function Register() {
 
   const fields = [
     { id: 'name', label: 'Name', type: 'text', value: name },
-    { id: 'email', label: 'Email address', type: 'email', value: email },
+    { id: 'email', label: 'Email Address', type: 'email', value: email },
     { id: 'password', label: 'Password', type: 'password', value: password },
-    { id: 'password2', label: 'Confirm password', type: 'password', value: password2 },
+    { id: 'password2', label: 'Confirm Password', type: 'password', value: password2 },
   ];
 
   if (isLoading) {
@@ -122,7 +122,7 @@ function Register() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3 }}
-          >
+            >
             Let's get started
           </motion.h2>
           <motion.p
@@ -151,7 +151,6 @@ function Register() {
                   id={field.id}
                   name={field.id}
                   value={field.value}
-                  placeholder={`${field.label}`}
                   onChange={onChange}
                 />
               </motion.div>
