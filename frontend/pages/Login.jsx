@@ -106,9 +106,7 @@ function Login() {
     <div className={styles["wrapper"]}>
       <div className={styles["background-image"]}></div>
       <div className={styles["blur-overlay"]}></div>
-        <div>
-            
-        </div>
+
       <motion.div
         className={styles["grid-container"]}
         variants={containerVariants}

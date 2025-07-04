@@ -11,7 +11,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: url('/assets/register.jpg') center center / cover no-repeat;
     z-index: 0;
 }
@@ -20,7 +20,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1;
@@ -30,7 +30,7 @@
     z-index: 2;
     background-color:white;
     width:75%;
-    height:75%;
+    height:100vh;
     min-width: 700px;
     min-height: 544px;
     max-width: 900px;
@@ -43,7 +43,7 @@
     border-radius: 10px;
     overflow: hidden;
     /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
-    /* border:1px solid black; */
+    border:1px solid black;
 }
 .container h2 {
     font-size: 36px;
@@ -130,7 +130,6 @@
     .container {
         position: absolute;
         width: 90%;
-        height: 100vh;
         top:50%;
         left:50%;
         transform: translate(-50%, -50%);
@@ -146,7 +145,7 @@
         width:100%;
         min-width: 100%;
         max-width: unset;
-        height: 100%;
+        height: 100vh;
         min-height: 0;
         max-height: unset;
         display:flex;
@@ -156,7 +155,7 @@
         order: -1;
         /* border:1px solid red; */
         width: 100%;
-        height: 100%;
+        height: 100vh;
     }
     .go-back {
         font-size: 15px;

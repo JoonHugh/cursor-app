@@ -12,6 +12,7 @@
 .container h5,
 .container h6 {
     margin-bottom: 1rem;
+    line-height: 2rem;
 }
 .container p {
     margin-bottom: 1rem;
