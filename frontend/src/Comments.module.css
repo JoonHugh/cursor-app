@@ -65,7 +65,7 @@
   /* border:1px solid blue; */
 }
 .login {
-  margin: 0;
+  margin: 0 auto;
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -77,30 +77,37 @@
   height: 200px;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   border: 1px solid #eee;
   border-radius: 6px;
-  border:1px solid red;
+  /* border:1px solid red; */
 }
 .login-prompt {
   text-align: center;
-  border:1px solid violet;
+  max-width: 90%;
+  margin: 0 auto;
+  overflow-wrap: break-word;
+  /* border:1px solid violet; */
   /* width:100%; */
 }
 .button-group {
   display: flex;
   flex-direction: row;
-  border:1px solid lightgreen;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
+  /* border:1px solid lightgreen; */
 }
 .login button {
   display: flex;
+  flex-shrink: 1; 
   border: none;
   padding: 10px;
   cursor: pointer;
   outline: none;
   transition: 0.2s ease;
   color:black;
-  border:1px solid blue
+  /* border:1px solid blue */
 }
 .login button:hover {
   background-color: antiquewhite;
