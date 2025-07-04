@@ -50,6 +50,7 @@
     font-weight: 600;
     cursor:pointer;
     transition: 0.3s ease;
+    color:black;
 }
 .not-found button:hover {
     background-color: hsl(34, 100%, 81%);

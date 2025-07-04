@@ -175,7 +175,10 @@ function BlogPage() {
                 <div className={styles["markdown-container"]}>
                     <div className={styles["markdown-content"]}>
                         <div className={styles["like-button"]}>{userLiked ? (<FaHeart onClick={handleLike} disabled={isLiking} color="red"/>) : (<FaRegHeart onClick={handleLike} disabled={isLiking} />)}</div>
-                        <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} style={{ width: '100%' }}/>
+                        <div data-color-mode="light">
+                            <div className="wmde-markdown-var"> </div>
+                            <MDEditor.Markdown source={blog.content} className={styles["markdown-preview"]} style={{ width: '100%' }}/>
+                        </div>
                     </div>
                     <Tags blog={blog}/>
                     <AboutSection blog={blog}/>
