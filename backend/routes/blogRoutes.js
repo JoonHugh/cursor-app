@@ -22,12 +22,12 @@ router.route('/').get(protect, getBlogs).post(protect, postBlog);
 
 router.get('/featured', fetchFeatured);
 router.get('/api/trending', getTrending);
+router.route('/home', getHomeBlogs);
 router.get('/user/:userId', getRecommended);
 router.get('/:slug', getBlogBySlug);
 router.route('/:id').put(protect, updateBlog).delete(protect, deleteBlog);
 router.put('/:id/views', updateBlogViews);
 router.post('/:id/like', protect, likeBlog);
 router.route('/:id/comment').post(protect, addComment).get(getComments);
-router.route('/home', getHomeBlogs);
 
 export default router
