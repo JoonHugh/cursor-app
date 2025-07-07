@@ -5,8 +5,6 @@ import Subscribe from './Subscribe.jsx';
 import BlogSection from './BlogSection.jsx';
 import TrendingSection from './TrendingSection.jsx';
 import { useEffect, useState } from 'react';
-import { randomizer } from './EntryHeader.jsx';
-import { randomImage } from './Blog.jsx';
 import { ParallaxProvider } from 'react-scroll-parallax';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHomeBlogs } from './features/blogs/blogSlice.js';
@@ -26,7 +24,9 @@ function BlogGrid() {
     // );
     const [entries, setEntries] = useState([]);
 
-    const { featured, homeBlogs } = useSelector((state) => state.blogs);
+    const DEBUG = import.meta.env.DEBUG;
+
+    const { featured } = useSelector((state) => state.blogs);
     const dispatch = useDispatch();
 
     const [displayedIds, setDisplayedIds] = useState(() => featured.map(b => b._id)); // start with featured
@@ -39,7 +39,7 @@ function BlogGrid() {
             .then((blogs) => {
                 const newIds = blogs.map(b => b._id);
                 setDisplayedIds(prev => [...new Set([...prev, ...newIds])]);
-                console.log(blogs);
+                if (DEBUG) console.log(blogs);
                 setEntries(blogs); // Start with 6 blogs
             });
     }, [dispatch, featured]);
@@ -63,10 +63,9 @@ function BlogGrid() {
                 const newIds = newBlogs.map(blog => blog._id);
                 setDisplayedIds(prev => [...new Set([...prev, ...newIds])]);
                 setEntries(prev => [...prev, ...newBlogs]);
+                if (DEBUG) console.log(newBlogs);
                 setSectionIndex(i => (i + 1) % sectionComponents.length);
             })
-        // const newEntries = Array.from({ length: 3 }, () => createEntry());
-        // setEntries(e => [...e, ...newEntries]);
         setSectionIndex(i => (i + 1) % sectionComponents.length);
     };
 

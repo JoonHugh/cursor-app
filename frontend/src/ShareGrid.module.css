@@ -1,18 +1,18 @@
 .share-grid {
-    display:grid;
-    grid-template-columns: 1fr 3fr;
+    display:flex;
+    flex-direction: row;
     font-weight: 500;
     font-size: 12px;
+    gap:4px;
     color: hsl(0, 0%, 70%);
 }
 .share {
-    width:100%;
+    width:80px;
     height:24px;
-    display:grid;
-    grid-template-columns: 1fr 1fr;
+    display:flex;
+    flex-direction: row;
     gap:15px;
-    /* border:1px solid red; */
-    align-content: center;
+    align-items: center;
     transition: 0.3s ease;
     /* border:1px solid red; */
 }
@@ -24,8 +24,8 @@
     font-weight: normal;
 }
 .icons {
-    display:grid;
-    grid-template-columns: min-content min-content min-content;
+    display:flex;
+    flex-direction: row;
     gap:18px;
     align-self: center;
     /* border:1px solid orange; */
@@ -55,5 +55,6 @@
 }
 
 @media (max-width: 768px) {
-    
+    .share {    
+    }
 }

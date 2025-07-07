@@ -90,6 +90,9 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - **Blog Slugs / Unique URL**:
     Each blog has a unique url that is associated with their respective backend entry. This allows for anyone to paste in the url and retrieve the blog information and read / comment / like the blog. 
 
+- **Home Page**:
+    The home page sorts by newest blogs, which is different from the hero section, which sorts by featured and most views, and also different from the trending section, which sorts by trending score, which is a combination of different weights for views likes, comments.
+
 # Blogs
 
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>

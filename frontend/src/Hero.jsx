@@ -60,8 +60,8 @@ function Hero() {
   return (
     <div className={styles["image-container"]}>
       <div className={styles["slider-wrapper"]} onClick={() => {
-        console.log("hi")
-        console.log(topBlogs)
+        if (DEBUG) console.log("hi")
+        if (DEBUG) console.log(topBlogs)
       }}>
         <div ref={sliderRef} className={styles["slider"]} onMouseDown={handleDrag}>
           {topBlogs.map((blog, index) => (

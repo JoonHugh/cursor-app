@@ -14,6 +14,14 @@
 .entry-title {
     font-weight: 500;
     margin-bottom: .75rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
     /* border:1px solid lightgreen; */
 }
 .meta-post a, .meta-post{
@@ -35,4 +43,14 @@
 }
 .entry-preview-col a:hover, .entry-title:hover {
     color:hsl(0, 0%, 60%);
+}
+
+@media (max-width: 768px) {
+    .meta-category {
+        /* border:1px solid red; */
+        margin: 0;
+    }
+    .entry-title {
+        margin: 4px 0;
+    }
 }

@@ -4,6 +4,8 @@ import { EntryHeader } from './EntryHeader.jsx';
 import ShareGrid from './ShareGrid.jsx';
 import styles from './Blog.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+import removeMd from 'remove-markdown';
+
 // import {}
 
 export function randomImage(category) {
@@ -21,28 +23,20 @@ export function randomImage(category) {
     return `./assets/${images[randomIndex]}`
 } // randomImage
 
-export function randomViews() {
-    const views = Math.floor(Math.random() * 10000);
-    if (views < 1000) return parseInt(views) + ' VIEWS';
+export function views(entry) {
+    if (entry.views < 1000) return parseInt(entry.views) + ' VIEWS';
     
-    const roundedViews = Math.round((views / 1000) * 10) / 10;
+    const roundedViews = Math.round((entry.views / 1000) * 10) / 10;
     return roundedViews + 'K VIEWS';
-}
-
-function readTime() {
-    // calculate later
-    return '2 MINUTE READ';
 }
 
 function Blog({ entry }) {
     
     const DEBUG = import.meta.env.DEBUG;
 
-    const blogs = useSelector(state => state.blogs);
-
     if (DEBUG) console.log(entry);
 
-    const blogLink = "/blog/" + entry.title;
+    const blogLink = "/blog/" + entry.slug;
     return(
         <div className={styles["blog"]}>
             <div className={styles["blog-grid-row"]}>
@@ -50,7 +44,7 @@ function Blog({ entry }) {
                     <img className={styles["entry-image"]} src={entry.image} alt="blog preview"></img>
                     <div className={styles["hover-text"]}>
                         <span className={styles["go-to-post"]}>VIEW POST <FontAwesomeIcon icon={faLongArrowAltRight} /></span>
-                        <span className={styles["post-meta"]}>{randomViews()} • {readTime()}</span>
+                        <span className={styles["post-meta"]}>{views(entry)} • {entry.readTime.toUpperCase()}</span>
                     </div>
                 </a>
                 <div className={styles["preview-column"]}>
@@ -58,7 +52,7 @@ function Blog({ entry }) {
                         <EntryHeader entry={entry} />
                     </div>
                     <div className={styles["post-excerpt"]}>
-                        <p>Structured gripped tape invisible moulded cups for suppor firm hold strong powermesh front liner sport detail. Warmth comfort hangs loosely from the body large pocket at the front full button...</p>
+                        <p>{removeMd(entry.content.replace(/\n+/g, '\n').trim())}</p>
                     </div>
                     <div className={styles["post-share"]}>
                         <ShareGrid />

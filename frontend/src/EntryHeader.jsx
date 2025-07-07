@@ -277,26 +277,15 @@ const names = [
     "Who\u2019s Really Stopping You From living on your terms?",
     "26 Easy Ways to Upgrade Your Routine"
   ]
-  
-export function randomizer() {
-    return {
-        category: categories[Math.floor(Math.random() * 4)],
-        title: titles[Math.floor(Math.random() * 250)],
-        name: names[Math.floor(Math.random() * 20)].toUpperCase()
-    }
-}
 
 export function EntryHeader({ entry }) {
-    const categoryLink = "/category/" + entry.category;
-    const blogLink = "/blog/" + entry.title;
-    const userLink = "/user/" + entry.name;
-    const commentLink = userLink + "/comments/";
+    const blogLink = "/blog/" + entry.slug;
 
     return(
         <div className={styles["entry-preview-col"]}>
-            <a href={categoryLink} className={styles["meta-category"]}>{entry.category}</a>
+            <a href={blogLink} className={styles["meta-category"]}>{entry.category}</a>
             <a href={blogLink} className={styles["entry-title"]}><h2 className={styles["entry-title"]}>{entry.title}</h2></a>
-            <span className={styles["meta-post"]}><a href={userLink}>{entry.name}</a> • <a href="#">MAY 2024</a> • <a href={commentLink}>NO COMMENTS</a></span>
+            <span className={styles["meta-post"]}><a href={blogLink}>{entry.user.username}</a> • <a href="#">{new Date(entry.createdAt).toLocaleString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</a> • <a href={blogLink}>{Object.keys(entry.comments).length > 0 ? `${Object.keys(entry.comments).length}` : `NO`} COMMENTS</a></span>
         </div>
     );
 }

@@ -85,7 +85,8 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     column-gap: 8px;
-    width: 300px
+    width: 300px;
+    /* border:1px solid red; */
 }
 .filter-item::before {
     position: absolute;
@@ -104,4 +105,10 @@
 }
 .filter-item:active {
     transform: scale(0.975);
+}
+
+@media (max-width: 768px) {
+    .filter-grid {
+        width: 280px;
+    }
 }

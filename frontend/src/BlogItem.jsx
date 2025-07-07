@@ -7,6 +7,7 @@ import BlogForm from './BlogForm.jsx';
 import { updateBlog, deleteBlog } from '../src/features/blogs/blogSlice.js';
 import { toast } from 'react-toastify';
 import { useMediaQuery } from '@mui/material';
+import removeMd from 'remove-markdown';
 
 
 function BlogItem({ blog }) {
@@ -151,7 +152,7 @@ function BlogItem({ blog }) {
                             <h3 className={styles["title"]}>{blog.title.substring(0, 470)}</h3>
                         </a>
                         <a className={styles["container-link"]} href={'blog/' + blog.slug}>
-                            <p className={styles["content"]}>{previewText}</p>
+                            <p className={styles["content"]}>{removeMd(previewText.replace(/\n+/g, '\n').trim())}</p>
                         </a>
                         <div className={styles["bottom"]}>
                             <div className={styles["meta"]}>
