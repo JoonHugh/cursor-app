@@ -319,9 +319,7 @@
 .dropdown-content button:hover {
     background-color: aliceblue;
 }
-/* .more:hover ~ .dropdown-content{
-    display:block;
-} */
+
 .top {
     display:flex;
     flex-direction: column;
@@ -337,6 +335,7 @@
     cursor:pointer;
     transition: 0.3s ease;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     word-break: break-word;
@@ -360,6 +359,7 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 6; /* number of lines */
+    line-clamp: 6;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     transition: 0.3s ease;
@@ -436,6 +436,7 @@
     }
     .content {
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         overflow: hidden;
         height: fit-content;
         margin-bottom: 4px;

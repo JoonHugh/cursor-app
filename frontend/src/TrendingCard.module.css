@@ -38,6 +38,7 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1; /* number of lines */
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     /* border:1px solid red; */

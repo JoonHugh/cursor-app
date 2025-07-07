@@ -77,9 +77,3 @@
     background-color: #eee;
     color: black;
 }
-
-@media (max-width: 450px) {
-    .main-container {
-
-    }
-}
