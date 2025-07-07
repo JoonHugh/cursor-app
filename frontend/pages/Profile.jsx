@@ -244,7 +244,7 @@ function Profile() {
                             <div data-color-mode="light">
                             <div className="wmde-markdown-var"> </div>
                                 <MDEditor
-                                    height={300}
+                                    height={250}
                                     className={styles["about-editor"]}
                                     value={formData.about}
                                     onChange={(value) => setFormData({ ...formData, about: value })}
@@ -254,7 +254,7 @@ function Profile() {
                                     textareaProps={{
                                         maxLength: 300
                                     }}
-                                    preview={isMobile ? 'edit' : 'live'}
+                                    preview={'edit'}
                                 />
                             </div>
                         </label>

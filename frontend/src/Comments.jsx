@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
-
 function Comments({ blog, user }) {
 
     const [comment, setComment] = useState('')

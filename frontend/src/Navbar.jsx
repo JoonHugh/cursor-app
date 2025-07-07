@@ -40,11 +40,9 @@ import styles from './Navbar.module.css';
 
     return(
         <div className={styles["navbar-container"]}>
-            {/* <Toolbar className={styles["toolbar"]}> */}
-                <IconButton onClick={toggleDrawer}>
-                    <IoMenu />
-                </IconButton>
-            {/* </Toolbar> */}
+            <IconButton onClick={toggleDrawer}>
+                <IoMenu />
+            </IconButton>
 
             <Drawer
                 className={styles["drawer"]}
@@ -54,14 +52,12 @@ import styles from './Navbar.module.css';
                 open={drawerOpen}
                 onClose={toggleDrawer}
             >
-                {/* <Toolbar className={styles["toolbar"]}> */}
                 <div className={styles["menu-icon"]}>
                     <IconButton onClick={toggleDrawer} className={styles["icon-button"]}>
                         <IoCloseOutline className={styles["icon"]} />
                     </IconButton>
                         <a className={styles["website-name"]} href="/">cursor</a>
                 </div>
-                {/* </Toolbar> */}
                 <List className={styles["list-items"]}>
                     <p>Navigation</p>
                     {drawerItems.map(({text, icon, link}) => (

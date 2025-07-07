@@ -9,19 +9,8 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHomeBlogs } from './features/blogs/blogSlice.js';
 
-
-
-// export function createEntry() {
-//     const entry = randomizer();
-//     const image = randomImage(entry.category);
-//     return { ...entry, image };
-// }
-
 function BlogGrid() {
 
-    // const [entries, setEntries] = useState(() =>
-    //     Array.from({ length: 6 }, () => createEntry())
-    // );
     const [entries, setEntries] = useState([]);
 
     const DEBUG = import.meta.env.DEBUG;

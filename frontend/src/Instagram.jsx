@@ -15,7 +15,7 @@ function Instagram({ images }) {
             </div>
             <a className={styles["username-link"]} href="https://www.instagram.com/joonhugh?igsh=c3ptN3ZseHAyazN1&utm_source=qr" target="_blank"><span className={styles["username"]}>joonhugh</span></a>
             <a className={styles["entity-link"]} href="https://hugh-dev.com/" target="_blank"><span className={styles["entity-name"]}>Hugh Dev Studios</span></a>
-            <span className={styles["meta-info"]}>475 FOLLOWERS 513 FOLLOWING</span>
+            <span className={styles["meta-info"]}>475 FOLLOWERS 517 FOLLOWING</span>
             <div className={styles["grid"]}>
                 {images.map((src, index) => (
                     <div key={`instagram-post-${index}`} className={styles["post-container"]}>

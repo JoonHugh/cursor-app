@@ -5,10 +5,6 @@ import { FaInstagram } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa6";
 
-
-
-
-
 function Follow() {
     return(
         <div className={styles["container"]}>
