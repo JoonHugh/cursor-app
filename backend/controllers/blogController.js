@@ -59,11 +59,16 @@ export const fetchFeatured = asyncHandler(async (req, res) => {
 export const getHomeBlogs = asyncHandler(async (req, res) => {
     try {
         const excludeParam = req.query.exclude;
-        const excludeIds = excludeParam ? excludeParam.split(',') : [];
+        const excludeIds = excludeParam
+            ? excludeParam.split(',').filter(id => id.trim() !== '')
+            : [];
+      
+        const limit = parseInt(req.query.limit) || 3;
+        console.log('Query limit:', limit);
 
         const blogs = await Blog.find({ published: true, _id: { $nin: excludeIds }})
             .sort({ createdAt: -1 })
-            .limit(3)
+            .limit(limit)
             .populate('user', 'username');
 
         res.status(200).json(blogs);

@@ -32,10 +32,17 @@ function BlogGrid() {
     const [displayedIds, setDisplayedIds] = useState(() => featured.map(b => b._id)); // start with featured
 
     useEffect(() => {
-        const ids = new Set(displayedIds);
-        homeBlogs.forEach(blog => ids.add(blog._id));
-        setDisplayedIds([...ids]);
-    }, [homeBlogs])
+        const excludeParam = featured.map(b => b._id).join(',');
+        
+        dispatch(getHomeBlogs({ exclude: excludeParam, limit: 6 }))
+            .unwrap()
+            .then((blogs) => {
+                const newIds = blogs.map(b => b._id);
+                setDisplayedIds(prev => [...new Set([...prev, ...newIds])]);
+                console.log(blogs);
+                setEntries(blogs); // Start with 6 blogs
+            });
+    }, [dispatch, featured]);
 
 
     const [sectionIndex, setSectionIndex] = useState(0);
@@ -62,12 +69,6 @@ function BlogGrid() {
         // setEntries(e => [...e, ...newEntries]);
         setSectionIndex(i => (i + 1) % sectionComponents.length);
     };
-
-    useEffect(() => {
-        if (homeBlogs.length) {
-            setEntries(prev => [...prev, ...homeBlogs]);
-        }
-    }, [homeBlogs])
 
     const blocks = [];
     

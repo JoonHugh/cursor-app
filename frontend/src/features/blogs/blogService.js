@@ -12,8 +12,9 @@ const fetchFeatured = async () => {
 }
 
 // Get blogs for home page
-const getHomeBlogs = async () => {
-    const response = await axios.get(`${API_URL}home`);
+const getHomeBlogs = async (params) => {
+    const query = new URLSearchParams(params).toString();
+    const response = await axios.get(`${API_URL}home?${query}`);
     
     return response.data
 }
