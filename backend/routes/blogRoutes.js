@@ -11,6 +11,7 @@ import {
     addComment,
     getComments,
     fetchFeatured,
+    getHomeBlogs,
 } from '../controllers/blogController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import { getBlogBySlug } from '../controllers/blogController.js';
@@ -27,5 +28,6 @@ router.route('/:id').put(protect, updateBlog).delete(protect, deleteBlog);
 router.put('/:id/views', updateBlogViews);
 router.post('/:id/like', protect, likeBlog);
 router.route('/:id/comment').post(protect, addComment).get(getComments);
+router.route('/home', getHomeBlogs);
 
 export default router

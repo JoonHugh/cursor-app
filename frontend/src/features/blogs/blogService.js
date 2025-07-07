@@ -10,6 +10,14 @@ const fetchFeatured = async () => {
 
     return response.data;
 }
+
+// Get blogs for home page
+const getHomeBlogs = async () => {
+    const response = await axios.get(`${API_URL}home`);
+    
+    return response.data
+}
+
 // Get user blogs
 const getBlogs = async (token) => {
     const config = {
@@ -121,6 +129,7 @@ const blogService = {
     fetchRecommended,
     fetchComments,
     addComment,
+    getHomeBlogs,
 }
 
 export default blogService

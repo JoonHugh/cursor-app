@@ -4,43 +4,70 @@ import AdBlog from './AdBlog.jsx';
 import Subscribe from './Subscribe.jsx';
 import BlogSection from './BlogSection.jsx';
 import TrendingSection from './TrendingSection.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { randomizer } from './EntryHeader.jsx';
 import { randomImage } from './Blog.jsx';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import { useDispatch, useSelector } from 'react-redux';
+import { getHomeBlogs } from './features/blogs/blogSlice.js';
 
 
 
-export function createEntry() {
-    const entry = randomizer();
-    const image = randomImage(entry.category);
-    return { ...entry, image };
-}
+// export function createEntry() {
+//     const entry = randomizer();
+//     const image = randomImage(entry.category);
+//     return { ...entry, image };
+// }
 
 function BlogGrid() {
 
-    const [entries, setEntries] = useState(() =>
-        Array.from({ length: 6 }, () => createEntry())
-    );
+    // const [entries, setEntries] = useState(() =>
+    //     Array.from({ length: 6 }, () => createEntry())
+    // );
+    const [entries, setEntries] = useState([]);
 
-    const [trendingEntries] = useState(() => 
-        Array.from({ length: 4 }, () => createEntry())
-    );
+    const { featured, homeBlogs } = useSelector((state) => state.blogs);
+    const dispatch = useDispatch();
+
+    const [displayedIds, setDisplayedIds] = useState(() => featured.map(b => b._id)); // start with featured
+
+    useEffect(() => {
+        const ids = new Set(displayedIds);
+        homeBlogs.forEach(blog => ids.add(blog._id));
+        setDisplayedIds([...ids]);
+    }, [homeBlogs])
+
 
     const [sectionIndex, setSectionIndex] = useState(0);
 
     const sectionComponents = [
-        <TrendingSection entries={trendingEntries} />,
+        <TrendingSection />,
         <ParallaxProvider><AdBlog /></ParallaxProvider>,
         <Subscribe />,
         <BlogSection />
     ];
 
     const loadMore = () => {
-        const newEntries = Array.from({ length: 3 }, () => createEntry());
-        setEntries(e => [...e, ...newEntries]);
+        const excludeParam = displayedIds.join(',');
+
+        dispatch(getHomeBlogs({ exclude: excludeParam }))
+            .unwrap()
+            .then((newBlogs) => {
+                const newIds = newBlogs.map(blog => blog._id);
+                setDisplayedIds(prev => [...new Set([...prev, ...newIds])]);
+                setEntries(prev => [...prev, ...newBlogs]);
+                setSectionIndex(i => (i + 1) % sectionComponents.length);
+            })
+        // const newEntries = Array.from({ length: 3 }, () => createEntry());
+        // setEntries(e => [...e, ...newEntries]);
         setSectionIndex(i => (i + 1) % sectionComponents.length);
     };
+
+    useEffect(() => {
+        if (homeBlogs.length) {
+            setEntries(prev => [...prev, ...homeBlogs]);
+        }
+    }, [homeBlogs])
 
     const blocks = [];
     

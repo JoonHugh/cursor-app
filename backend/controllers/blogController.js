@@ -53,6 +53,25 @@ export const fetchFeatured = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc GET (Fetch) All blogs for home section
+// GET /blogs/home?exclude=<comma-separated blog IDs>
+// @access public
+export const getHomeBlogs = asyncHandler(async (req, res) => {
+    try {
+        const excludeParam = req.query.exclude;
+        const excludeIds = excludeParam ? excludeParam.split(',') : [];
+
+        const blogs = await Blog.find({ published: true, _id: { $nin: excludeIds }})
+            .sort({ createdAt: -1 })
+            .limit(3)
+            .populate('user', 'username');
+
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+})
+
 // @desc GET blogs
 // @route GET /blogs
 // @access Private
@@ -68,7 +87,7 @@ export const getBlogs = asyncHandler(async (req, res) => {
 // @desc POST blog
 // @route POST /blogs
 // @access Private
-export const  postBlog = asyncHandler(async (req, res) => {
+export const postBlog = asyncHandler(async (req, res) => {
     if (!req.body.title || !req.body.content || !req.body.user) {
         res.status(400);
         throw new Error('Please make sure all required fields are provided');
@@ -161,7 +180,7 @@ export const getTrending = asyncHandler(async (req, res) => {
     try {
         if (DEBUG) console.log("Route hit!"); // Basic verification
 
-        const blogs = await Blog.find({ trendingScore: { $exists: true } })
+        const blogs = await Blog.find({ trendingScore: { $exists: true }, published: true })
         .sort({ trendingScore: -1 }) // sort by trendingScore in descending order
         .limit(5)
         .populate('user', 'username')

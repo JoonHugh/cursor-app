@@ -111,6 +111,10 @@
     display:flex;
     justify-content: end;
 }
+.info {
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
 
 @media (max-width: 768px) {
     .trending-card-container {
@@ -153,10 +157,6 @@
     .blog-info {
         display:flex;
         flex-direction: column;
-    }
-    .info {
-        font-size: 12px;
-        margin-bottom: 1rem;
     }
     .meta {
         font-size: 12px;

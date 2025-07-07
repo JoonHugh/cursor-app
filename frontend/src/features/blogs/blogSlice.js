@@ -4,10 +4,12 @@ import blogService from './blogService.js';
 const DEBUG = import.meta.env.DEBUG;
 
 const initialState = {
+    homeBlogs: [],
     blogs: [],
     recommendedBlogs: [],
     featured: [],
     comments: [],
+    excludedBlogIds: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -114,11 +116,24 @@ export const addComment = createAsyncThunk('comments/addComment', async (blogDat
     }
 });
 
+export const getHomeBlogs = createAsyncThunk('blogs/home', async (blogData, thunkAPI) => {
+    try {
+        const response = await blogService.getHomeBlogs(blogData);
+        return response;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
 export const blogSlice = createSlice({
     name: 'blog',
     initialState,
     reducers: {
-        reset: (state) => initialState
+        reset: (state) => initialState,
+        setExcludedBlogIds: (state, action) => {
+            state.excludedBlogIds = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -256,8 +271,21 @@ export const blogSlice = createSlice({
                 state.isError = true;
                 state.message = action.payload;
             })
+            .addCase(getHomeBlogs.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getHomeBlogs.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.homeBlogs = action.payload;
+            })
+            .addCase(getHomeBlogs.rejected, (state, action)  => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
     }
 })
 
-export const {reset} = blogSlice.actions
+export const { reset, setExcludedBlogIds } = blogSlice.actions
 export default blogSlice.reducer

@@ -81,6 +81,15 @@ For each user's password, I used **bcrypt** to encrypt their passwords and then 
 - **Comments**:
     Users are able to comment under blog posts once they're signed in. Other signed in users are then able to reply to those comments with only a 1 layer deep comment tree. The commenting feature uses information from user input fields from profile such as geneder and country. 
 
+- **Fully Responsive**:
+    The website is optimized so that it can work on virtually any device. This includes mobile devices, tablets, laptops, and other desktop computers. This is important because a website must be accessible by any device. (Although there might be some bugs that I'm still working out)
+
+- **Calculate Read Time**:
+    A small feature, but a nice quality of life one. This gives users some information into what kind of blog they are about to read. This is something that I personally look for in any article because it can either encourage the user to read the article or do the opposite. In any case, it saves time.
+
+- **Blog Slugs / Unique URL**:
+    Each blog has a unique url that is associated with their respective backend entry. This allows for anyone to paste in the url and retrieve the blog information and read / comment / like the blog. 
+
 # Blogs
 
 ### Authorization <h2 style="color: grey;">Bearer Token</h2>

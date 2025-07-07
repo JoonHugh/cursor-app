@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
-import { EntryHeader, randomizer } from './EntryHeader.jsx';
+import { EntryHeader } from './EntryHeader.jsx';
 import ShareGrid from './ShareGrid.jsx';
 import styles from './Blog.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+// import {}
 
 export function randomImage(category) {
     const imageMap = {
@@ -35,6 +37,8 @@ function readTime() {
 function Blog({ entry }) {
     
     const DEBUG = import.meta.env.DEBUG;
+
+    const blogs = useSelector(state => state.blogs);
 
     if (DEBUG) console.log(entry);
 

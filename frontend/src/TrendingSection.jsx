@@ -4,7 +4,7 @@ import  { useDispatch } from 'react-redux';
 import {useState, useEffect } from 'react';
 import axios from 'axios';
 
-function TrendingSection({ entries }) {
+function TrendingSection() {
 
 
     const DEBUG = import.meta.env.DEBUG;

@@ -15,7 +15,12 @@ function About() {
           As a learning project, Cursor incorporates essential concepts of full-stack development, user authentication, authorization, secure password storage, and persistent data handling.
           The frontend is styled with responsive design in mind and includes UI animations for a better user experience.
         </p>
-        <p>This project was created by a Computer Science student at the University of Georgia as part of a journey into full-stack development.</p>
+        <p>
+          This project was created by a Computer Science student at the University of Georgia as part of a journey into full-stack development.
+          </p>
+        <p>
+          Cursor is a perosnal project and should NOT be confused with the AI Code Editor. Cursor, the blogging platform, is NOT associated with cursor the Ai Code Editor. This is a passion project, please do not sue me.
+        </p>
       </div>
     );
   }
