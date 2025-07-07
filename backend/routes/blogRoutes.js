@@ -22,7 +22,7 @@ router.route('/').get(protect, getBlogs).post(protect, postBlog);
 
 router.get('/featured', fetchFeatured);
 router.get('/api/trending', getTrending);
-router.route('/home', getHomeBlogs);
+router.get('/home', getHomeBlogs);
 router.get('/user/:userId', getRecommended);
 router.get('/:slug', getBlogBySlug);
 router.route('/:id').put(protect, updateBlog).delete(protect, deleteBlog);
