@@ -284,6 +284,7 @@
     justify-self: right;
     border: none;
     background-color: white;
+    color:black;
     /* position: absolute; */
     /* border:1px solid blue; */
 }
@@ -297,6 +298,7 @@
     /* border:1px solid greenyellow; */
     border-radius: 4px;
     overflow: hidden;
+    color:black;
 }
 .dropdown-content button {
     width: 100px;
